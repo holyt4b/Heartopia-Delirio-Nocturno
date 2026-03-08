@@ -159,25 +159,62 @@ const DEF_FISH=[
   {id:22,name:"Pez Luna",emoji:"🌙",level:10,time:"0-12h",cost:0,sell:[850,1275,1700,3400,6800],detail:"Mar Este",tip:"Solo mañana."},
 ];
 const DEF_COOK=[
-  {id:1,name:"Ensalada de Casa",emoji:"🥗",level:1,time:"",cost:30,sell:[120,180,240,480,960],detail:"Tomate × 2",tip:"Rápida, sube XP."},
-  {id:2,name:"Setas a la Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Seta × 2 (gratis)",tip:"¡Sin coste! Mejor principiante."},
-  {id:3,name:"Fish N Chips",emoji:"🍟",level:1,time:"",cost:80,sell:[310,465,620,1240,2480],detail:"Pez + Patata",tip:"Gran beneficio base."},
-  {id:4,name:"Salsa de Tomate",emoji:"🍅",level:1,time:"",cost:40,sell:[150,225,300,600,1200],detail:"Tomate × 4",tip:"Fácil en masa."},
-  {id:5,name:"Mermelada Manzana",emoji:"🍎",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Manzanas × 4 (gratis)",tip:"Rentable con fruta gratis."},
-  {id:6,name:"Pizza Mariscos",emoji:"🍕",level:2,time:"",cost:150,sell:[380,570,760,1520,3040],detail:"Pez + Trigo + Tomate",tip:"Muy rentable nivel 2."},
-  {id:7,name:"Pasta con Carne",emoji:"🍝",level:2,time:"",cost:200,sell:[520,780,1040,2080,4160],detail:"Trigo + Tomate + Carne",tip:"Buena relación."},
-  {id:8,name:"Sopa de Setas",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Setas + Patata (gratis)",tip:"¡Mejor sopa! Sin coste."},
-  {id:9,name:"Pastel de Setas",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Seta + Trigo",tip:"Gran beneficio."},
-  {id:10,name:"Estofado Rural",emoji:"🍲",level:3,time:"",cost:175,sell:[350,525,700,1400,2800],detail:"Tomate + Patata + Lechuga",tip:"Ingredientes caseros."},
-  {id:11,name:"Tarta Zanahoria",emoji:"🥕",level:5,time:"",cost:180,sell:[450,675,900,1800,3600],detail:"Zanahoria + Trigo + Huevo",tip:"Buen postre."},
-  {id:12,name:"Tarta de Manzana",emoji:"🥧",level:5,time:"",cost:95,sell:[420,630,840,1680,3360],detail:"Manzana × 4 + Trigo",tip:"Fruta gratis = beneficio."},
-  {id:13,name:"Sopa de Maíz",emoji:"🌽",level:6,time:"",cost:170,sell:[400,600,800,1600,3200],detail:"Maíz + Leche",tip:"Buena AFK."},
-  {id:14,name:"Mermelada Fresa",emoji:"🍓",level:6,time:"",cost:500,sell:[1580,2370,3160,6320,12640],detail:"Fresa × 4",tip:"¡LA MÁS CARA a 5★!"},
-  {id:15,name:"Mermelada Uva",emoji:"🍇",level:7,time:"",cost:640,sell:[1200,1800,2400,4800,9600],detail:"Uva × 4",tip:"Alto beneficio."},
-  {id:16,name:"Tiramisu",emoji:"🍰",level:7,time:"",cost:350,sell:[720,1080,1440,2880,5760],detail:"Trigo + Huevo + Fresa + Cacao",tip:"Postre alto nivel."},
-  {id:17,name:"Pasta Trufa Negra",emoji:"🍝",level:8,time:"",cost:400,sell:[900,1350,1800,3600,7200],detail:"Trufa + Trigo + Crema",tip:"Mejor pasta del juego."},
-  {id:18,name:"Hamburguesa",emoji:"🍔",level:9,time:"",cost:300,sell:[980,1470,1960,3920,7840],detail:"Carne + Trigo + Lechuga + Tomate",tip:"Alto nivel."},
-  {id:19,name:"Mariscada Lujo",emoji:"🦞",level:10,time:"",cost:500,sell:[1200,1800,2400,4800,9600],detail:"Langosta Nórdica + Mariscos",tip:"Solo langosta nórdica."},
+  // === MERMELADAS (Nv.1, automáticas) ===
+  {id:1,name:"Mermelada Arándano",emoji:"🫐",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Arándano × 4 (recolectado)",tip:"2.5x más que fruta cruda."},
+  {id:2,name:"Mermelada Manzana",emoji:"🍎",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Manzana × 4 (recolectada)",tip:"Muy rentable, fruta gratis."},
+  {id:3,name:"Mermelada Naranja",emoji:"🍊",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Naranja × 4 (recolectada)",tip:"Igual que manzana."},
+  {id:4,name:"Mermelada Frambuesa",emoji:"🍇",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Frambuesa × 4 (recolectada)",tip:"Fácil de conseguir."},
+  {id:5,name:"Mermelada Mixta",emoji:"🫙",level:1,time:"",cost:0,sell:[160,240,320,640,1280],detail:"4 frutas variadas",tip:"Usa frutas sobrantes."},
+  {id:6,name:"Mermelada Piña",emoji:"🍍",level:4,time:"",cost:60,sell:[220,330,440,880,1760],detail:"Piña × 4",tip:"Buena relación tiempo/beneficio."},
+  {id:7,name:"Mermelada Fresa",emoji:"🍓",level:6,time:"",cost:500,sell:[1580,2370,3160,6320,12640],detail:"Fresa × 4",tip:"¡LA COMIDA MÁS CARA a 5★!"},
+  {id:8,name:"Mermelada Uva",emoji:"🍇",level:7,time:"",cost:640,sell:[2020,3030,4040,8080,16160],detail:"Uva × 4",tip:"Altísimo beneficio. Dato Asia."},
+  // === NIVEL 1 ===
+  {id:9,name:"Salsa de Tomate",emoji:"🍅",level:1,time:"",cost:40,sell:[150,225,300,600,1200],detail:"Tomate × 4",tip:"Fácil en masa. Sube XP rápido."},
+  {id:10,name:"Ensalada de Casa",emoji:"🥗",level:1,time:"",cost:30,sell:[120,180,240,480,960],detail:"Tomate × 2",tip:"Rápida, sube XP."},
+  {id:11,name:"Setas a la Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Seta × 2 (gratis)",tip:"¡Sin coste! Mejor principiante."},
+  // === NIVEL 2 ===
+  {id:12,name:"Café",emoji:"☕",level:2,time:"",cost:200,sell:[280,420,560,1120,2240],detail:"Café × 2 + Leche × 2",tip:"Desbloquea Café Moca."},
+  {id:13,name:"Café Moca",emoji:"☕",level:2,time:"",cost:250,sell:[350,525,700,1400,2800],detail:"Café × 2 + Leche × 2 (variante)",tip:"Derivado del café. Más rentable."},
+  // === NIVEL 3 ===
+  {id:14,name:"Fish N Chips",emoji:"🍟",level:3,time:"",cost:80,sell:[310,465,620,1240,2480],detail:"Pez × 2 + Patata × 2",tip:"Gran beneficio con pez barato."},
+  {id:15,name:"Sopa de Setas",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Seta × 2 + Patata × 2 (gratis)",tip:"¡Mejor sopa! Sin coste."},
+  {id:16,name:"Pastel de Setas",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Seta × 2 + Trigo × 2",tip:"Gran beneficio."},
+  // === NIVEL 4 ===
+  {id:17,name:"Pasta con Carne",emoji:"🍝",level:4,time:"",cost:200,sell:[520,780,1040,2080,4160],detail:"Trigo + Tomate + Carne × 2",tip:"Buena relación. 5 flips."},
+  {id:18,name:"Smoked Fish Bagel",emoji:"🥯",level:4,time:"",cost:230,sell:[450,675,900,1800,3600],detail:"Pez + Queso + Patata + Trigo",tip:"5 flips, buen beneficio."},
+  {id:19,name:"Pizza Mariscos",emoji:"🍕",level:4,time:"",cost:220,sell:[380,570,760,1520,3040],detail:"Pez + Trigo + Tomate + Huevo",tip:"6 flips. Buff Velocidad."},
+  {id:20,name:"Risotto Mariscos",emoji:"🍚",level:4,time:"",cost:150,sell:[350,525,700,1400,2800],detail:"Pez × 2 + Tomate + Trigo",tip:"4 flips. Buff Fuerza."},
+  // === NIVEL 5 ===
+  {id:21,name:"Tarta de Manzana",emoji:"🥧",level:5,time:"",cost:195,sell:[420,630,840,1680,3360],detail:"Manzana + Huevo + Mantequilla + Trigo",tip:"7 flips. Fruta recolectada."},
+  {id:22,name:"Estofado Rural",emoji:"🍲",level:5,time:"",cost:175,sell:[350,525,700,1400,2800],detail:"Tomate + Patata + Lechuga + Zanahoria",tip:"Ingredientes caseros."},
+  {id:23,name:"Tiramisu",emoji:"🍰",level:5,time:"",cost:350,sell:[720,1080,1440,2880,5760],detail:"Café + Leche + Huevo + Queso",tip:"Buff Energía. Muy rentable."},
+  // === NIVEL 6 ===
+  {id:24,name:"Tarta Zanahoria",emoji:"🥕",level:6,time:"",cost:180,sell:[450,675,900,1800,3600],detail:"Zanahoria × 2 + Trigo + Huevo",tip:"Buen postre medio."},
+  {id:25,name:"Sopa de Maíz",emoji:"🌽",level:6,time:"",cost:270,sell:[400,600,800,1600,3200],detail:"Maíz × 2 + Leche × 2",tip:"AFK farming."},
+  {id:26,name:"Tarta de Queso",emoji:"🍰",level:6,time:"",cost:320,sell:[520,780,1040,2080,4160],detail:"Trigo + Leche + Huevo + Queso",tip:"Popular entre NPCs."},
+  // === NIVEL 7 ===
+  {id:27,name:"Plato Cangrejo Imperial",emoji:"🦀",level:7,time:"",cost:0,sell:[850,1275,1700,3400,6800],detail:"Cangrejo Imperial (pez raro)",tip:"Necesita cangrejo imperial."},
+  // === NIVEL 8 ===
+  {id:28,name:"Pasta Trufa Negra",emoji:"🍝",level:8,time:"",cost:400,sell:[900,1350,1800,3600,7200],detail:"Trufa + Trigo + Crema",tip:"Mejor pasta del juego."},
+  {id:29,name:"Berenjena Gratinada",emoji:"🍆",level:8,time:"",cost:270,sell:[520,780,1040,2080,4160],detail:"Berenjena + Queso + Carne + Tomate",tip:"Necesita berenjena (Nv.8)."},
+  // === NIVEL 9 ===
+  {id:30,name:"Hamburguesa",emoji:"🍔",level:9,time:"",cost:300,sell:[980,1470,1960,3920,7840],detail:"Carne × 2 + Trigo + Lechuga",tip:"Alto nivel. Buff potente."},
+  {id:31,name:"Gambas con Aguacate",emoji:"🥑",level:9,time:"",cost:350,sell:[680,1020,1360,2720,5440],detail:"Gamba + Aguacate + Limón",tip:"Necesita aguacate (Nv.13)."},
+  // === NIVEL 10 ===
+  {id:32,name:"Mariscada de Lujo",emoji:"🦞",level:10,time:"",cost:500,sell:[1200,1800,2400,4800,9600],detail:"Langosta Nórdica + Mariscos",tip:"Solo langosta nórdica."},
+  {id:33,name:"Cangrejo al Vapor",emoji:"🦀",level:10,time:"",cost:0,sell:[1100,1650,2200,4400,8800],detail:"Cangrejo Dorado (pez legendario)",tip:"Necesita Cangrejo Real Dorado."},
+  // === NIVEL 11 (Bebidas) ===
+  {id:34,name:"Batido (Milkshake)",emoji:"🥤",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Fruta × 2",tip:"Variantes con cada fruta."},
+  {id:35,name:"Té Rojo Aromático",emoji:"🍵",level:11,time:"",cost:250,sell:[380,570,760,1520,3040],detail:"Té Rojo × 2 + Leche × 2",tip:"Solo comprar ingredientes."},
+  {id:36,name:"Té con Leche",emoji:"🍵",level:11,time:"",cost:350,sell:[450,675,900,1800,3600],detail:"Té Rojo + Leche × 3",tip:"Derivado del Té Rojo."},
+  {id:37,name:"Batido Matcha",emoji:"🍵",level:11,time:"",cost:300,sell:[380,570,760,1520,3040],detail:"Matcha × 2 + Leche × 2",tip:"Solo comprar ingredientes."},
+  // === NIVEL 12 (Chocolate) ===
+  {id:38,name:"Salsa de Chocolate",emoji:"🍫",level:12,time:"",cost:220,sell:[400,600,800,1600,3200],detail:"Cacao × 4",tip:"Necesita Árbol Cacao (Nv.12)."},
+  {id:39,name:"Té de Cacao",emoji:"🍫",level:12,time:"",cost:310,sell:[450,675,900,1800,3600],detail:"Cacao × 2 + Leche × 2",tip:"Bebida de chocolate."},
+  {id:40,name:"Batido de Cacao",emoji:"🍫",level:12,time:"",cost:320,sell:[480,720,960,1920,3840],detail:"Cacao × 2 + Leche × 2 (variante)",tip:"Derivado del batido."},
+  // === ESPECIALES / EVENTOS ===
+  {id:41,name:"Exposición Camping",emoji:"🏕️",level:7,time:"",cost:400,sell:[1200,1800,2400,4800,9600],detail:"Café/Latte + Comida × 3 (combo)",tip:"Plato combo, se come 4 veces."},
+  {id:42,name:"Afternoon Tea",emoji:"🫖",level:7,time:"",cost:350,sell:[980,1470,1960,3920,7840],detail:"Fruta + Trigo + Huevo + Mantequilla",tip:"Se come 4 veces. ¡No uses manzana!"},
 ];
 const DEF_BUG=[
   {id:1,name:"Mariposa Aurora",emoji:"🦋",level:1,time:"6-18h ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Campo Flores",tip:"Primera mariposa, muy común."},
