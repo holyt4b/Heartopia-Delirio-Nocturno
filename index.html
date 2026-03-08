@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,6 +24,7 @@
   .tab-btn.active-fish{background:var(--blue-bg);border-color:rgba(100,160,210,0.4);color:var(--blue);}
   .tab-btn.active-cook{background:var(--orange-bg);border-color:rgba(210,160,90,0.4);color:var(--orange);}
   .tab-btn.active-bug{background:rgba(180,120,200,0.15);border-color:rgba(180,120,200,0.4);color:#c8a0e0;}
+  .tab-btn.active-bird{background:rgba(100,180,160,0.15);border-color:rgba(100,180,160,0.4);color:#80d4b8;}
   .tab-btn.active-calc{background:rgba(200,168,78,0.15);border-color:rgba(200,168,78,0.4);color:var(--gold-light);}
   .filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
   .filters input[type="text"]{background:#2a3020;border:1px solid var(--border);border-radius:10px;padding:7px 12px;color:var(--text);font-family:inherit;font-size:13px;outline:none;width:140px;}
@@ -45,6 +45,7 @@
   .tag-fish{background:var(--blue-bg);color:var(--blue);}
   .tag-cook{background:var(--orange-bg);color:var(--orange);}
   .tag-bug{background:rgba(180,120,200,0.15);color:#c8a0e0;}
+  .tag-bird{background:rgba(100,180,160,0.15);color:#80d4b8;}
   .tag-sub{color:var(--text-dim);font-size:11px;}
   .card-price{text-align:right;}
   .card-price-label{font-size:10px;color:var(--text-dim);}
@@ -98,6 +99,7 @@
     <button class="tab-btn" onclick="setTab('fish',this)">🐟 Pesca</button>
     <button class="tab-btn" onclick="setTab('cook',this)">🍳 Cocina</button>
     <button class="tab-btn" onclick="setTab('bug',this)">🦋 Bichos</button>
+    <button class="tab-btn" onclick="setTab('bird',this)">🐦 Aves</button>
     <button class="tab-btn" onclick="setTab('calc',this)">🧮 Calculadora</button>
   </div>
 
@@ -344,6 +346,44 @@ const DEF_BUG=[
   {id:47,name:"Escarabajo Diamante",emoji:"🪲",level:7,time:"6-18 🌈",cost:0,sell:[220,330,440,880,1760],detail:"📍 Montaña · Arcoíris",tip:"Solo arcoíris, brilla."},
 ];
 
+// Aves: precios de Info Card (foto). Formato: 1★ idle / 2★ chirp / 3★ forage / 4★ preen / 5★ fly
+const DEF_BIRD=[
+  // Nv.1
+  {id:1,name:"Petirrojo",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Central, Ciudad",tip:"El primero que aprendes a fotografiar."},
+  {id:2,name:"Paloma",emoji:"🕊️",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Central, Ciudad",tip:"Muy común en la plaza."},
+  {id:3,name:"Camachuelo",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Suburbana",tip:"Rojo, fácil de ver."},
+  {id:4,name:"Carbonero",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Montaña Onsen",tip:"Amarillo/negro."},
+  {id:5,name:"Pinzón",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Campo Flores",tip:"Común en flores."},
+  {id:6,name:"Tórtola",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Aldea Pesquera",tip:"En el suelo, camina."},
+  // Nv.2
+  {id:7,name:"Ánade Real",emoji:"🦆",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Lagos, Ríos",tip:"Pato verde en el agua."},
+  {id:8,name:"Chochín",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Isla Bosque",tip:"Muy pequeño, en arbustos."},
+  {id:9,name:"Herrerillo",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Árboles",tip:"Azul/amarillo, en ramas."},
+  {id:10,name:"Trepador Azul",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Montaña",tip:"Sube troncos cabeza abajo."},
+  {id:11,name:"Picogordo",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Plataforma Salto",tip:"Pico grande y fuerte."},
+  // Nv.3
+  {id:12,name:"Pinzón Real",emoji:"🐦",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Pradera, Campo",tip:"Colorido, suelo."},
+  {id:13,name:"Paloma Fruta Rosa",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Camino Lago-Río",tip:"Rosa, camina por caminos."},
+  {id:14,name:"Paloma Ojos Amarillos",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Ciudad, Zona Central",tip:"Ojos dorados."},
+  {id:15,name:"Paloma Grande",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Torre Ciervo",tip:"Grande, en el suelo."},
+  // Nv.4
+  {id:16,name:"Cernícalo",emoji:"🦅",level:4,time:"Todo · ☀️ No lluvia",cost:0,sell:[30,120,240,480,960],detail:"📍 Bosque Pinos, copas árboles",tip:"Rapaz, en lo alto. Difícil."},
+  {id:17,name:"Búho Chico",emoji:"🦉",level:4,time:"Todo · ☀️ No lluvia",cost:0,sell:[30,120,240,480,960],detail:"📍 Acantilado piedra alta",tip:"En rocas altas, difícil de ver."},
+  {id:18,name:"Abejaruco Ojos Amarillos",emoji:"🐦",level:4,time:"Todo · Todo clima",cost:0,sell:[30,120,240,480,960],detail:"📍 Aldea Pesquera, cables",tip:"Colorido, en cables eléctricos."},
+  // Nv.5
+  {id:19,name:"Pato Blanco",emoji:"🦆",level:5,time:"Todo · Todo clima",cost:0,sell:[40,160,320,640,1280],detail:"📍 Lagos (con Atractor Pájaro)",tip:"Necesita Atractor de Pájaros."},
+  {id:20,name:"Flamenco Menor",emoji:"🦩",level:5,time:"Todo · 🌧️🌈 Lluvia/Arcoíris",cost:0,sell:[40,160,320,640,1280],detail:"📍 Lago Bosque",tip:"Rosa, solo lluvia/arcoíris."},
+  // Nv.6+
+  {id:21,name:"Alcaudón Dorsirrojo",emoji:"🐦",level:6,time:"Todo · 🌈☀️ Arcoíris/Brisa",cost:0,sell:[50,200,400,800,1600],detail:"📍 Bosque Roble, observadores",tip:"Arcoíris/brisa. Alto valor."},
+  {id:22,name:"Charrán",emoji:"🐦",level:6,time:"Todo · 🌈 Arcoíris",cost:0,sell:[60,240,360,720,1440],detail:"📍 Puente Isla Bosque, playa",tip:"Solo arcoíris. En la costa."},
+  {id:23,name:"Flamenco Americano",emoji:"🦩",level:6,time:"Todo · 🌈 Arcoíris/Brisa",cost:0,sell:[100,400,400,800,1600],detail:"📍 Playa Pato Amarillo",tip:"Grande, rosa. Arcoíris."},
+  {id:24,name:"Cardenalito",emoji:"🐦",level:7,time:"Todo · ☀️",cost:0,sell:[60,240,480,960,1920],detail:"📍 Campo Flores, Pradera",tip:"Rojo brillante."},
+  {id:25,name:"Martín Pescador",emoji:"🐦",level:7,time:"6-18 · ☀️",cost:0,sell:[60,240,480,960,1920],detail:"📍 Ríos, Lagos",tip:"Azul eléctrico, cerca del agua."},
+  {id:26,name:"Faisán Dorado",emoji:"🐦",level:8,time:"Todo · ☀️",cost:0,sell:[80,320,640,1280,2560],detail:"📍 Bosque Profundo",tip:"Dorado/rojo, muy bonito."},
+  {id:27,name:"Búho Real",emoji:"🦉",level:9,time:"18-6 · 🌙",cost:0,sell:[100,400,800,1600,3200],detail:"📍 Montaña, Acantilado",tip:"Nocturno, el búho más grande."},
+  {id:28,name:"Águila Real",emoji:"🦅",level:10,time:"6-18 · ☀️🌈",cost:0,sell:[120,480,960,1920,3840],detail:"📍 Cimas montañas",tip:"La foto más valiosa del juego."},
+];
+
 let tab='garden',filter='all';
 function getAllItems(){
   const all=[];
@@ -351,18 +391,20 @@ function getAllItems(){
   DEF_FISH.forEach(i=>all.push({...i,cat:'fish',catName:'🐟 Pez'}));
   DEF_COOK.forEach(i=>all.push({...i,cat:'cook',catName:'🍳 Receta'}));
   DEF_BUG.forEach(i=>all.push({...i,cat:'bug',catName:'🦋 Bicho'}));
+  DEF_BIRD.forEach(i=>all.push({...i,cat:'bird',catName:'🐦 Ave'}));
   return all;
 }
 function getData(){
   if(tab==='garden') return DEF_GARDEN;
   if(tab==='fish') return DEF_FISH;
   if(tab==='bug') return DEF_BUG;
+  if(tab==='bird') return DEF_BIRD;
   return DEF_COOK;
 }
 function setTab(t,el){
   tab=t;
   document.querySelectorAll('.tab-btn').forEach(b=>b.className='tab-btn');
-  const cls=t==='garden'?'active-garden':t==='fish'?'active-fish':t==='bug'?'active-bug':t==='calc'?'active-calc':'active-cook';
+  const cls=t==='garden'?'active-garden':t==='fish'?'active-fish':t==='bug'?'active-bug':t==='bird'?'active-bird':t==='calc'?'active-calc':'active-cook';
   el.classList.add('tab-btn',cls);
   document.getElementById('filtersBar').style.display=t==='calc'?'none':'flex';
   document.getElementById('grid').style.display=t==='calc'?'none':'grid';
@@ -382,7 +424,7 @@ function render(){
   }).sort((a,b)=>a.level-b.level);
   const grid=document.getElementById('grid');grid.innerHTML='';
   const stars=getStarCount(),labels=stars===4?SL4:SL5;
-  const tagClass=tab==='garden'?'tag-garden':tab==='fish'?'tag-fish':tab==='bug'?'tag-bug':'tag-cook';
+  const tagClass=tab==='garden'?'tag-garden':tab==='fish'?'tag-fish':tab==='bug'?'tag-bug':tab==='bird'?'tag-bird':'tag-cook';
   list.forEach(item=>{
     const card=document.createElement('div');card.className='card';
     let pH='';
@@ -390,7 +432,7 @@ function render(){
       pH+=`<div class="star-cell" style="background:${SC[sI].replace(')','')+ bg});border:1px solid ${SC[sI].replace(')','')+ bd})"><div class="sl" style="color:${SC[sI]}">${labels[i]}</div><div class="sv ${v?'':'empty'}">${v?v+'g':'—'}</div></div>`;}
     const profit=item.sell[0]&&item.cost!==undefined?item.sell[0]-item.cost:null;
     const pC=profit>100?'high':profit>0?'mid':profit!==null?'neg':'';
-    const costHTML=(tab==='fish'||tab==='bug')?'':`<div class="card-price"><div class="card-price-label">${tab==='garden'?'Semilla':'Coste'}</div><div class="card-price-val">${item.cost}g</div></div>`;
+    const costHTML=(tab==='fish'||tab==='bug'||tab==='bird')?'':`<div class="card-price"><div class="card-price-label">${tab==='garden'?'Semilla':'Coste'}</div><div class="card-price-val">${item.cost}g</div></div>`;
     const timeStr=item.time?`<span class="tag-sub">⏱${item.time}</span>`:'';
     card.innerHTML=`<div class="card-head"><div class="card-emoji">${item.emoji}</div><div class="card-info"><div class="card-name">${item.name}</div><div class="card-tags"><span class="tag-lvl ${tagClass}">Nv.${item.level}</span>${timeStr}</div></div>${costHTML}</div><div class="stars stars-${stars}">${pH}</div>${profit!==null?`<div class="profit"><span class="l">Beneficio 1★</span><span class="v ${pC}">${profit>=0?'+':''}${profit}g</span></div>`:''}<div class="detail">📋 <span>${item.detail}</span></div>${item.tip?`<div class="tip-box">💡 ${item.tip}</div>`:''}`;
     grid.appendChild(card);
@@ -404,7 +446,7 @@ function renderCalc(){
   cv.innerHTML=`<div class="calc-panel">
     <div class="calc-section">
       <h3>🧮 Calculadora de Beneficios</h3>
-      <div class="calc-row"><label>Categoría</label><select id="cCat" onchange="updateItemList()"><option value="all">Todas</option><option value="garden">🌾 Cultivos</option><option value="fish">🐟 Peces</option><option value="cook">🍳 Recetas</option><option value="bug">🦋 Bichos</option></select></div>
+      <div class="calc-row"><label>Categoría</label><select id="cCat" onchange="updateItemList()"><option value="all">Todas</option><option value="garden">🌾 Cultivos</option><option value="fish">🐟 Peces</option><option value="cook">🍳 Recetas</option><option value="bug">🦋 Bichos</option><option value="bird">🐦 Aves</option></select></div>
       <div class="calc-row"><label>Item</label><select id="cItem" onchange="calcUpdate()"></select></div>
       <div class="calc-row"><label>Calidad ★</label><select id="cStar" onchange="calcUpdate()"><option value="0">1★</option><option value="1">2★</option><option value="2">3★</option><option value="3">4★</option><option value="4">5★</option></select></div>
       <div class="calc-row"><label>Cantidad</label><input id="cQty" type="number" min="1" value="1" onchange="calcUpdate()" oninput="calcUpdate()"></div>
