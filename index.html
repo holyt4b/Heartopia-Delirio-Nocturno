@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heartopia Delirio Nocturno - Guía de Precios</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg-deep:#141a10;--gold:#c8a84e;--gold-light:#e8d888;--green:#a8c870;--green-dim:#8a9870;--green-bg:rgba(120,160,60,0.15);--blue:#7ab8d4;--blue-bg:rgba(100,160,210,0.15);--orange:#d4a05a;--orange-bg:rgba(210,160,90,0.15);--text:#e8e4d8;--text-dim:#8a9870;--text-muted:#555;--star1:#c8a84e;--star2:#9eb8c7;--star3:#e8a946;--star4:#c26bdb;--star5:#e85a5a;--border:rgba(255,255,255,0.06);--radius:14px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{min-height:100vh;background:linear-gradient(160deg,#1a1e14 0%,#2a3020 30%,#1e2418 60%,var(--bg-deep) 100%);font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden;}
+  body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 15%,rgba(120,160,60,0.07) 0%,transparent 50%),radial-gradient(ellipse at 85% 80%,rgba(200,168,78,0.05) 0%,transparent 50%);pointer-events:none;z-index:0;}
+  .container{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:24px 16px 80px;}
+  .header{text-align:center;margin-bottom:24px;}
+  .header .tag{font-size:11px;letter-spacing:5px;color:var(--green-dim);text-transform:uppercase;margin-bottom:8px;}
+  .header h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:800;background:linear-gradient(135deg,#c8d8a0 0%,#e8d888 40%,#c26bdb 80%,#e85a5a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
+  .header .sub{font-family:'Playfair Display',serif;font-size:18px;color:#c26bdb;margin-bottom:6px;font-weight:700;}
+  .header p{color:var(--text-dim);font-size:13px;max-width:520px;margin:0 auto;line-height:1.5;}
+  .tabs{display:flex;justify-content:center;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
+  .tab-btn{padding:9px 18px;border-radius:12px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.25s;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text-dim);}
+  .tab-btn:hover{background:rgba(255,255,255,0.08);}
+  .tab-btn.active-garden{background:var(--green-bg);border-color:rgba(120,160,60,0.4);color:var(--green);}
+  .tab-btn.active-fish{background:var(--blue-bg);border-color:rgba(100,160,210,0.4);color:var(--blue);}
+  .tab-btn.active-cook{background:var(--orange-bg);border-color:rgba(210,160,90,0.4);color:var(--orange);}
+  .tab-btn.active-bug{background:rgba(180,120,200,0.15);border-color:rgba(180,120,200,0.4);color:#c8a0e0;}
+  .tab-btn.active-calc{background:rgba(200,168,78,0.15);border-color:rgba(200,168,78,0.4);color:var(--gold-light);}
+  .filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+  .filters input[type="text"]{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:10px;padding:7px 12px;color:var(--text);font-family:inherit;font-size:13px;outline:none;width:140px;}
+  .filters input::placeholder{color:var(--text-muted);}
+  .f-btn{background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:10px;padding:6px 14px;color:var(--text-dim);font-family:inherit;font-size:12px;cursor:pointer;transition:all 0.2s;}
+  .f-btn:hover{background:rgba(255,255,255,0.08);}
+  .f-btn.on{background:rgba(200,168,78,0.2);border-color:rgba(200,168,78,0.4);color:var(--gold-light);font-weight:600;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
+  .card{background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:all 0.25s;}
+  .card:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,0.2);}
+  .card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .card-emoji{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:12px;flex-shrink:0;}
+  .card-info{flex:1;min-width:0;}
+  .card-name{font-size:15px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .card-tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+  .tag-lvl{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;}
+  .tag-garden{background:var(--green-bg);color:var(--green);}
+  .tag-fish{background:var(--blue-bg);color:var(--blue);}
+  .tag-cook{background:var(--orange-bg);color:var(--orange);}
+  .tag-bug{background:rgba(180,120,200,0.15);color:#c8a0e0;}
+  .tag-sub{color:var(--text-dim);font-size:11px;}
+  .card-price{text-align:right;}
+  .card-price-label{font-size:10px;color:var(--text-dim);}
+  .card-price-val{font-size:14px;font-weight:700;color:#e8a946;}
+  .stars{display:grid;gap:5px;margin-bottom:10px;}
+  .stars-4{grid-template-columns:repeat(4,1fr);}
+  .stars-5{grid-template-columns:repeat(5,1fr);}
+  .star-cell{text-align:center;padding:6px 2px;border-radius:8px;}
+  .star-cell .sl{font-size:9px;font-weight:600;margin-bottom:2px;}
+  .star-cell .sv{font-size:13px;font-weight:700;color:var(--text);}
+  .star-cell .sv.empty{color:var(--text-muted);}
+  .profit{display:flex;justify-content:space-between;align-items:center;padding:5px 9px;background:rgba(120,160,60,0.08);border-radius:7px;font-size:11px;}
+  .profit .l{color:var(--text-dim);}.profit .v{font-weight:700;}
+  .profit .high{color:var(--green);}.profit .mid{color:var(--gold);}.profit .neg{color:#c85a5a;}
+  .detail{font-size:11px;color:var(--text-dim);margin-top:8px;line-height:1.6;}
+  .detail span{color:#b8b4a8;}
+  .tip-box{margin-top:6px;background:rgba(120,160,60,0.1);padding:6px 10px;border-radius:7px;color:var(--green);font-style:italic;font-size:11px;}
+  .footer{text-align:center;margin-top:28px;font-size:10px;color:var(--text-muted);}
+  /* Calculator */
+  .calc-panel{max-width:600px;margin:0 auto;}
+  .calc-section{background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;}
+  .calc-section h3{font-size:15px;font-weight:700;color:var(--gold-light);margin-bottom:14px;}
+  .calc-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap;}
+  .calc-row label{font-size:12px;color:var(--text-dim);min-width:90px;}
+  .calc-row select,.calc-row input[type="number"]{background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-family:inherit;font-size:13px;outline:none;flex:1;min-width:80px;}
+  .calc-row select:focus,.calc-row input:focus{border-color:rgba(200,168,78,0.4);}
+  .calc-result{background:linear-gradient(135deg,rgba(200,168,78,0.1) 0%,rgba(120,160,60,0.08) 100%);border:1px solid rgba(200,168,78,0.2);border-radius:var(--radius);padding:20px;text-align:center;}
+  .calc-result .big{font-size:36px;font-weight:800;color:var(--gold-light);margin:8px 0;}
+  .calc-result .sub-val{font-size:14px;color:var(--green);margin:4px 0;}
+  .calc-result .dim{font-size:12px;color:var(--text-dim);}
+  .calc-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .calc-box{background:rgba(255,255,255,0.04);border-radius:10px;padding:12px;text-align:center;}
+  .calc-box .val{font-size:20px;font-weight:700;margin:4px 0;}
+  .calc-box .lbl{font-size:11px;color:var(--text-dim);}
+  @media(max-width:640px){.header h1{font-size:30px;}.grid{grid-template-columns:1fr;}.calc-breakdown{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="tag">Guía Completa de Precios</div>
+    <h1>🌙 Heartopia</h1>
+    <div class="sub">Delirio Nocturno</div>
+    <p>Cultivos, peces, recetas y bichos — todos los precios de venta por calidad de estrella</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active-garden" onclick="setTab('garden',this)">🌾 Jardinería</button>
+    <button class="tab-btn" onclick="setTab('fish',this)">🐟 Pesca</button>
+    <button class="tab-btn" onclick="setTab('cook',this)">🍳 Cocina</button>
+    <button class="tab-btn" onclick="setTab('bug',this)">🦋 Bichos</button>
+    <button class="tab-btn" onclick="setTab('calc',this)">🧮 Calculadora</button>
+  </div>
+
+  <!-- Filters (hidden on calc) -->
+  <div class="filters" id="filtersBar">
+    <input type="text" id="searchBox" placeholder="Buscar..." oninput="render()">
+    <button class="f-btn on" data-f="all" onclick="setFilter(this)">Todos</button>
+    <button class="f-btn" data-f="low" onclick="setFilter(this)">Bajo Nv</button>
+    <button class="f-btn" data-f="mid" onclick="setFilter(this)">Medio</button>
+    <button class="f-btn" data-f="high" onclick="setFilter(this)">Alto Nv</button>
+  </div>
+
+  <div id="grid" class="grid"></div>
+  <div id="calcView" style="display:none"></div>
+
+  <div class="footer">Heartopia Delirio Nocturno · Datos servidor global + asiático (心动小镇) · Fan-made</div>
+</div>
+
+<script>
+const SC=['var(--star1)','var(--star2)','var(--star3)','var(--star4)','var(--star5)'];
+const SL4=['1★','2★','3★','4★'],SL5=['1★','2★','3★','4★','5★'];
+
+const DEF_GARDEN=[
+  {id:1,name:"Tomate",emoji:"🍅",level:1,time:"15 min",cost:10,sell:[30,40,50,60],detail:"Salsa de Tomate, Ensaladas",tip:"El más rápido. Farming activo."},
+  {id:2,name:"Patata",emoji:"🥔",level:1,time:"60 min",cost:30,sell:[90,120,150,180],detail:"Puré, Patatas Fritas",tip:"Mejor oro/hora para principiantes."},
+  {id:3,name:"Trigo",emoji:"🌾",level:2,time:"4 horas",cost:95,sell:[285,381,475,570],detail:"Pan, Harina, Pastelería",tip:"Buen cultivo AFK bajo nivel."},
+  {id:4,name:"Lechuga",emoji:"🥬",level:3,time:"8 horas",cost:145,sell:[435,582,726,870],detail:"Ensaladas, Sándwiches",tip:"Planta antes de dormir."},
+  {id:5,name:"Piña",emoji:"🍍",level:4,time:"30 min",cost:15,sell:[52,69,86,104],detail:"Zumo, Platos Tropicales",tip:"Rápida, buena para subir nivel."},
+  {id:6,name:"Zanahoria",emoji:"🥕",level:5,time:"2 horas",cost:50,sell:[155,207,258,310],detail:"Guisos, Comida Mascotas",tip:"¡A los conejos les encantan!"},
+  {id:7,name:"Fresa",emoji:"🍓",level:6,time:"6 horas",cost:125,sell:[375,503,627,750],detail:"Mermelada, Postres, Regalos",tip:"Mermelada 5★ = 12.640g!"},
+  {id:8,name:"Maíz",emoji:"🌽",level:6,time:"12 horas",cost:170,sell:[515,690,860,1030],detail:"Palomitas, Pienso",tip:"Mejor cultivo AFK nocturno."},
+  {id:9,name:"Uva",emoji:"🍇",level:7,time:"10 horas",cost:160,sell:[480,643,801,960],detail:"Mermelada de Uva, Vino",tip:"Muy rentable a alto nivel."},
+  {id:10,name:"Berenjena",emoji:"🍆",level:8,time:"Por confirmar",cost:135,sell:[null,null,null,null],detail:"Salteados, Plancha",tip:"Precios sin confirmar."},
+  {id:11,name:"Árbol de Té",emoji:"🍵",level:11,time:"Por confirmar",cost:25,sell:[null,null,null,null],detail:"Té, Bebidas",tip:"Se planta en suelo."},
+  {id:12,name:"Árbol de Cacao",emoji:"🍫",level:12,time:"Por confirmar",cost:110,sell:[null,null,null,null],detail:"Chocolate, Postres",tip:"Cultivo alto nivel."},
+  {id:13,name:"Aguacate",emoji:"🥑",level:13,time:"Por confirmar",cost:180,sell:[null,null,null,null],detail:"Guacamole, Ensaladas",tip:"Último cultivo."},
+];
+const DEF_FISH=[
+  {id:1,name:"Camarón Dulce",emoji:"🦐",level:1,time:"Todo el día",cost:0,sell:[50,75,100,200,400],detail:"Todos los ríos",tip:"Fácil, muy común."},
+  {id:2,name:"Sardina",emoji:"🐟",level:1,time:"Todo el día",cost:0,sell:[50,75,100,200,400],detail:"Todos los océanos",tip:"Para Fish N Chips."},
+  {id:3,name:"Perca Europea",emoji:"🐟",level:1,time:"Todo el día",cost:0,sell:[75,113,150,300,600],detail:"Todos los ríos",tip:"Común en ríos."},
+  {id:4,name:"Lubina",emoji:"🐟",level:1,time:"Todo el día",cost:0,sell:[75,113,150,300,600],detail:"Todos los océanos",tip:"Para cocinar."},
+  {id:5,name:"Carpa",emoji:"🐟",level:2,time:"Todo el día",cost:0,sell:[120,180,240,480,960],detail:"Ríos y lagos",tip:"Abundante."},
+  {id:6,name:"Salmón Atlántico",emoji:"🐟",level:2,time:"0-6,12-24",cost:0,sell:[155,233,310,620,1240],detail:"Mar de Ballenas",tip:"Buen precio medio."},
+  {id:7,name:"Pez Volador",emoji:"🐟",level:2,time:"6-18h",cost:0,sell:[180,270,360,720,1440],detail:"Mar Brisa, Mar Este",tip:"Solo de día."},
+  {id:8,name:"Róbalo",emoji:"🐟",level:3,time:"Todo el día",cost:0,sell:[230,345,460,920,1840],detail:"Lago Bosque",tip:"Pez versátil."},
+  {id:9,name:"Pulpo Común",emoji:"🐙",level:3,time:"Todo el día",cost:0,sell:[320,480,640,1280,2560],detail:"Océanos, Fiesta Pesca",tip:"Buen precio."},
+  {id:10,name:"Tilapia",emoji:"🐟",level:3,time:"Todo el día",cost:0,sell:[320,480,640,1280,2560],detail:"Todos los ríos",tip:"Muy rentable."},
+  {id:11,name:"Morena",emoji:"🐍",level:3,time:"18-6h",cost:0,sell:[350,525,700,1400,2800],detail:"Mar Ballenas, Mar Viejo",tip:"Solo nocturno."},
+  {id:12,name:"Esturión",emoji:"🐟",level:4,time:"6-18h",cost:0,sell:[450,675,900,1800,3600],detail:"Río Árbol Gigante",tip:"Diurno, valioso."},
+  {id:13,name:"Lucio del Norte",emoji:"🐟",level:4,time:"0-6,18-24",cost:0,sell:[610,915,1220,2440,4880],detail:"Lago Suburbano",tip:"Nocturno caro."},
+  {id:14,name:"Siluro",emoji:"🐟",level:4,time:"0-6,18-24",cost:0,sell:[610,915,1220,2440,4880],detail:"Lago Pradera",tip:"Alto valor nocturno."},
+  {id:15,name:"Tiburón Gato",emoji:"🦈",level:5,time:"Todo el día",cost:0,sell:[535,803,1070,2140,4280],detail:"Fiesta Pesca Marina",tip:"Alto nivel."},
+  {id:16,name:"Raya Manta",emoji:"🐟",level:5,time:"6-18h",cost:0,sell:[780,1170,1560,3120,6240],detail:"Mar de Ballenas",tip:"Diurno, muy caro."},
+  {id:17,name:"Pez Espada",emoji:"⚔️",level:9,time:"6-18h 🌈",cost:0,sell:[850,1275,1700,3400,6800],detail:"Mar Ballenas (Arcoíris)",tip:"Solo arcoíris."},
+  {id:18,name:"Atún Rojo",emoji:"🐟",level:9,time:"6-18h 🌈",cost:0,sell:[850,1275,1700,3400,6800],detail:"Mar Brisa (Arcoíris)",tip:"Legendario."},
+  {id:19,name:"Tiburón Martillo",emoji:"🦈",level:9,time:"0-6,18-24 🌈",cost:0,sell:[850,1275,1700,3400,6800],detail:"Mar Viejo (Arcoíris)",tip:"Nocturno, arcoíris."},
+  {id:20,name:"Calamar Gigante",emoji:"🦑",level:10,time:"0-6,18-24",cost:0,sell:[900,1350,1800,3600,7200],detail:"Fiesta Pesca Marina",tip:"¡El más caro!"},
+  {id:21,name:"Cangrejo Real Dorado",emoji:"🦀",level:10,time:"Todo 🌈",cost:0,sell:[850,1275,1700,3400,6800],detail:"Fiesta Pesca (Arcoíris)",tip:"Legendario dorado."},
+  {id:22,name:"Pez Luna",emoji:"🌙",level:10,time:"0-12h",cost:0,sell:[850,1275,1700,3400,6800],detail:"Mar Este",tip:"Solo mañana."},
+];
+const DEF_COOK=[
+  {id:1,name:"Ensalada de Casa",emoji:"🥗",level:1,time:"",cost:30,sell:[120,180,240,480,960],detail:"Tomate × 2",tip:"Rápida, sube XP."},
+  {id:2,name:"Setas a la Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Seta × 2 (gratis)",tip:"¡Sin coste! Mejor principiante."},
+  {id:3,name:"Fish N Chips",emoji:"🍟",level:1,time:"",cost:80,sell:[310,465,620,1240,2480],detail:"Pez + Patata",tip:"Gran beneficio base."},
+  {id:4,name:"Salsa de Tomate",emoji:"🍅",level:1,time:"",cost:40,sell:[150,225,300,600,1200],detail:"Tomate × 4",tip:"Fácil en masa."},
+  {id:5,name:"Mermelada Manzana",emoji:"🍎",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Manzanas × 4 (gratis)",tip:"Rentable con fruta gratis."},
+  {id:6,name:"Pizza Mariscos",emoji:"🍕",level:2,time:"",cost:150,sell:[380,570,760,1520,3040],detail:"Pez + Trigo + Tomate",tip:"Muy rentable nivel 2."},
+  {id:7,name:"Pasta con Carne",emoji:"🍝",level:2,time:"",cost:200,sell:[520,780,1040,2080,4160],detail:"Trigo + Tomate + Carne",tip:"Buena relación."},
+  {id:8,name:"Sopa de Setas",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Setas + Patata (gratis)",tip:"¡Mejor sopa! Sin coste."},
+  {id:9,name:"Pastel de Setas",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Seta + Trigo",tip:"Gran beneficio."},
+  {id:10,name:"Estofado Rural",emoji:"🍲",level:3,time:"",cost:175,sell:[350,525,700,1400,2800],detail:"Tomate + Patata + Lechuga",tip:"Ingredientes caseros."},
+  {id:11,name:"Tarta Zanahoria",emoji:"🥕",level:5,time:"",cost:180,sell:[450,675,900,1800,3600],detail:"Zanahoria + Trigo + Huevo",tip:"Buen postre."},
+  {id:12,name:"Tarta de Manzana",emoji:"🥧",level:5,time:"",cost:95,sell:[420,630,840,1680,3360],detail:"Manzana × 4 + Trigo",tip:"Fruta gratis = beneficio."},
+  {id:13,name:"Sopa de Maíz",emoji:"🌽",level:6,time:"",cost:170,sell:[400,600,800,1600,3200],detail:"Maíz + Leche",tip:"Buena AFK."},
+  {id:14,name:"Mermelada Fresa",emoji:"🍓",level:6,time:"",cost:500,sell:[1580,2370,3160,6320,12640],detail:"Fresa × 4",tip:"¡LA MÁS CARA a 5★!"},
+  {id:15,name:"Mermelada Uva",emoji:"🍇",level:7,time:"",cost:640,sell:[1200,1800,2400,4800,9600],detail:"Uva × 4",tip:"Alto beneficio."},
+  {id:16,name:"Tiramisu",emoji:"🍰",level:7,time:"",cost:350,sell:[720,1080,1440,2880,5760],detail:"Trigo + Huevo + Fresa + Cacao",tip:"Postre alto nivel."},
+  {id:17,name:"Pasta Trufa Negra",emoji:"🍝",level:8,time:"",cost:400,sell:[900,1350,1800,3600,7200],detail:"Trufa + Trigo + Crema",tip:"Mejor pasta del juego."},
+  {id:18,name:"Hamburguesa",emoji:"🍔",level:9,time:"",cost:300,sell:[980,1470,1960,3920,7840],detail:"Carne + Trigo + Lechuga + Tomate",tip:"Alto nivel."},
+  {id:19,name:"Mariscada Lujo",emoji:"🦞",level:10,time:"",cost:500,sell:[1200,1800,2400,4800,9600],detail:"Langosta Nórdica + Mariscos",tip:"Solo langosta nórdica."},
+];
+const DEF_BUG=[
+  {id:1,name:"Mariposa Aurora",emoji:"🦋",level:1,time:"6-18h ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Campo Flores",tip:"Primera mariposa, muy común."},
+  {id:2,name:"Mariquita",emoji:"🐞",level:1,time:"Todo ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Bosque",tip:"En arbustos y flores."},
+  {id:3,name:"Grillo",emoji:"🦗",level:1,time:"18-6h 🌙",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Pradera",tip:"Solo nocturno."},
+  {id:4,name:"Abeja",emoji:"🐝",level:1,time:"6-18h ☀️",cost:0,sell:[45,68,90,180,360],detail:"📍 Campo Flores, Jardín",tip:"Cerca de flores."},
+  {id:5,name:"Escarabajo Rinoceronte",emoji:"🪲",level:2,time:"18-6h 🌙",cost:0,sell:[60,90,120,240,480],detail:"📍 Bosque, Montaña Onsen",tip:"En troncos, nocturno."},
+  {id:6,name:"Luciérnaga",emoji:"✨",level:2,time:"18-6h 🌙",cost:0,sell:[60,90,120,240,480],detail:"📍 Lago Bosque, Pradera",tip:"Brilla de noche."},
+  {id:7,name:"Morpho Azul",emoji:"🦋",level:2,time:"6-18h ☀️",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque Profundo",tip:"Azul brillante."},
+  {id:8,name:"Escarabajo Ciervo",emoji:"🪲",level:3,time:"18-6h 🌙",cost:0,sell:[90,135,180,360,720],detail:"📍 Bosque Profundo",tip:"En troncos, buen precio."},
+  {id:9,name:"Rajah Brooke",emoji:"🦋",level:3,time:"6-18h ☀️",cost:0,sell:[90,135,180,360,720],detail:"📍 Montaña Onsen, Bosque",tip:"Verde/negra, valiosa."},
+  {id:10,name:"Mantis Religiosa",emoji:"🦗",level:3,time:"6-18h",cost:0,sell:[90,135,180,360,720],detail:"📍 Bosque, Campo Flores",tip:"Se camufla en arbustos."},
+  {id:11,name:"Escarabajo Atlas",emoji:"🪲",level:4,time:"18-6h 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Bosque Profundo",tip:"Grande, en troncos."},
+  {id:12,name:"Mariposa Monarca",emoji:"🦋",level:4,time:"6-18h ☀️",cost:0,sell:[120,180,240,480,960],detail:"📍 Campo Flores, Pradera",tip:"Naranja icónica."},
+  {id:13,name:"Sulkowsky Morpho",emoji:"🦋",level:4,time:"Todo ⚠️",cost:0,sell:[90,135,180,360,720],detail:"📍 Montaña Onsen · Necesita Atractor",tip:"Solo con Atractor Insectos."},
+  {id:14,name:"Escarabajo Hércules",emoji:"🪲",level:5,time:"18-6h 🌙",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque Profundo",tip:"Raro y muy valioso."},
+  {id:15,name:"Mariposa Alas Pájaro",emoji:"🦋",level:5,time:"6-12h ☀️",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque, Montaña",tip:"Solo por la mañana."},
+  {id:16,name:"Escorpión",emoji:"🦂",level:5,time:"18-6h 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Montaña Onsen",tip:"Se asusta fácil."},
+  {id:17,name:"Escarabajo Dorado",emoji:"🪲",level:6,time:"6-18h ☀️",cost:0,sell:[180,270,360,720,1440],detail:"📍 Montaña Onsen",tip:"Brilla dorado."},
+  {id:18,name:"Polilla Atlas",emoji:"🦋",level:6,time:"18-6h 🌙",cost:0,sell:[180,270,360,720,1440],detail:"📍 Bosque Profundo",tip:"Polilla más grande."},
+  {id:19,name:"Mariposa Arcoíris",emoji:"🦋",level:6,time:"6-18h 🌈",cost:0,sell:[200,300,400,800,1600],detail:"📍 Campo Flores · Solo Arcoíris",tip:"Solo clima arcoíris."},
+  {id:20,name:"Mariposa Cristal",emoji:"🦋",level:7,time:"6-12h 🌧️",cost:0,sell:[200,300,400,800,1600],detail:"📍 Bosque · Solo Lluvia",tip:"Alas transparentes."},
+  {id:21,name:"Ciervo Arcoíris",emoji:"🪲",level:7,time:"0-6h 🌈",cost:0,sell:[250,375,500,1000,2000],detail:"📍 Bosque Profundo · Arcoíris + Madrugada",tip:"¡El bicho MÁS RARO y caro!"},
+];
+
+let tab='garden',filter='all';
+function getAllItems(){
+  const all=[];
+  DEF_GARDEN.forEach(i=>all.push({...i,cat:'garden',catName:'🌾 Cultivo'}));
+  DEF_FISH.forEach(i=>all.push({...i,cat:'fish',catName:'🐟 Pez'}));
+  DEF_COOK.forEach(i=>all.push({...i,cat:'cook',catName:'🍳 Receta'}));
+  DEF_BUG.forEach(i=>all.push({...i,cat:'bug',catName:'🦋 Bicho'}));
+  return all;
+}
+function getData(){
+  if(tab==='garden') return DEF_GARDEN;
+  if(tab==='fish') return DEF_FISH;
+  if(tab==='bug') return DEF_BUG;
+  return DEF_COOK;
+}
+function setTab(t,el){
+  tab=t;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.className='tab-btn');
+  const cls=t==='garden'?'active-garden':t==='fish'?'active-fish':t==='bug'?'active-bug':t==='calc'?'active-calc':'active-cook';
+  el.classList.add('tab-btn',cls);
+  document.getElementById('filtersBar').style.display=t==='calc'?'none':'flex';
+  document.getElementById('grid').style.display=t==='calc'?'none':'grid';
+  document.getElementById('calcView').style.display=t==='calc'?'block':'none';
+  if(t==='calc') renderCalc(); else render();
+}
+function setFilter(el){
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');filter=el.dataset.f;render();
+}
+function getStarCount(){return tab==='garden'?4:5;}
+
+function render(){
+  const data=getData(),search=document.getElementById('searchBox').value.toLowerCase();
+  const list=data.filter(c=>c.name.toLowerCase().includes(search)).filter(c=>{
+    if(filter==='low')return c.level<=3;if(filter==='mid')return c.level>=4&&c.level<=7;if(filter==='high')return c.level>=8;return true;
+  }).sort((a,b)=>a.level-b.level);
+  const grid=document.getElementById('grid');grid.innerHTML='';
+  const stars=getStarCount(),labels=stars===4?SL4:SL5;
+  const tagClass=tab==='garden'?'tag-garden':tab==='fish'?'tag-fish':tab==='bug'?'tag-bug':'tag-cook';
+  list.forEach(item=>{
+    const card=document.createElement('div');card.className='card';
+    let pH='';
+    for(let i=0;i<stars;i++){const v=item.sell[i],sI=Math.min(i,SC.length-1),bg=v?'12':'05',bd=v?'25':'08';
+      pH+=`<div class="star-cell" style="background:${SC[sI].replace(')','')+ bg});border:1px solid ${SC[sI].replace(')','')+ bd})"><div class="sl" style="color:${SC[sI]}">${labels[i]}</div><div class="sv ${v?'':'empty'}">${v?v+'g':'—'}</div></div>`;}
+    const profit=item.sell[0]&&item.cost!==undefined?item.sell[0]-item.cost:null;
+    const pC=profit>100?'high':profit>0?'mid':profit!==null?'neg':'';
+    const costHTML=(tab==='fish'||tab==='bug')?'':`<div class="card-price"><div class="card-price-label">${tab==='garden'?'Semilla':'Coste'}</div><div class="card-price-val">${item.cost}g</div></div>`;
+    const timeStr=item.time?`<span class="tag-sub">⏱${item.time}</span>`:'';
+    card.innerHTML=`<div class="card-head"><div class="card-emoji">${item.emoji}</div><div class="card-info"><div class="card-name">${item.name}</div><div class="card-tags"><span class="tag-lvl ${tagClass}">Nv.${item.level}</span>${timeStr}</div></div>${costHTML}</div><div class="stars stars-${stars}">${pH}</div>${profit!==null?`<div class="profit"><span class="l">Beneficio 1★</span><span class="v ${pC}">${profit>=0?'+':''}${profit}g</span></div>`:''}<div class="detail">📋 <span>${item.detail}</span></div>${item.tip?`<div class="tip-box">💡 ${item.tip}</div>`:''}`;
+    grid.appendChild(card);
+  });
+}
+
+// ==================== CALCULATOR ====================
+function renderCalc(){
+  const all=getAllItems().filter(i=>i.sell&&i.sell[0]);
+  const cv=document.getElementById('calcView');
+  cv.innerHTML=`<div class="calc-panel">
+    <div class="calc-section">
+      <h3>🧮 Calculadora de Beneficios</h3>
+      <div class="calc-row"><label>Categoría</label><select id="cCat" onchange="updateItemList()"><option value="all">Todas</option><option value="garden">🌾 Cultivos</option><option value="fish">🐟 Peces</option><option value="cook">🍳 Recetas</option><option value="bug">🦋 Bichos</option></select></div>
+      <div class="calc-row"><label>Item</label><select id="cItem" onchange="calcUpdate()"></select></div>
+      <div class="calc-row"><label>Calidad ★</label><select id="cStar" onchange="calcUpdate()"><option value="0">1★</option><option value="1">2★</option><option value="2">3★</option><option value="3">4★</option><option value="4">5★</option></select></div>
+      <div class="calc-row"><label>Cantidad</label><input id="cQty" type="number" min="1" value="1" onchange="calcUpdate()" oninput="calcUpdate()"></div>
+      <div class="calc-row"><label>Coste extra</label><input id="cCostExtra" type="number" min="0" value="0" placeholder="Ingredientes comprados..." onchange="calcUpdate()" oninput="calcUpdate()"></div>
+    </div>
+    <div class="calc-result" id="calcResult">
+      <div class="dim">Selecciona un item para calcular</div>
+    </div>
+  </div>`;
+  updateItemList();
+}
+
+function updateItemList(){
+  const cat=document.getElementById('cCat').value;
+  const all=getAllItems().filter(i=>i.sell&&i.sell[0]);
+  const filtered=cat==='all'?all:all.filter(i=>i.cat===cat);
+  const sel=document.getElementById('cItem');
+  sel.innerHTML=filtered.map((it,idx)=>`<option value="${it.cat}_${it.id}">${it.emoji} ${it.name} (${it.catName})</option>`).join('');
+  // adjust star options based on first item
+  calcUpdate();
+}
+
+function calcUpdate(){
+  const key=document.getElementById('cItem').value;
+  if(!key) return;
+  const [cat,idStr]=key.split('_');
+  const id=parseInt(idStr);
+  const all=getAllItems();
+  const item=all.find(i=>i.cat===cat&&i.id===id);
+  if(!item) return;
+
+  const starIdx=parseInt(document.getElementById('cStar').value);
+  const maxStar=item.sell.length-1;
+  const si=Math.min(starIdx,maxStar);
+  const price=item.sell[si];
+  if(!price){document.getElementById('calcResult').innerHTML='<div class="dim">Precio no disponible para esta calidad</div>';return;}
+
+  const qty=Math.max(1,parseInt(document.getElementById('cQty').value)||1);
+  const costExtra=parseInt(document.getElementById('cCostExtra').value)||0;
+  const seedCost=item.cost||0;
+  const totalSell=price*qty;
+  const totalCost=(seedCost*qty)+costExtra;
+  const totalProfit=totalSell-totalCost;
+  const profitColor=totalProfit>0?'var(--green)':totalProfit<0?'#e85a5a':'var(--text-dim)';
+
+  document.getElementById('calcResult').innerHTML=`
+    <div class="dim">${item.emoji} ${item.name} · ${['1★','2★','3★','4★','5★'][si]} · ×${qty}</div>
+    <div class="big" style="color:${profitColor}">${totalProfit>=0?'+':''}${totalProfit.toLocaleString('es')}g</div>
+    <div class="sub-val">Beneficio ${totalProfit>=0?'neto':'(pérdida)'}</div>
+    <div class="calc-breakdown">
+      <div class="calc-box"><div class="lbl">💰 Venta total</div><div class="val" style="color:var(--gold-light)">${totalSell.toLocaleString('es')}g</div></div>
+      <div class="calc-box"><div class="lbl">📦 Coste total</div><div class="val" style="color:#e8a946">${totalCost.toLocaleString('es')}g</div></div>
+      <div class="calc-box"><div class="lbl">💵 Precio unitario</div><div class="val" style="color:var(--text)">${price}g</div></div>
+      <div class="calc-box"><div class="lbl">📊 Margen</div><div class="val" style="color:${profitColor}">${totalCost>0?Math.round((totalProfit/totalCost)*100)+'%':'∞'}</div></div>
+    </div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
