@@ -30,6 +30,7 @@
   .tab-btn.active-cook{background:rgba(210,160,90,0.18);border-color:rgba(210,160,90,0.4);color:var(--orange);}
   .tab-btn.active-bug{background:rgba(180,120,200,0.18);border-color:rgba(180,120,200,0.4);color:#c8a0e0;}
   .tab-btn.active-bird{background:rgba(100,180,160,0.18);border-color:rgba(100,180,160,0.4);color:#80d4b8;}
+  .tab-btn.active-flower{background:rgba(220,120,160,0.18);border-color:rgba(220,120,160,0.4);color:#f0a0c0;}
   .tab-btn.active-map{background:rgba(80,140,220,0.18);border-color:rgba(80,140,220,0.4);color:#70b8f0;}
   .tab-btn.active-calc{background:rgba(224,192,96,0.18);border-color:rgba(224,192,96,0.4);color:var(--gold-light);}
   .filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
@@ -52,6 +53,8 @@
   .tag-cook{background:var(--orange-bg);color:var(--orange);}
   .tag-bug{background:rgba(180,120,200,0.15);color:#c8a0e0;}
   .tag-bird{background:rgba(100,180,160,0.15);color:#80d4b8;}
+  .tag-flower{background:rgba(220,120,160,0.15);color:#f0a0c0;}
+  .tag-event{background:rgba(255,180,50,0.2);color:#f0c040;font-size:9px;padding:1px 6px;border-radius:4px;margin-left:4px;}
   .tag-sub{color:var(--text-dim);font-size:11px;}
   .card-price{text-align:right;}
   .card-price-label{font-size:10px;color:var(--text-dim);}
@@ -123,6 +126,7 @@
     <button class="tab-btn" onclick="setTab('cook',this)">🍳 Cocina</button>
     <button class="tab-btn" onclick="setTab('bug',this)">🦋 Bichos</button>
     <button class="tab-btn" onclick="setTab('bird',this)">🐦 Aves</button>
+    <button class="tab-btn" onclick="setTab('flower',this)">🌸 Flores</button>
     <button class="tab-btn" onclick="setTab('map',this)">🗺️ Mapa</button>
     <button class="tab-btn" onclick="setTab('calc',this)">🧮 Calculadora</button>
   </div>
@@ -370,6 +374,40 @@ const DEF_COOK=[
   // === PLATOS INVIERNO (Evento Frost) ===
   {id:72,name:"Estofado Invierno",emoji:"🍲",level:9,time:"",cost:250,sell:[550,825,1100,2200,4400],detail:"Rábano + Patata + Carne + Zanahoria",tip:"Evento Frost Season."},
   {id:73,name:"Pastel de Hierba",emoji:"🌿",level:10,time:"",cost:200,sell:[480,720,960,1920,3840],detail:"Trigo + Huevo + Mantequilla + Hierba",tip:"Evento especial. Hierba recolectable."},
+  // === SETAS: variantes Plancha completas (4 setas × 4) ===
+  {id:74,name:"Setas Champiñón Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Champiñón × 4 · 🔓 Derivada: usa Setas Plancha con champiñones",tip:"Seta base. Mismo precio todas."},
+  // === SETAS: Sopa variantes faltantes ===
+  {id:75,name:"Sopa Ostra",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Ostra × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Mismo precio que base."},
+  {id:76,name:"Sopa Boletus",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Boletus × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Mismo precio."},
+  {id:77,name:"Sopa Champiñón",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Champiñón × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Seta base."},
+  // === SETAS: Pastel variantes faltantes ===
+  {id:78,name:"Pastel Ostra",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Ostra × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Mismo precio."},
+  {id:79,name:"Pastel Boletus",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Boletus × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Mismo precio."},
+  {id:80,name:"Pastel Champiñón",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Champiñón × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Seta base."},
+  // === ENSALADA variante ===
+  {id:81,name:"Ensalada Zanahoria",emoji:"🥗",level:1,time:"",cost:50,sell:[120,180,240,480,960],detail:"Zanahoria × 2 · 🔓 Derivada: Ensalada Casa → zanahoria",tip:"Misma receta, distinta verdura."},
+  {id:82,name:"Ensalada Lechuga",emoji:"🥗",level:1,time:"",cost:145,sell:[120,180,240,480,960],detail:"Lechuga × 2 · 🔓 Derivada: Ensalada Casa → lechuga",tip:"Misma receta, distinta verdura."},
+  // === HALLOWEEN (Evento Octubre) ===
+  {id:83,name:"Bebida Vendaje Blanco",emoji:"👻",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Blanco × 4 · 🔓 Evento Halloween → canjear receta",tip:"Evento Halloween. Receta en tienda."},
+  {id:84,name:"Bebida Vendaje Negro",emoji:"🖤",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Negro × 4 · 🔓 Derivada: Vendaje Blanco → negro",tip:"Oculta. Cambiar color caramelo."},
+  {id:85,name:"Bebida Gato Momia",emoji:"🐱",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Naranja × 4 · 🔓 Derivada: Vendaje Blanco → naranja",tip:"Oculta. Cambiar color caramelo."},
+  // === NUEVA PRIMAVERA / AÑO NUEVO (Evento Enero) ===
+  {id:86,name:"Pastel Año Nuevo",emoji:"🧧",level:5,time:"",cost:200,sell:[450,675,900,1800,3600],detail:"Trigo + Huevo + Azúcar Rojo + Mantequilla · 🔓 Evento Año Nuevo",tip:"Receta de Massimo durante evento."},
+  {id:87,name:"Dumpling Dorado",emoji:"🥟",level:5,time:"",cost:180,sell:[380,570,760,1520,3040],detail:"Trigo + Carne + Zanahoria + Huevo · 🔓 Evento Año Nuevo",tip:"Receta de Massimo durante evento."},
+  {id:88,name:"Dumpling Jade",emoji:"🥟",level:5,time:"",cost:180,sell:[380,570,760,1520,3040],detail:"Trigo + Verdura + Zanahoria + Huevo · 🔓 Oculta: Dumpling → verdura",tip:"Derivada del Dumpling Dorado."},
+  {id:89,name:"Tang Yuan",emoji:"🍡",level:5,time:"",cost:150,sell:[320,480,640,1280,2560],detail:"Trigo + Azúcar + Fruta × 2 · 🔓 Evento Año Nuevo",tip:"Bolas dulces. Evento especial."},
+  {id:90,name:"Tang Yuan Sésamo",emoji:"🍡",level:5,time:"",cost:150,sell:[320,480,640,1280,2560],detail:"Trigo + Sésamo + Fruta × 2 · 🔓 Oculta: Tang Yuan → sésamo",tip:"Variante oculta."},
+  {id:91,name:"Tang Yuan Cacao",emoji:"🍡",level:5,time:"",cost:180,sell:[350,525,700,1400,2800],detail:"Trigo + Cacao × 2 + Leche · 🔓 Oculta: Tang Yuan → cacao",tip:"Variante oculta de chocolate."},
+  // === INVIERNO FROST (Evento Febrero/Marzo 2026) ===
+  {id:92,name:"Aurora Dinner",emoji:"❄️",level:9,time:"",cost:400,sell:[850,1275,1700,3400,6800],detail:"Rábano + Carne + Patata + Zanahoria · 🔓 Evento Frost · Estufa Pingüino",tip:"Solo estufa Pingüino. Muy rentable."},
+  {id:93,name:"Puré de Rábano",emoji:"❄️",level:8,time:"",cost:200,sell:[380,570,760,1520,3040],detail:"Rábano × 2 + Mantequilla + Leche · 🔓 Evento Frost",tip:"Solo estufa Pingüino."},
+  {id:94,name:"Sopa de Nabo",emoji:"❄️",level:8,time:"",cost:250,sell:[420,630,840,1680,3360],detail:"Rábano × 2 + Patata + Leche · 🔓 Evento Frost",tip:"Solo estufa Pingüino."},
+  // === AGUA DE COCO Y DERIVADAS (Evento Verano) ===
+  {id:95,name:"Agua de Coco",emoji:"🥥",level:9,time:"",cost:0,sell:[350,525,700,1400,2800],detail:"Coco × 4 · 🔓 Derivada: Zumo → todo coco",tip:"Evento verano. Coco gratis."},
+  {id:96,name:"Costa Azul",emoji:"🏖️",level:9,time:"",cost:0,sell:[420,630,840,1680,3360],detail:"Coco × 2 + Arándano × 2 · 🔓 Oculta: Agua Coco → arándano",tip:"Derivada oculta de Agua Coco."},
+  {id:97,name:"Recuerdo Rosa",emoji:"🌸",level:9,time:"",cost:0,sell:[420,630,840,1680,3360],detail:"Coco × 2 + Frambuesa × 2 · 🔓 Oculta: Agua Coco → frambuesa",tip:"Derivada oculta de Agua Coco."},
+  // === MERMELADA DE PIÑA variante ===
+  {id:98,name:"Mermelada Zanahoria",emoji:"🥕",level:4,time:"",cost:200,sell:[160,240,320,640,1280],detail:"Zanahoria × 4 · ⚠️ Sale como Mixta, NO como zanahoria",tip:"¡TRAMPA! Zanahoria solo da Mixta. No rentable."},
 ];
 const DEF_BUG=[
   // Nv.1
@@ -466,7 +504,55 @@ const DEF_BIRD=[
   {id:28,name:"Águila Real",emoji:"🦅",level:10,time:"6-18 · ☀️🌈",cost:0,sell:[120,480,960,1920,3840],detail:"📍 Cimas montañas",tip:"La foto más valiosa del juego."},
 ];
 
-let tab='garden',filter='all';
+// Flores: se plantan en suelo (no maceta). Precio = venta de flor madura. Colores por杂交 (hibridación)
+// Tipos: Selene (noche/brillo) y Sunglow (día/dorado). Cada flor tiene 5 colores por estrella.
+const DEF_FLOWER=[
+  // === MARGARITA (Daisy) — Nv.3 ===
+  {id:1,name:"Margarita Roja",emoji:"🌼",level:3,time:"1 día",cost:20,sell:[15,23,30,60,120],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base. Comprar semilla."},
+  {id:2,name:"Margarita Blanca",emoji:"🌼",level:3,time:"1 día",cost:20,sell:[15,23,30,60,120],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base. Comprar semilla."},
+  {id:3,name:"Margarita Amarilla",emoji:"🌼",level:3,time:"1 día",cost:20,sell:[15,23,30,60,120],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base. Comprar semilla."},
+  {id:4,name:"Margarita Rosa",emoji:"🌸",level:3,time:"1 día",cost:0,sell:[25,38,50,100,200],detail:"★2 · 🔓 Cruce: Roja × Blanca",tip:"Hibridar roja + blanca."},
+  {id:5,name:"Margarita Naranja",emoji:"🌼",level:3,time:"1 día",cost:0,sell:[25,38,50,100,200],detail:"★2 · 🔓 Cruce: Roja × Amarilla",tip:"Hibridar roja + amarilla."},
+  {id:6,name:"Margarita Melocotón",emoji:"🌸",level:3,time:"1 día",cost:0,sell:[35,53,70,140,280],detail:"★3 · 🔓 Cruce: Rosa × Rosa",tip:"2 rosas = melocotón."},
+  {id:7,name:"Margarita Verde",emoji:"🌿",level:3,time:"1 día",cost:0,sell:[50,75,100,200,400],detail:"★4 · 🔓 Cruce: Melocotón × Melocotón",tip:"2 melocotón = verde."},
+  {id:8,name:"Margarita Azul Selene",emoji:"💠",level:3,time:"1 día",cost:0,sell:[80,120,160,320,640],detail:"★5 · 🔓 Cruce: Verde × Verde · Brilla noche",tip:"2 verdes = azul luminoso! La más rara."},
+  // === HIBISCO (Hibiscus/Furóng) — Nv.3 ===
+  {id:9,name:"Hibisco Rojo",emoji:"🌺",level:3,time:"1 día",cost:20,sell:[15,23,30,60,120],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:10,name:"Hibisco Blanco",emoji:"🌺",level:3,time:"1 día",cost:20,sell:[15,23,30,60,120],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:11,name:"Hibisco Amarillo",emoji:"🌺",level:3,time:"1 día",cost:20,sell:[15,23,30,60,120],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:12,name:"Hibisco Rosa",emoji:"🌺",level:3,time:"1 día",cost:0,sell:[25,38,50,100,200],detail:"★2 · 🔓 Cruce: Rojo × Blanco",tip:"Hibridar rojo + blanco."},
+  {id:13,name:"Hibisco Naranja",emoji:"🌺",level:3,time:"1 día",cost:0,sell:[25,38,50,100,200],detail:"★2 · 🔓 Cruce: Rojo × Amarillo",tip:"Hibridar rojo + amarillo."},
+  {id:14,name:"Hibisco Morado",emoji:"🌺",level:3,time:"1 día",cost:0,sell:[35,53,70,140,280],detail:"★3 · 🔓 Cruce: Rosa × Rosa",tip:"2 rosas = morado."},
+  {id:15,name:"Hibisco Negro",emoji:"🖤",level:3,time:"1 día",cost:0,sell:[50,75,100,200,400],detail:"★4 · 🔓 Cruce: Morado × Naranja",tip:"Morado + naranja = negro."},
+  {id:16,name:"Hibisco Dorado Sunglow",emoji:"✨",level:3,time:"1 día",cost:0,sell:[80,120,160,320,640],detail:"★5 · 🔓 Cruce: Negro × Negro · Brilla día",tip:"2 negros = dorado! Brilla de día."},
+  // === CLAVEL (Carnation) — Nv.5 ===
+  {id:17,name:"Clavel Rojo",emoji:"🌷",level:5,time:"1 día",cost:30,sell:[20,30,40,80,160],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:18,name:"Clavel Blanco",emoji:"🤍",level:5,time:"1 día",cost:30,sell:[20,30,40,80,160],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:19,name:"Clavel Amarillo",emoji:"💛",level:5,time:"1 día",cost:30,sell:[20,30,40,80,160],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:20,name:"Clavel Rosa",emoji:"💗",level:5,time:"1 día",cost:0,sell:[30,45,60,120,240],detail:"★2 · 🔓 Cruce: Rojo × Blanco",tip:"Hibridar."},
+  {id:21,name:"Clavel Naranja",emoji:"🧡",level:5,time:"1 día",cost:0,sell:[30,45,60,120,240],detail:"★2 · 🔓 Cruce: Rojo × Amarillo",tip:"Hibridar."},
+  {id:22,name:"Clavel Morado",emoji:"💜",level:5,time:"1 día",cost:0,sell:[40,60,80,160,320],detail:"★3 · 🔓 Cruce: Rosa × Naranja",tip:"Rosa + naranja."},
+  {id:23,name:"Clavel Negro",emoji:"🖤",level:5,time:"1 día",cost:0,sell:[60,90,120,240,480],detail:"★4 · 🔓 Cruce: Morado × Naranja",tip:"Morado + naranja = negro."},
+  {id:24,name:"Clavel Azul Selene",emoji:"💠",level:5,time:"1 día",cost:0,sell:[100,150,200,400,800],detail:"★5 · 🔓 Cruce: Negro × Negro · Brilla noche",tip:"2 negros = azul luminoso!"},
+  // === ROSA (Rose) — Nv.7 ===
+  {id:25,name:"Rosa Roja",emoji:"🌹",level:7,time:"1 día",cost:40,sell:[25,38,50,100,200],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:26,name:"Rosa Blanca",emoji:"🤍",level:7,time:"1 día",cost:40,sell:[25,38,50,100,200],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:27,name:"Rosa Amarilla",emoji:"💛",level:7,time:"1 día",cost:40,sell:[25,38,50,100,200],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:28,name:"Rosa Rosa",emoji:"💗",level:7,time:"1 día",cost:0,sell:[35,53,70,140,280],detail:"★2 · 🔓 Cruce: Roja × Blanca",tip:"Hibridar."},
+  {id:29,name:"Rosa Naranja",emoji:"🧡",level:7,time:"1 día",cost:0,sell:[35,53,70,140,280],detail:"★2 · 🔓 Cruce: Roja × Amarilla",tip:"Hibridar."},
+  {id:30,name:"Rosa Morada",emoji:"💜",level:7,time:"1 día",cost:0,sell:[50,75,100,200,400],detail:"★3 · 🔓 Cruce: Rosa × Naranja",tip:"Rosa + naranja."},
+  {id:31,name:"Rosa Negra",emoji:"🖤",level:7,time:"1 día",cost:0,sell:[75,113,150,300,600],detail:"★4 · 🔓 Cruce: Morada × Naranja",tip:"Morado + naranja = negro."},
+  {id:32,name:"Rosa Dorada Sunglow",emoji:"✨",level:7,time:"1 día",cost:0,sell:[120,180,240,480,960],detail:"★5 · 🔓 Cruce: Negra × Negra · Brilla día",tip:"2 negras = dorada! La rosa más valiosa."},
+  // === TULIPÁN (Tulip) — Nv.9 ===
+  {id:33,name:"Tulipán Rojo",emoji:"🌷",level:9,time:"1 día",cost:50,sell:[30,45,60,120,240],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:34,name:"Tulipán Blanco",emoji:"🤍",level:9,time:"1 día",cost:50,sell:[30,45,60,120,240],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:35,name:"Tulipán Amarillo",emoji:"💛",level:9,time:"1 día",cost:50,sell:[30,45,60,120,240],detail:"📍 Suelo hogar · ★1 · Semilla: Blanc",tip:"Color base."},
+  {id:36,name:"Tulipán Rosa",emoji:"💗",level:9,time:"1 día",cost:0,sell:[45,68,90,180,360],detail:"★2 · 🔓 Cruce: Rojo × Blanco",tip:"Hibridar."},
+  {id:37,name:"Tulipán Naranja",emoji:"🧡",level:9,time:"1 día",cost:0,sell:[45,68,90,180,360],detail:"★2 · 🔓 Cruce: Rojo × Amarillo",tip:"Hibridar."},
+  {id:38,name:"Tulipán Morado",emoji:"💜",level:9,time:"1 día",cost:0,sell:[60,90,120,240,480],detail:"★3 · 🔓 Cruce: Rosa × Naranja",tip:"Rosa + naranja."},
+  {id:39,name:"Tulipán Negro",emoji:"🖤",level:9,time:"1 día",cost:0,sell:[90,135,180,360,720],detail:"★4 · 🔓 Cruce: Morado × Naranja",tip:"Morado + naranja = negro."},
+  {id:40,name:"Tulipán Arcoíris Selene",emoji:"🌈",level:9,time:"1 día",cost:0,sell:[150,225,300,600,1200],detail:"★5 · 🔓 Cruce: Negro × Negro · Brilla noche",tip:"2 negros = arcoíris! La flor MÁS valiosa."},
+];
 function getAllItems(){
   const all=[];
   DEF_GARDEN.forEach(i=>all.push({...i,cat:'garden',catName:'🌾 Cultivo'}));
@@ -474,6 +560,7 @@ function getAllItems(){
   DEF_COOK.forEach(i=>all.push({...i,cat:'cook',catName:'🍳 Receta'}));
   DEF_BUG.forEach(i=>all.push({...i,cat:'bug',catName:'🦋 Bicho'}));
   DEF_BIRD.forEach(i=>all.push({...i,cat:'bird',catName:'🐦 Ave'}));
+  DEF_FLOWER.forEach(i=>all.push({...i,cat:'flower',catName:'🌸 Flor'}));
   return all;
 }
 function getData(){
@@ -481,12 +568,13 @@ function getData(){
   if(tab==='fish') return DEF_FISH;
   if(tab==='bug') return DEF_BUG;
   if(tab==='bird') return DEF_BIRD;
+  if(tab==='flower') return DEF_FLOWER;
   return DEF_COOK;
 }
 function setTab(t,el){
   tab=t;
   document.querySelectorAll('.tab-btn').forEach(b=>b.className='tab-btn');
-  const cls=t==='garden'?'active-garden':t==='fish'?'active-fish':t==='bug'?'active-bug':t==='bird'?'active-bird':t==='calc'?'active-calc':t==='map'?'active-map':'active-cook';
+  const cls=t==='garden'?'active-garden':t==='fish'?'active-fish':t==='bug'?'active-bug':t==='bird'?'active-bird':t==='flower'?'active-flower':t==='calc'?'active-calc':t==='map'?'active-map':'active-cook';
   el.classList.add('tab-btn',cls);
   document.getElementById('filtersBar').style.display=(t==='calc'||t==='map')?'none':'flex';
   document.getElementById('grid').style.display=(t==='calc'||t==='map')?'none':'grid';
@@ -507,7 +595,7 @@ function render(){
   }).sort((a,b)=>a.level-b.level);
   const grid=document.getElementById('grid');grid.innerHTML='';
   const stars=getStarCount(),labels=stars===4?SL4:SL5;
-  const tagClass=tab==='garden'?'tag-garden':tab==='fish'?'tag-fish':tab==='bug'?'tag-bug':tab==='bird'?'tag-bird':'tag-cook';
+  const tagClass=tab==='garden'?'tag-garden':tab==='fish'?'tag-fish':tab==='bug'?'tag-bug':tab==='bird'?'tag-bird':tab==='flower'?'tag-flower':'tag-cook';
   list.forEach(item=>{
     const card=document.createElement('div');card.className='card';
     let pH='';
@@ -515,9 +603,11 @@ function render(){
       pH+=`<div class="star-cell" style="background:${SC[sI].replace(')','')+ bg});border:1px solid ${SC[sI].replace(')','')+ bd})"><div class="sl" style="color:${SC[sI]}">${labels[i]}</div><div class="sv ${v?'':'empty'}">${v?v+'g':'—'}</div></div>`;}
     const profit=item.sell[0]&&item.cost!==undefined?item.sell[0]-item.cost:null;
     const pC=profit>100?'high':profit>0?'mid':profit!==null?'neg':'';
-    const costHTML=(tab==='fish'||tab==='bug'||tab==='bird')?'':`<div class="card-price"><div class="card-price-label">${tab==='garden'?'Semilla':'Coste'}</div><div class="card-price-val">${item.cost}g</div></div>`;
+    const costHTML=(tab==='fish'||tab==='bug'||tab==='bird'||tab==='flower')?'':`<div class="card-price"><div class="card-price-label">${tab==='garden'?'Semilla':'Coste'}</div><div class="card-price-val">${item.cost}g</div></div>`;
     const timeStr=item.time?`<span class="tag-sub">⏱${item.time}</span>`:'';
-    card.innerHTML=`<div class="card-head"><div class="card-emoji">${item.emoji}</div><div class="card-info"><div class="card-name">${item.name}</div><div class="card-tags"><span class="tag-lvl ${tagClass}">Nv.${item.level}</span>${timeStr}</div></div>${costHTML}</div><div class="stars stars-${stars}">${pH}</div>${profit!==null?`<div class="profit"><span class="l">Beneficio 1★</span><span class="v ${pC}">${profit>=0?'+':''}${profit}g</span></div>`:''}<div class="detail">📋 <span>${item.detail}</span></div>${item.tip?`<div class="tip-box">💡 ${item.tip}</div>`:''}`;
+    const eventTag=(item.detail&&item.detail.includes('Evento'))?'<span class="tag-event">🎃 EVENTO</span>':'';
+    const secretTag=(item.detail&&item.detail.includes('🔓'))?'<span class="tag-event" style="background:rgba(139,92,246,0.2);color:#c8b8f0;">🔓 SECRETO</span>':'';
+    card.innerHTML=`<div class="card-head"><div class="card-emoji">${item.emoji}</div><div class="card-info"><div class="card-name">${item.name}${eventTag}${secretTag}</div><div class="card-tags"><span class="tag-lvl ${tagClass}">Nv.${item.level}</span>${timeStr}</div></div>${costHTML}</div><div class="stars stars-${stars}">${pH}</div>${profit!==null?`<div class="profit"><span class="l">Beneficio 1★</span><span class="v ${pC}">${profit>=0?'+':''}${profit}g</span></div>`:''}<div class="detail">📋 <span>${item.detail}</span></div>${item.tip?`<div class="tip-box">💡 ${item.tip}</div>`:''}`;
     grid.appendChild(card);
   });
 }
@@ -529,7 +619,7 @@ function renderCalc(){
   cv.innerHTML=`<div class="calc-panel">
     <div class="calc-section">
       <h3>🧮 Calculadora de Beneficios</h3>
-      <div class="calc-row"><label>Categoría</label><select id="cCat" onchange="updateItemList()"><option value="all">Todas</option><option value="garden">🌾 Cultivos</option><option value="fish">🐟 Peces</option><option value="cook">🍳 Recetas</option><option value="bug">🦋 Bichos</option><option value="bird">🐦 Aves</option></select></div>
+      <div class="calc-row"><label>Categoría</label><select id="cCat" onchange="updateItemList()"><option value="all">Todas</option><option value="garden">🌾 Cultivos</option><option value="fish">🐟 Peces</option><option value="cook">🍳 Recetas</option><option value="bug">🦋 Bichos</option><option value="bird">🐦 Aves</option><option value="flower">🌸 Flores</option></select></div>
       <div class="calc-row"><label>Item</label><select id="cItem" onchange="calcUpdate()"></select></div>
       <div class="calc-row"><label>Calidad ★</label><select id="cStar" onchange="calcUpdate()"><option value="0">1★</option><option value="1">2★</option><option value="2">3★</option><option value="3">4★</option><option value="4">5★</option></select></div>
       <div class="calc-row"><label>Cantidad</label><input id="cQty" type="number" min="1" value="1" onchange="calcUpdate()" oninput="calcUpdate()"></div>
