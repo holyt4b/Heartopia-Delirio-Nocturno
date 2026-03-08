@@ -10,21 +10,30 @@
 
   [data-theme="light"]{--bg-deep:#f0ecf8;--bg-card:rgba(139,92,246,0.05);--bg-card2:rgba(230,222,250,0.6);--bg-input:#f5f2fa;--gold:#b8940a;--gold-light:#8a6d00;--green:#4a8c20;--green-dim:#7068a0;--green-bg:rgba(80,140,30,0.1);--blue:#2080b0;--blue-bg:rgba(40,120,190,0.1);--orange:#b07818;--orange-bg:rgba(180,120,30,0.1);--purple:#7C3AED;--purple-dim:#5B21B6;--text:#1a1530;--text-dim:#6860a0;--text-muted:#a098c0;--text-detail:#4a4070;--star1:#b08a10;--star2:#5090a8;--star3:#c08020;--star4:#9040b8;--star5:#c04040;--border:rgba(139,92,246,0.15);--border-hover:rgba(139,92,246,0.35);--shadow-card:rgba(139,92,246,0.1);--tip-bg:rgba(139,92,246,0.08);--tip-color:#5B21B6;--body-bg:linear-gradient(160deg,#f5f2fa 0%,#ece6f8 25%,#e0d8f0 50%,#ece6f8 75%,#f5f2fa 100%);--body-glow1:rgba(139,92,246,0.04);--body-glow2:rgba(107,63,160,0.03);--emoji-bg:rgba(139,92,246,0.08);--logo-shadow:rgba(139,92,246,0.2);--h1-grad:linear-gradient(135deg,#5B21B6 0%,#8a6d00 40%,#7C3AED 70%,#9040b8 100%);--sub-grad:linear-gradient(90deg,#7C3AED,#9040b8,#b08a10);--filter-bg:rgba(139,92,246,0.04);--filter-border:rgba(139,92,246,0.12);--filter-active-bg:rgba(139,92,246,0.15);--filter-active-border:rgba(139,92,246,0.4);--filter-active-color:#5B21B6;}
 
-  .theme-toggle{position:fixed;top:14px;right:14px;z-index:50;background:var(--bg-input);border:1px solid var(--border);border-radius:50px;padding:7px 14px;cursor:pointer;font-size:18px;transition:all 0.3s;box-shadow:0 2px 12px var(--shadow-card);}
-  .theme-toggle:hover{border-color:var(--border-hover);transform:scale(1.1);}
+  .theme-toggle{position:fixed;top:14px;right:14px;z-index:50;background:var(--bg-input);border:1px solid var(--border);border-radius:50px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:all 0.3s;box-shadow:0 4px 16px var(--shadow-card);backdrop-filter:blur(10px);}
+  .theme-toggle:hover{border-color:var(--border-hover);transform:scale(1.15) rotate(15deg);box-shadow:0 6px 24px var(--shadow-card);}
+  .lang-toggle{position:fixed;top:14px;right:68px;z-index:50;background:rgba(30,20,50,0.85);border:1px solid rgba(139,92,246,0.5);border-radius:50px;height:44px;display:flex;align-items:center;padding:0 5px;gap:3px;box-shadow:0 4px 20px rgba(0,0,0,0.3);backdrop-filter:blur(12px);}
+  .lang-btn{background:none;border:none;border-radius:50px;padding:5px 10px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.25s;color:rgba(255,255,255,0.5);letter-spacing:0.5px;font-family:inherit;}
+  .lang-btn:hover{color:#fff;background:rgba(139,92,246,0.2);transform:scale(1.05);}
+  .lang-btn.active{color:#fff;background:linear-gradient(135deg,rgba(139,92,246,0.5),rgba(107,63,160,0.4));box-shadow:0 0 12px rgba(139,92,246,0.3);}
+  [data-theme="light"] .lang-toggle{background:rgba(255,255,255,0.9);border-color:rgba(139,92,246,0.35);box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+  [data-theme="light"] .lang-btn{color:rgba(80,60,120,0.45);}
+  [data-theme="light"] .lang-btn:hover{color:#6B3FA0;background:rgba(139,92,246,0.1);}
+  [data-theme="light"] .lang-btn.active{color:#fff;background:linear-gradient(135deg,#8B5CF6,#6B3FA0);box-shadow:0 2px 8px rgba(139,92,246,0.3);}
   *{margin:0;padding:0;box-sizing:border-box;}
   body{min-height:100vh;background:var(--body-bg);font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden;transition:background 0.4s,color 0.4s;}
   body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 25% 15%,var(--body-glow1) 0%,transparent 50%),radial-gradient(ellipse at 75% 80%,var(--body-glow2) 0%,transparent 50%);pointer-events:none;z-index:0;}
   .container{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:24px 16px 80px;}
-  .header{text-align:center;margin-bottom:24px;}
-  .header .logo{width:140px;height:auto;border-radius:18px;margin-bottom:10px;box-shadow:0 4px 30px var(--logo-shadow),0 0 60px rgba(107,63,160,0.15);transition:box-shadow 0.4s;}
-  .header .tag{font-size:11px;letter-spacing:5px;color:var(--text-dim);text-transform:uppercase;margin-bottom:8px;}
-  .header h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:800;background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
-  .header .sub{font-family:'Playfair Display',serif;font-size:18px;background:var(--sub-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;font-weight:700;}
-  .header p{color:var(--text-dim);font-size:13px;max-width:520px;margin:0 auto;line-height:1.5;}
-  .tabs{display:flex;justify-content:center;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
-  .tab-btn{padding:9px 18px;border-radius:12px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.25s;border:1px solid rgba(139,92,246,0.15);background:rgba(139,92,246,0.06);color:var(--text-dim);}
-  .tab-btn:hover{background:rgba(139,92,246,0.15);color:var(--text);}
+  .header{text-align:center;margin-bottom:28px;padding-top:8px;}
+  .header .logo{width:140px;height:auto;border-radius:20px;margin-bottom:14px;box-shadow:0 6px 35px var(--logo-shadow),0 0 80px rgba(107,63,160,0.1);transition:all 0.4s;}
+  .header .logo:hover{transform:scale(1.05);box-shadow:0 8px 45px var(--logo-shadow);}
+  .header .tag{font-size:10px;letter-spacing:6px;color:var(--text-dim);text-transform:uppercase;margin-bottom:10px;font-weight:600;}
+  .header h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:800;background:var(--h1-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;letter-spacing:-0.5px;}
+  .header .sub{font-family:'Playfair Display',serif;font-size:18px;background:var(--sub-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;font-weight:700;letter-spacing:1px;}
+  .header p{color:var(--text-dim);font-size:13px;max-width:520px;margin:0 auto;line-height:1.6;}
+  .tabs{display:flex;justify-content:center;gap:5px;margin-bottom:20px;flex-wrap:wrap;padding:6px;background:var(--tip-bg);border-radius:16px;max-width:fit-content;margin-left:auto;margin-right:auto;}
+  .tab-btn{padding:8px 16px;border-radius:11px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.25s;border:1px solid transparent;background:transparent;color:var(--text-dim);}
+  .tab-btn:hover{background:rgba(139,92,246,0.1);color:var(--text);}
   .tab-btn.active-garden{background:rgba(120,160,60,0.18);border-color:rgba(120,160,60,0.4);color:var(--green);}
   .tab-btn.active-fish{background:rgba(100,160,210,0.18);border-color:rgba(100,160,210,0.4);color:var(--blue);}
   .tab-btn.active-cook{background:rgba(210,160,90,0.18);border-color:rgba(210,160,90,0.4);color:var(--orange);}
@@ -33,45 +42,56 @@
   .tab-btn.active-flower{background:rgba(220,120,160,0.18);border-color:rgba(220,120,160,0.4);color:#f0a0c0;}
   .tab-btn.active-map{background:rgba(80,140,220,0.18);border-color:rgba(80,140,220,0.4);color:#70b8f0;}
   .tab-btn.active-calc{background:rgba(224,192,96,0.18);border-color:rgba(224,192,96,0.4);color:var(--gold-light);}
-  .filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
-  .filters input[type="text"]{background:var(--bg-input);border:1px solid var(--filter-border);border-radius:10px;padding:7px 12px;color:var(--text);font-family:inherit;font-size:13px;outline:none;width:140px;transition:all 0.3s;}
+  .filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+  .filters input[type="text"]{background:var(--bg-input);border:1px solid var(--filter-border);border-radius:10px;padding:8px 14px;color:var(--text);font-family:inherit;font-size:13px;outline:none;width:160px;transition:all 0.3s;}
+  .filters input[type="text"]:focus{border-color:var(--border-hover);box-shadow:0 0 12px var(--shadow-card);}
   .filters input::placeholder{color:var(--text-muted);}
-  .f-btn{background:var(--filter-bg);border:1px solid var(--filter-border);border-radius:10px;padding:6px 14px;color:var(--text-dim);font-family:inherit;font-size:12px;cursor:pointer;transition:all 0.2s;}
-  .f-btn:hover{background:rgba(139,92,246,0.12);}
-  .f-btn.on{background:var(--filter-active-bg);border-color:var(--filter-active-border);color:var(--filter-active-color);font-weight:600;}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;}
-  .card{background:linear-gradient(135deg,var(--bg-card) 0%,var(--bg-card2) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:16px;transition:all 0.3s;}
-  .card:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 8px 30px var(--shadow-card);}
-  .card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-  .card-emoji{font-size:30px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--emoji-bg);border-radius:12px;flex-shrink:0;}
+  .f-btn{background:var(--filter-bg);border:1px solid var(--filter-border);border-radius:10px;padding:7px 16px;color:var(--text-dim);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+  .f-btn:hover{background:rgba(139,92,246,0.12);color:var(--text);}
+  .f-btn.on{background:var(--filter-active-bg);border-color:var(--filter-active-border);color:var(--filter-active-color);font-weight:700;box-shadow:0 2px 8px var(--shadow-card);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+  .card{background:linear-gradient(145deg,var(--bg-card) 0%,var(--bg-card2) 100%);border:1px solid var(--border);border-radius:16px;padding:0;transition:all 0.3s;overflow:hidden;}
+  .card:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 12px 40px var(--shadow-card);}
+  .card-top{display:flex;align-items:center;gap:12px;padding:16px 16px 12px;}
+  .card-emoji{font-size:36px;width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:14px;flex-shrink:0;position:relative;transition:transform 0.3s;}
+  .card:hover .card-emoji{transform:scale(1.1) rotate(-3deg);}
+  .emoji-garden{background:linear-gradient(135deg,rgba(120,160,60,0.2),rgba(80,140,30,0.1));box-shadow:0 4px 15px rgba(120,160,60,0.15);}
+  .emoji-fish{background:linear-gradient(135deg,rgba(100,160,210,0.2),rgba(60,130,200,0.1));box-shadow:0 4px 15px rgba(100,160,210,0.15);}
+  .emoji-cook{background:linear-gradient(135deg,rgba(210,160,90,0.2),rgba(180,120,40,0.1));box-shadow:0 4px 15px rgba(210,160,90,0.15);}
+  .emoji-bug{background:linear-gradient(135deg,rgba(180,120,200,0.2),rgba(140,80,180,0.1));box-shadow:0 4px 15px rgba(180,120,200,0.15);}
+  .emoji-bird{background:linear-gradient(135deg,rgba(100,180,160,0.2),rgba(60,150,130,0.1));box-shadow:0 4px 15px rgba(100,180,160,0.15);}
+  .emoji-flower{background:linear-gradient(135deg,rgba(220,120,160,0.2),rgba(200,80,130,0.1));box-shadow:0 4px 15px rgba(220,120,160,0.15);}
   .card-info{flex:1;min-width:0;}
-  .card-name{font-size:15px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .card-name{font-size:15px;font-weight:700;margin-bottom:3px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
   .card-tags{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
-  .tag-lvl{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;}
+  .tag-lvl{font-size:10px;padding:2px 8px;border-radius:6px;font-weight:700;letter-spacing:0.3px;}
   .tag-garden{background:var(--green-bg);color:var(--green);}
   .tag-fish{background:var(--blue-bg);color:var(--blue);}
   .tag-cook{background:var(--orange-bg);color:var(--orange);}
   .tag-bug{background:rgba(180,120,200,0.15);color:#c8a0e0;}
   .tag-bird{background:rgba(100,180,160,0.15);color:#80d4b8;}
   .tag-flower{background:rgba(220,120,160,0.15);color:#f0a0c0;}
-  .tag-event{background:rgba(255,180,50,0.2);color:#f0c040;font-size:9px;padding:1px 6px;border-radius:4px;margin-left:4px;}
+  .tag-event{background:linear-gradient(90deg,rgba(255,180,50,0.25),rgba(255,140,30,0.15));color:#f0c040;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:700;letter-spacing:0.5px;border:1px solid rgba(255,180,50,0.3);}
   .tag-sub{color:var(--text-dim);font-size:11px;}
-  .card-price{text-align:right;}
-  .card-price-label{font-size:10px;color:var(--text-dim);}
-  .card-price-val{font-size:14px;font-weight:700;color:#e8a946;}
+  .card-price{text-align:right;padding:4px 10px;background:var(--tip-bg);border-radius:8px;}
+  .card-price-label{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
+  .card-price-val{font-size:16px;font-weight:800;color:var(--gold);}
+  .card-body{padding:0 16px 14px;}
   .stars{display:grid;gap:5px;margin-bottom:10px;}
   .stars-4{grid-template-columns:repeat(4,1fr);}
   .stars-5{grid-template-columns:repeat(5,1fr);}
-  .star-cell{text-align:center;padding:6px 2px;border-radius:8px;}
-  .star-cell .sl{font-size:9px;font-weight:600;margin-bottom:2px;}
-  .star-cell .sv{font-size:13px;font-weight:700;color:var(--text);}
-  .star-cell .sv.empty{color:var(--text-muted);}
-  .profit{display:flex;justify-content:space-between;align-items:center;padding:5px 9px;background:var(--tip-bg);border-radius:7px;font-size:11px;}
-  .profit .l{color:var(--text-dim);}.profit .v{font-weight:700;}
+  .star-cell{text-align:center;padding:7px 3px;border-radius:8px;transition:transform 0.2s;}
+  .star-cell:hover{transform:scale(1.05);}
+  .star-cell .sl{font-size:9px;font-weight:700;margin-bottom:3px;letter-spacing:0.5px;}
+  .star-cell .sv{font-size:14px;font-weight:800;color:var(--text);}
+  .star-cell .sv.empty{color:var(--text-muted);font-weight:400;font-style:italic;}
+  .profit{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:var(--tip-bg);border-radius:8px;font-size:11px;margin-bottom:8px;}
+  .profit .l{color:var(--text-dim);font-weight:500;}.profit .v{font-weight:800;font-size:13px;}
   .profit .high{color:var(--green);}.profit .mid{color:var(--gold);}.profit .neg{color:#c85a5a;}
-  .detail{font-size:11px;color:var(--text-dim);margin-top:8px;line-height:1.6;}
+  .card-divider{height:1px;background:var(--border);margin:0 0 10px;}
+  .detail{font-size:11px;color:var(--text-dim);line-height:1.6;padding:0 2px;}
   .detail span{color:var(--text-detail);}
-  .tip-box{margin-top:6px;background:var(--tip-bg);padding:6px 10px;border-radius:7px;color:var(--tip-color);font-style:italic;font-size:11px;border-left:2px solid var(--border-hover);}
+  .tip-box{margin-top:8px;background:var(--tip-bg);padding:8px 12px;border-radius:8px;color:var(--tip-color);font-style:italic;font-size:11px;border-left:3px solid var(--border-hover);line-height:1.5;}
   .footer{text-align:center;margin-top:28px;font-size:10px;color:var(--text-muted);}
   /* Calculator */
   .calc-panel{max-width:600px;margin:0 auto;}
@@ -110,7 +130,12 @@
 </style>
 </head>
 <body>
-<button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema claro/oscuro" id="themeBtn">🌙</button>
+<button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema" id="themeBtn">🌙</button>
+<div class="lang-toggle" id="langBar">
+  <button class="lang-btn active" onclick="setLang('es')" data-lang="es">ES</button>
+  <button class="lang-btn" onclick="setLang('en')" data-lang="en">EN</button>
+  <button class="lang-btn" onclick="setLang('fr')" data-lang="fr">FR</button>
+</div>
 <div class="container">
   <div class="header">
     <img class="logo" src="data:image/jpeg;base64,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" alt="La Sociedad del Delirio Nocturno">
@@ -163,6 +188,94 @@ function toggleTheme(){
     document.addEventListener('DOMContentLoaded',()=>{document.getElementById('themeBtn').textContent='☀️';});
   }
 })();
+
+// i18n System
+const i18n={
+  es:{tag:'Guía Completa de Precios',desc:'Cultivos, peces, recetas y bichos — todos los precios de venta por calidad de estrella',
+    tabs:{garden:'🌾 Jardinería',fish:'🐟 Pesca',cook:'🍳 Cocina',bug:'🦋 Bichos',bird:'🐦 Aves',flower:'🌸 Flores',map:'🗺️ Mapa',calc:'🧮 Calculadora'},
+    filters:{search:'Buscar...',all:'Todos',low:'Bajo Nv',mid:'Medio',high:'Alto Nv'},
+    card:{seed:'Semilla',cost:'Coste',profit:'Beneficio 1★',event:'🎃 EVENTO',secret:'🔓 SECRETO'},
+    calc:{title:'🧮 Calculadora de Beneficios',cat:'Categoría',item:'Item',quality:'Calidad ★',qty:'Cantidad',extra:'Coste extra',all:'Todas',
+      sell:'💰 Venta total',totalCost:'📦 Coste total',unit:'💵 Precio unitario',margin:'📊 Margen',net:'Beneficio',loss:'(pérdida)',select:'Selecciona un item para calcular',na:'Precio no disponible'},
+    map:{title:'🗺️ Mapa Interactivo de Heartopia',desc:'Mapa completo con 300+ marcadores. Haz zoom, mueve y clic en marcadores para ver detalles.',fallback:'Si no carga correctamente, abre directamente:',zones:'📍 Guía de Zonas',links:'🔗 Mapas Externos'},
+    footer:'La Sociedad del Delirio Nocturno · Datos servidor global + asiático (心动小镇) · Fan-made'},
+  en:{tag:'Complete Price Guide',desc:'Crops, fish, recipes and bugs — all sell prices by star quality',
+    tabs:{garden:'🌾 Gardening',fish:'🐟 Fishing',cook:'🍳 Cooking',bug:'🦋 Bugs',bird:'🐦 Birds',flower:'🌸 Flowers',map:'🗺️ Map',calc:'🧮 Calculator'},
+    filters:{search:'Search...',all:'All',low:'Low Lv',mid:'Mid',high:'High Lv'},
+    card:{seed:'Seed',cost:'Cost',profit:'Profit 1★',event:'🎃 EVENT',secret:'🔓 SECRET'},
+    calc:{title:'🧮 Profit Calculator',cat:'Category',item:'Item',quality:'Quality ★',qty:'Quantity',extra:'Extra cost',all:'All',
+      sell:'💰 Total sell',totalCost:'📦 Total cost',unit:'💵 Unit price',margin:'📊 Margin',net:'Profit',loss:'(loss)',select:'Select an item to calculate',na:'Price not available'},
+    map:{title:'🗺️ Heartopia Interactive Map',desc:'Full map with 300+ markers. Zoom, pan and click markers for details.',fallback:'If it doesn\'t load, open directly:',zones:'📍 Zone Guide',links:'🔗 External Maps'},
+    footer:'La Sociedad del Delirio Nocturno · Global + Asian server data (心动小镇) · Fan-made'},
+  fr:{tag:'Guide Complet des Prix',desc:'Cultures, poissons, recettes et insectes — tous les prix de vente par qualité d\'étoile',
+    tabs:{garden:'🌾 Jardinage',fish:'🐟 Pêche',cook:'🍳 Cuisine',bug:'🦋 Insectes',bird:'🐦 Oiseaux',flower:'🌸 Fleurs',map:'🗺️ Carte',calc:'🧮 Calculatrice'},
+    filters:{search:'Rechercher...',all:'Tous',low:'Niv bas',mid:'Moyen',high:'Niv haut'},
+    card:{seed:'Graine',cost:'Coût',profit:'Bénéfice 1★',event:'🎃 ÉVÉNEMENT',secret:'🔓 SECRET'},
+    calc:{title:'🧮 Calculatrice de Bénéfices',cat:'Catégorie',item:'Objet',quality:'Qualité ★',qty:'Quantité',extra:'Coût supplémentaire',all:'Toutes',
+      sell:'💰 Vente totale',totalCost:'📦 Coût total',unit:'💵 Prix unitaire',margin:'📊 Marge',net:'Bénéfice',loss:'(perte)',select:'Sélectionnez un objet pour calculer',na:'Prix non disponible'},
+    map:{title:'🗺️ Carte Interactive de Heartopia',desc:'Carte complète avec 300+ marqueurs. Zoomez, déplacez et cliquez sur les marqueurs.',fallback:'Si ça ne charge pas, ouvrez directement :',zones:'📍 Guide des Zones',links:'🔗 Cartes Externes'},
+    footer:'La Sociedad del Delirio Nocturno · Données serveur global + asiatique (心动小镇) · Fan-made'}
+};
+let lang='es';
+// Item name translations (ES is base in data)
+const nameEN={Tomate:'Tomato',Patata:'Potato',Trigo:'Wheat',Lechuga:'Lettuce','Piña':'Pineapple',Zanahoria:'Carrot',Fresa:'Strawberry','Maíz':'Corn',Uva:'Grape',Berenjena:'Eggplant','Rábano Blanco':'White Radish','Árbol de Té':'Tea Tree','Árbol de Cacao':'Cacao Tree',Aguacate:'Avocado',
+// Fish — verified heartopia.cc
+'Camarón Dulce':'Freshwater Shrimp',Sardina:'Sardine','Gobio Espinoso':'Stickleback','Camarón Mar':'Sea Shrimp','Pez Caballo':'Horse Mackerel','Albur Común':'Common Bleak','Brema Blanca':'White Bream','Perca Dorada':'Golden Perch','Locha Espinosa':'Spined Loach','Perca Europea':'European Perch',Lubina:'Sea Bass',Barbo:'Barbel','Brema Común':'Common Bream','Carpa Cruciana':'Crucian Carp',Tenca:'Tench',Carpa:'Carp','Pez Pepino':'Cucumber Fish','Cangrejo Río':'Freshwater Crab','Mejillón':'Mussel','Pez Erizo':'Porcupinefish',Renacuajo:'Tadpole',Perca:'Perch','Caballito Mar':'Seahorse',Gobio:'Goby','Caballa Atlántica':'Atlantic Mackerel','Pez Cola':'Hairtail',Cabezudo:'Bullhead','Salmón Chum':'Chum Salmon','Salmón Atlántico':'Atlantic Salmon','Pulpo Enano':'Atlantic Pygmy Octopus',Blenio:'Blenny','Pez Volador':'Flying Fish','Cangrejo Nórdico':'Nordic Crayfish','Pez Piedra':'Stone Loach','Trucha Blanca':'True Whitefish','Bonito Listado':'Skipjack Tuna','Serrano Rayado':'Striped Killifish','Jurel Cola Amarilla':'Yellowtail Amberjack','Espinilla 3 Pinchos':'Three-spined Stickleback',Rudd:'Rudd','Lubina Negra':'Black Seabream','Trucha Marrón':'Brown Trout','Róbalo':'Largemouth Bass','Pez Globo':'Pufferfish','Carpa Europea':'European Carp','Langosta Europea':'European Lobster','Platija Europea':'European Plaice',Lota:'Burbot',Eglefino:'Haddock','Tímalo':'Grayling','Cangrejo Azul':'Blue Crayfish','Pez Dorado':'Goldfish','Pez Sol Calabaza':'Pumpkinseed Sunfish','Sombra Bass':'Shadow Bass','Pulpo Común':'Common Octopus',Rape:'Anglerfish',Tilapia:'Tilapia','Rana Acuática':'European Water Frog','Calamar Volador':'European Flying Squid','Salmonete Rayado':'Striped Red Mullet','Quimera Atlántica':'Atlantic Chimaera',Rodaballo:'Turbot',Morena:'Moray Eel','Pez Sol Azul':'Bluegill Sunfish','Anguila Europea':'European Eel','Perla Gigante':'Giant Pearl Mussel',Gurnardo:'Gurnard',Huchen:'Huchen','Esturión':'Sturgeon','Char Ártico':'Arctic Char','Lucio del Norte':'Northern Pike',Siluro:'Wels Catfish','Tiburón Gato':'Cat Shark','Pez Remo':'Oarfish','Cangrejo Real':'King Crab','Raya Manta':'Manta Ray','Pez Espada':'Swordfish','Atún Rojo':'Bluefin Tuna','Tiburón Martillo':'Hammerhead Shark',Marrajo:'Shortfin Mako','Pez Luna':'Ocean Sunfish',Opah:'Opah (Moonfish)','Cangrejo Real Dorado':'Golden King Crab','Calamar Gigante':'Giant Squid',
+// Cooking — verified fandom wiki
+'Mermelada Arándano':'Blueberry Jam','Mermelada Manzana':'Apple Jam','Mermelada Naranja':'Mandarin Jam','Mermelada Frambuesa':'Raspberry Jam','Mermelada Mixta':'Mixed Jam','Mermelada Piña':'Pineapple Jam','Mermelada Fresa':'Strawberry Jam','Mermelada Uva':'Grape Jam','Salsa de Tomate':'Tomato Sauce','Ensalada de Casa':'House Salad','Setas a la Plancha':'Grilled Mushrooms','Café':'Coffee','Café Moca':'Mocha Coffee','Fish N Chips':'Fish N Chips','Sopa de Setas':'Mushroom Stew','Pastel de Setas':'Mushroom Pie','Pasta con Carne':'Meat Sauce Pasta','Smoked Fish Bagel':'Smoked Fish Bagel','Pizza Mariscos':'Seafood Pizza','Risotto Mariscos':'Seafood Risotto','Tarta de Manzana':'Apple Pie','Estofado Rural':'Country Stew',Tiramisu:'Tiramisu','Tarta Zanahoria':'Carrot Cake','Sopa de Maíz':'Corn Soup','Tarta de Queso':'Cheesecake','Plato Cangrejo Imperial':'Steamed King Crab','Pasta Trufa Negra':'Black Truffle Pasta','Berenjena Gratinada':'Eggplant Gratin','Hamburguesa':'Meat Burger','Gambas con Aguacate':'Shrimp Avocado','Mariscada de Lujo':'Luxury Seafood Platter','Cangrejo al Vapor':'Steamed Golden Crab','Batido (Milkshake)':'Milkshake','Té Rojo Aromático':'Aromatic Red Tea','Té con Leche':'Milk Tea','Batido Matcha':'Matcha Milkshake','Salsa de Chocolate':'Chocolate Sauce','Té de Cacao':'Cacao Tea','Batido de Cacao':'Cacao Milkshake','Exposición Camping':'Camping Platter','Afternoon Tea':'Afternoon Tea','Mermelada Coco':'Coconut Jam','Mermelada Zanahoria':'Mixed Jam (Carrot)','Latte':'Latte',
+'Nube Rosa':'Red Roll Cake','Nube Azul':'Blue Roll Cake','Nube Amarilla':'Yellow Roll Cake','Nube Verde':'Green Roll Cake','Nube Morada':'Violet Roll Cake',
+'Helado Fresa':'Strawberry Ice Cream','Helado Coco':'Coconut Ice Cream','Agua de Coco':'Coconut Water','Costa Azul':'Blue Coast','Recuerdo Rosa':'Pink Memory',
+'Pastel Año Nuevo':'New Year Cake','Dumpling Dorado':'Golden Dumpling','Dumpling Jade':'Jade Dumpling','Tang Yuan':'Tang Yuan','Tang Yuan Sésamo':'Sesame Tang Yuan','Tang Yuan Cacao':'Cacao Tang Yuan','Aurora Dinner':'Aurora Dinner','Puré de Rábano':'Radish Puree','Sopa de Nabo':'Turnip Soup','Pastel de Hierba':'Grass Cake','Estofado Invierno':'Winter Stew',
+'Berenjena Salteada':'Sautéed Eggplant','Zumo de Fresa':'Strawberry Juice','Zumo de Manzana':'Apple Juice','Zumo de Coco':'Coconut Juice',
+'Batido Arándano':'Blueberry Milkshake','Batido Frambuesa':'Raspberry Milkshake','Batido Piña':'Pineapple Milkshake','Batido Fresa':'Strawberry Milkshake','Batido Manzana':'Apple Milkshake','Batido Naranja':'Mandarin Milkshake','Batido Uva':'Grape Milkshake',
+'Bebida Vendaje Blanco':'White Bandage Drink','Bebida Vendaje Negro':'Black Bandage Drink','Bebida Gato Momia':'Mummy Cat Drink',
+'Setas Shiitake Plancha':'Grilled Shiitake','Setas Ostra Plancha':'Grilled Oyster Mushroom','Setas Boletus Plancha':'Grilled Boletus','Trufa Negra Plancha':'Grilled Black Truffle','Setas Champiñón Plancha':'Grilled Button Mushroom',
+'Sopa Shiitake':'Shiitake Stew','Sopa Trufa Negra':'Black Truffle Stew','Sopa Ostra':'Oyster Mushroom Stew','Sopa Boletus':'Boletus Stew','Sopa Champiñón':'Button Mushroom Stew',
+'Pastel Shiitake':'Shiitake Pie','Pastel Trufa':'Truffle Pie','Pastel Ostra':'Oyster Mushroom Pie','Pastel Boletus':'Boletus Pie','Pastel Champiñón':'Button Mushroom Pie',
+'Ensalada Zanahoria':'Carrot Salad','Ensalada Lechuga':'Lettuce Salad',
+// Bugs — verified fandom wiki (official in-game names)
+'Mariposa Aurora':'Orange-Tip','Mariposa Apolo':'Apollo',Mariquita:'Seven-Spotted Ladybug',Grillo:'Gold Grasshopper',Saltamontes:'Siberian Grasshopper','Mariposa Limón':'Common Brimstone',Abeja:'Bumblebee','Mariposa Col':'Cabbage White','Hormiga':'European Firebug','Escarabajo Rinoceronte':'Asparagus Beetle','Luciérnaga':'Firefly','Libélula Roja':'Large Red Damselfly','Morpho Azul':'Blue Morpho','Polilla Luna':'Luna Moth','Mariposa Madera':'Postman Butterfly','Escarabajo Pelotero':'Dung Beetle','Libélula Azul':'Four-Spotted Skimmer','Escarabajo Ciervo':'Stag Beetle','Rajah Brooke':'Rajah Brooke\'s Birdwing','Mantis Religiosa':'Praying Mantis','Cola de Golondrina':'Old World Swallowtail','Cigarra':'Cicada','Mariposa Tigre':'Tiger Swallowtail','Escarabajo Longhorn':'Longhorn Beetle','Araña de Jardín':'Garden Spider','Escarabajo Atlas':'Atlas Beetle','Mariposa Monarca':'Monarch Butterfly','Sulkowsky Morpho':"Sulkowsky's Morpho",'Libélula Emperador':'Emperor Dragonfly','Mariposa Búho':'Owl Butterfly','Escarabajo Miyama':'Miyama Stag Beetle','Polilla Halcón':'Hawk Moth','Escarabajo Hércules':'Hercules Beetle','Mariposa Alas Pájaro':'Birdwing Butterfly','Escorpión':'Scorpion','Escarabajo Joya':'Amethyst Flower Beetle','Polilla Esfinge':'Sphinx Moth','Escarabajo Goliat':'Goliath Beetle','Escarabajo Dorado':'Green Tiger Beetle','Polilla Atlas':'Atlas Moth','Mariposa Arcoíris':'Common Blue Butterfly','Escarabajo Ciervo Gigante':'Giant Stag Beetle','Mariposa Luna Azul':'Blue Moon Butterfly','Mariposa Cristal':'Glasswing Butterfly','Ciervo Arcoíris':'Rainbow Stag Beetle','Mariposa Alexandra':'Queen Alexandra\'s Birdwing','Escarabajo Diamante':'Wasp Beetle',
+// Birds — verified heartopiaguide.com / thegamer (official in-game names)
+Petirrojo:'Sparrow',Paloma:'Pied Imperial Pigeon',Camachuelo:'Bearded Reedling',Carbonero:'Great Tit','Pinzón':'Eurasian Chaffinch','Tórtola':'Cinnamon Ground Dove','Ánade Real':'Mallard Duck','Chochín':'Eurasian Wren',Herrerillo:'Eastern Bluebird','Trepador Azul':'Eurasian Nuthatch',Picogordo:'Double-Barred Finch','Pinzón Real':'Ruddy Shelduck','Paloma Fruta Rosa':'Pink-Necked Green Pigeon','Paloma Ojos Amarillos':'Wonga Pigeon','Paloma Grande':'Wild Turkey','Cernícalo':'Common Kestrel','Búho Chico':'Snowy Owl','Abejaruco Ojos Amarillos':'Rainbow Parrot','Pato Blanco':'White Swan','Flamenco Menor':'Pink Flamingo','Alcaudón Dorsirrojo':'Red-backed Shrike','Charrán':'European Shag','Flamenco Americano':'Greater Flamingo',Cardenalito:'Little Penguin','Martín Pescador':'Paradise Peacock','Faisán Dorado':'Golden Pheasant','Búho Real':'Snowy Owl','Águila Real':'Golden Eagle',
+// Flowers
+'Margarita Roja':'Red Daisy','Margarita Blanca':'White Daisy','Margarita Amarilla':'Yellow Daisy','Margarita Rosa':'Pink Daisy','Margarita Naranja':'Orange Daisy','Margarita Melocotón':'Peach Daisy','Margarita Verde':'Green Daisy','Margarita Azul Selene':'Selene Blue Daisy','Hibisco Rojo':'Red Hibiscus','Hibisco Blanco':'White Hibiscus','Hibisco Amarillo':'Yellow Hibiscus','Hibisco Rosa':'Pink Hibiscus','Hibisco Naranja':'Orange Hibiscus','Hibisco Morado':'Purple Hibiscus','Hibisco Negro':'Black Hibiscus','Hibisco Dorado Sunglow':'Sunglow Gold Hibiscus','Clavel Rojo':'Red Carnation','Clavel Blanco':'White Carnation','Clavel Amarillo':'Yellow Carnation','Clavel Rosa':'Pink Carnation','Clavel Naranja':'Orange Carnation','Clavel Morado':'Purple Carnation','Clavel Negro':'Black Carnation','Clavel Azul Selene':'Selene Blue Carnation','Rosa Roja':'Red Rose','Rosa Blanca':'White Rose','Rosa Amarilla':'Yellow Rose','Rosa Rosa':'Pink Rose','Rosa Naranja':'Orange Rose','Rosa Morada':'Purple Rose','Rosa Negra':'Black Rose','Rosa Dorada Sunglow':'Sunglow Gold Rose','Tulipán Rojo':'Red Tulip','Tulipán Blanco':'White Tulip','Tulipán Amarillo':'Yellow Tulip','Tulipán Rosa':'Pink Tulip','Tulipán Naranja':'Orange Tulip','Tulipán Morado':'Purple Tulip','Tulipán Negro':'Black Tulip','Tulipán Arcoíris Selene':'Selene Rainbow Tulip'};
+const nameFR={Tomate:'Tomate',Patata:'Pomme de terre',Trigo:'Blé',Lechuga:'Laitue','Piña':'Ananas',Zanahoria:'Carotte',Fresa:'Fraise','Maíz':'Maïs',Uva:'Raisin',Berenjena:'Aubergine','Rábano Blanco':'Radis blanc','Árbol de Té':'Théier','Árbol de Cacao':'Cacaoyer',Aguacate:'Avocat',
+// Fish FR
+'Camarón Dulce':'Crevette d\'eau douce',Sardina:'Sardine','Gobio Espinoso':'Épinoche','Camarón Mar':'Crevette de mer','Pez Caballo':'Chinchard','Albur Común':'Ablette','Brema Blanca':'Brème blanche','Perca Dorada':'Perche dorée','Locha Espinosa':'Loche épineuse','Perca Europea':'Perche',Lubina:'Bar',Barbo:'Barbeau','Brema Común':'Brème','Carpa Cruciana':'Carassin',Tenca:'Tanche',Carpa:'Carpe','Pez Pepino':'Poisson concombre','Cangrejo Río':'Crabe d\'eau douce','Mejillón':'Moule','Pez Erizo':'Poisson porc-épic',Renacuajo:'Têtard',Perca:'Perche','Caballito Mar':'Hippocampe',Gobio:'Gobie','Caballa Atlántica':'Maquereau','Pez Cola':'Sabre',Cabezudo:'Chabot','Salmón Chum':'Saumon kéta','Salmón Atlántico':'Saumon atlantique','Pulpo Enano':'Pieuvre naine',Blenio:'Blennie','Pez Volador':'Poisson volant','Cangrejo Nórdico':'Écrevisse nordique','Pez Piedra':'Loche de rivière','Trucha Blanca':'Lavaret','Bonito Listado':'Bonite à ventre rayé','Serrano Rayado':'Killie rayé','Jurel Cola Amarilla':'Sériole','Espinilla 3 Pinchos':'Épinoche à 3 épines',Rudd:'Rotengle','Lubina Negra':'Dorade grise','Trucha Marrón':'Truite brune','Róbalo':'Black-bass','Pez Globo':'Poisson globe','Carpa Europea':'Carpe européenne','Langosta Europea':'Homard européen','Platija Europea':'Plie',Lota:'Lote',Eglefino:'Églefin','Tímalo':'Ombre','Cangrejo Azul':'Écrevisse bleue','Pez Dorado':'Poisson rouge','Pez Sol Calabaza':'Crapet soleil','Sombra Bass':'Perche ombragée','Pulpo Común':'Poulpe',Rape:'Baudroie',Tilapia:'Tilapia','Rana Acuática':'Grenouille','Calamar Volador':'Encornet volant','Salmonete Rayado':'Rouget barbet','Quimera Atlántica':'Chimère',Rodaballo:'Turbot',Morena:'Murène','Pez Sol Azul':'Crapet arlequin','Anguila Europea':'Anguille','Perla Gigante':'Moule perlière géante',Gurnardo:'Grondin',Huchen:'Huchon','Esturión':'Esturgeon','Char Ártico':'Omble chevalier','Lucio del Norte':'Brochet',Siluro:'Silure','Tiburón Gato':'Requin chat','Pez Remo':'Régalec','Cangrejo Real':'Crabe royal','Raya Manta':'Raie manta','Pez Espada':'Espadon','Atún Rojo':'Thon rouge','Tiburón Martillo':'Requin marteau',Marrajo:'Requin mako','Pez Luna':'Poisson lune',Opah:'Opah','Cangrejo Real Dorado':'Crabe royal doré','Calamar Gigante':'Calmar géant',
+// Cooking FR
+'Mermelada Arándano':'Confiture de myrtille','Mermelada Manzana':'Confiture de pomme','Mermelada Naranja':'Confiture de mandarine','Mermelada Frambuesa':'Confiture de framboise','Mermelada Mixta':'Confiture mixte','Mermelada Piña':'Confiture d\'ananas','Mermelada Fresa':'Confiture de fraise','Mermelada Uva':'Confiture de raisin','Salsa de Tomate':'Sauce tomate','Ensalada de Casa':'Salade maison','Setas a la Plancha':'Champignons grillés','Café':'Café','Café Moca':'Café moka','Fish N Chips':'Fish & Chips','Sopa de Setas':'Ragoût de champignons','Pastel de Setas':'Tourte aux champignons','Pasta con Carne':'Pâtes bolognaise','Smoked Fish Bagel':'Bagel au poisson fumé','Pizza Mariscos':'Pizza fruits de mer','Risotto Mariscos':'Risotto fruits de mer','Tarta de Manzana':'Tarte aux pommes','Estofado Rural':'Ragoût campagnard',Tiramisu:'Tiramisu','Tarta Zanahoria':'Gâteau à la carotte','Sopa de Maíz':'Soupe de maïs','Tarta de Queso':'Cheesecake','Pasta Trufa Negra':'Pâtes à la truffe noire','Hamburguesa':'Hamburger','Mariscada de Lujo':'Plateau de fruits de mer',
+'Nube Rosa':'Roll cake rouge','Nube Azul':'Roll cake bleu','Nube Amarilla':'Roll cake jaune','Nube Verde':'Roll cake vert','Nube Morada':'Roll cake violet',
+// Bugs FR
+'Mariposa Aurora':'Aurore',Mariquita:'Coccinelle',Grillo:'Criquet doré',Saltamontes:'Criquet de Sibérie','Mariposa Limón':'Citron',Abeja:'Bourdon','Mariposa Col':'Piéride du chou','Escarabajo Rinoceronte':'Chrysomèle de l\'asperge','Luciérnaga':'Luciole','Libélula Roja':'Petite nymphe au corps de feu','Morpho Azul':'Morpho bleu','Mantis Religiosa':'Mante religieuse','Cola de Golondrina':'Machaon','Mariposa Monarca':'Monarque','Escarabajo Hércules':'Scarabée Hercule','Escorpión':'Scorpion','Escarabajo Atlas':'Scarabée Atlas',
+// Birds FR
+Carbonero:'Mésange charbonnière','Pinzón':'Pinson des arbres','Ánade Real':'Canard colvert','Cernícalo':'Faucon crécerelle','Búho Real':'Harfang des neiges','Águila Real':'Aigle royal','Flamenco Menor':'Flamant rose','Martín Pescador':'Paon du paradis',
+// Flowers FR
+'Margarita Roja':'Marguerite rouge','Margarita Blanca':'Marguerite blanche','Margarita Amarilla':'Marguerite jaune','Margarita Rosa':'Marguerite rose','Rosa Roja':'Rose rouge','Rosa Blanca':'Rose blanche','Tulipán Rojo':'Tulipe rouge','Tulipán Blanco':'Tulipe blanche','Clavel Rojo':'Œillet rouge','Clavel Blanco':'Œillet blanc','Hibisco Rojo':'Hibiscus rouge','Hibisco Blanco':'Hibiscus blanc'};
+function tName(n){if(lang==='es')return n;const d=lang==='en'?nameEN:nameFR;return d[n]||n;}
+function setLang(l){
+  lang=l;
+  localStorage.setItem('dn_lang',l);
+  document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.dataset.lang===l);});
+  applyLang();
+  if(tab==='calc') renderCalc();
+  else if(tab==='map') renderMap();
+  else render();
+}
+function applyLang(){
+  const t=i18n[lang];
+  const tagEl=document.querySelector('.header .tag');if(tagEl)tagEl.textContent=t.tag;
+  const descEl=document.querySelector('.header p');if(descEl)descEl.textContent=t.desc;
+  document.querySelectorAll('.tabs .tab-btn').forEach(b=>{
+    const k=b.getAttribute('onclick')?.match(/setTab\('(\w+)'/)?.[1];
+    if(k&&t.tabs[k]) b.textContent=t.tabs[k];
+  });
+  const searchEl=document.getElementById('searchBox');if(searchEl)searchEl.placeholder=t.filters.search;
+  const filterMap={all:t.filters.all,low:t.filters.low,mid:t.filters.mid,high:t.filters.high};
+  document.querySelectorAll('.f-btn').forEach(b=>{const f=b.dataset.f;if(filterMap[f])b.textContent=filterMap[f];});
+  const footEl=document.querySelector('.footer');if(footEl)footEl.textContent=t.footer;
+}
+(function(){const s=localStorage.getItem('dn_lang');if(s&&i18n[s]){lang=s;document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.lang-btn').forEach(b=>{b.classList.toggle('active',b.dataset.lang===lang);});applyLang();});}})();
 const SC=['var(--star1)','var(--star2)','var(--star3)','var(--star4)','var(--star5)'];
 const SL4=['1★','2★','3★','4★'],SL5=['1★','2★','3★','4★','5★'];
 
@@ -597,6 +710,7 @@ function render(){
   const grid=document.getElementById('grid');grid.innerHTML='';
   const stars=getStarCount(),labels=stars===4?SL4:SL5;
   const tagClass=tab==='garden'?'tag-garden':tab==='fish'?'tag-fish':tab==='bug'?'tag-bug':tab==='bird'?'tag-bird':tab==='flower'?'tag-flower':'tag-cook';
+  const emojiClass=tab==='garden'?'emoji-garden':tab==='fish'?'emoji-fish':tab==='bug'?'emoji-bug':tab==='bird'?'emoji-bird':tab==='flower'?'emoji-flower':'emoji-cook';
   list.forEach(item=>{
     const card=document.createElement('div');card.className='card';
     let pH='';
@@ -604,11 +718,26 @@ function render(){
       pH+=`<div class="star-cell" style="background:${SC[sI].replace(')','')+ bg});border:1px solid ${SC[sI].replace(')','')+ bd})"><div class="sl" style="color:${SC[sI]}">${labels[i]}</div><div class="sv ${v?'':'empty'}">${v?v+'g':'—'}</div></div>`;}
     const profit=item.sell[0]&&item.cost!==undefined?item.sell[0]-item.cost:null;
     const pC=profit>100?'high':profit>0?'mid':profit!==null?'neg':'';
-    const costHTML=(tab==='fish'||tab==='bug'||tab==='bird'||tab==='flower')?'':`<div class="card-price"><div class="card-price-label">${tab==='garden'?'Semilla':'Coste'}</div><div class="card-price-val">${item.cost}g</div></div>`;
-    const timeStr=item.time?`<span class="tag-sub">⏱${item.time}</span>`:'';
-    const eventTag=(item.detail&&item.detail.includes('Evento'))?'<span class="tag-event">🎃 EVENTO</span>':'';
-    const secretTag=(item.detail&&item.detail.includes('🔓'))?'<span class="tag-event" style="background:rgba(139,92,246,0.2);color:#c8b8f0;">🔓 SECRETO</span>':'';
-    card.innerHTML=`<div class="card-head"><div class="card-emoji">${item.emoji}</div><div class="card-info"><div class="card-name">${item.name}${eventTag}${secretTag}</div><div class="card-tags"><span class="tag-lvl ${tagClass}">Nv.${item.level}</span>${timeStr}</div></div>${costHTML}</div><div class="stars stars-${stars}">${pH}</div>${profit!==null?`<div class="profit"><span class="l">Beneficio 1★</span><span class="v ${pC}">${profit>=0?'+':''}${profit}g</span></div>`:''}<div class="detail">📋 <span>${item.detail}</span></div>${item.tip?`<div class="tip-box">💡 ${item.tip}</div>`:''}`;
+    const costHTML=(tab==='fish'||tab==='bug'||tab==='bird'||tab==='flower')?'':`<div class="card-price"><div class="card-price-label">${tab==='garden'?i18n[lang].card.seed:i18n[lang].card.cost}</div><div class="card-price-val">${item.cost}g</div></div>`;
+    const timeStr=item.time?`<span class="tag-sub">⏱ ${item.time}</span>`:'';
+    const eventTag=(item.detail&&item.detail.includes('Evento'))?`<span class="tag-event">${i18n[lang].card.event}</span>`:'';
+    const secretTag=(item.detail&&item.detail.includes('🔓'))?`<span class="tag-event" style="background:linear-gradient(90deg,rgba(139,92,246,0.25),rgba(139,92,246,0.1));color:#c8b8f0;border-color:rgba(139,92,246,0.3);">${i18n[lang].card.secret}</span>`:'';
+    card.innerHTML=`
+      <div class="card-top">
+        <div class="card-emoji ${emojiClass}">${item.emoji}</div>
+        <div class="card-info">
+          <div class="card-name">${tName(item.name)}${eventTag}${secretTag}</div>
+          <div class="card-tags"><span class="tag-lvl ${tagClass}">Nv.${item.level}</span>${timeStr}</div>
+        </div>
+        ${costHTML}
+      </div>
+      <div class="card-body">
+        <div class="stars stars-${stars}">${pH}</div>
+        ${profit!==null?`<div class="profit"><span class="l">${i18n[lang].card.profit}</span><span class="v ${pC}">${profit>=0?'+':''}${profit}g</span></div>`:''}
+        <div class="card-divider"></div>
+        <div class="detail">📋 <span>${item.detail}</span></div>
+        ${item.tip?`<div class="tip-box">💡 ${item.tip}</div>`:''}
+      </div>`;
     grid.appendChild(card);
   });
 }
@@ -638,7 +767,7 @@ function updateItemList(){
   const all=getAllItems().filter(i=>i.sell&&i.sell[0]);
   const filtered=cat==='all'?all:all.filter(i=>i.cat===cat);
   const sel=document.getElementById('cItem');
-  sel.innerHTML=filtered.map((it,idx)=>`<option value="${it.cat}_${it.id}">${it.emoji} ${it.name} (${it.catName})</option>`).join('');
+  sel.innerHTML=filtered.map((it,idx)=>`<option value="${it.cat}_${it.id}">${it.emoji} ${tName(it.name)} (${it.catName})</option>`).join('');
   // adjust star options based on first item
   calcUpdate();
 }
@@ -667,7 +796,7 @@ function calcUpdate(){
   const profitColor=totalProfit>0?'var(--green)':totalProfit<0?'#e85a5a':'var(--text-dim)';
 
   document.getElementById('calcResult').innerHTML=`
-    <div class="dim">${item.emoji} ${item.name} · ${['1★','2★','3★','4★','5★'][si]} · ×${qty}</div>
+    <div class="dim">${item.emoji} ${tName(item.name)} · ${['1★','2★','3★','4★','5★'][si]} · ×${qty}</div>
     <div class="big" style="color:${profitColor}">${totalProfit>=0?'+':''}${totalProfit.toLocaleString('es')}g</div>
     <div class="sub-val">Beneficio ${totalProfit>=0?'neto':'(pérdida)'}</div>
     <div class="calc-breakdown">
@@ -751,6 +880,7 @@ function renderMap(){
 }
 
 render();
+applyLang();
 </script>
 </body>
 </html>
