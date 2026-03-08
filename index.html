@@ -169,6 +169,12 @@
     <button class="f-btn" data-f="mid" onclick="setFilter(this)">Medio</button>
     <button class="f-btn" data-f="high" onclick="setFilter(this)">Alto Nv</button>
   </div>
+  <div class="filters" id="zoneBar" style="display:none;">
+    <button class="f-btn on" data-z="all" onclick="setZone(this)">🌊 Todos</button>
+    <button class="f-btn" data-z="river" onclick="setZone(this)">🏞️ Río</button>
+    <button class="f-btn" data-z="lake" onclick="setZone(this)">🏕️ Lago</button>
+    <button class="f-btn" data-z="sea" onclick="setZone(this)">⛵ Mar</button>
+  </div>
 
   <div id="grid" class="grid"></div>
   <div id="calcView" style="display:none"></div>
@@ -225,7 +231,7 @@ let lang='es';
 // Item name translations (ES is base in data)
 const nameEN={Tomate:'Tomato',Patata:'Potato',Trigo:'Wheat',Lechuga:'Lettuce','Piña':'Pineapple',Zanahoria:'Carrot',Fresa:'Strawberry','Maíz':'Corn',Uva:'Grape',Berenjena:'Eggplant','Rábano Blanco':'White Radish','Árbol de Té':'Tea Tree','Árbol de Cacao':'Cacao Tree',Aguacate:'Avocado',
 // Fish — verified heartopia.cc
-'Camarón Dulce':'Freshwater Shrimp',Sardina:'Sardine','Gobio Espinoso':'Stickleback','Camarón Mar':'Sea Shrimp','Pez Caballo':'Horse Mackerel','Albur Común':'Common Bleak','Brema Blanca':'White Bream','Perca Dorada':'Golden Perch','Locha Espinosa':'Spined Loach','Perca Europea':'European Perch',Lubina:'Sea Bass',Barbo:'Barbel','Brema Común':'Common Bream','Carpa Cruciana':'Crucian Carp',Tenca:'Tench',Carpa:'Carp','Pez Pepino':'Cucumber Fish','Cangrejo Río':'Freshwater Crab','Mejillón':'Mussel','Pez Erizo':'Porcupinefish',Renacuajo:'Tadpole',Perca:'Perch','Caballito Mar':'Seahorse',Gobio:'Goby','Caballa Atlántica':'Atlantic Mackerel','Pez Cola':'Hairtail',Cabezudo:'Bullhead','Salmón Chum':'Chum Salmon','Salmón Atlántico':'Atlantic Salmon','Pulpo Enano':'Atlantic Pygmy Octopus',Blenio:'Blenny','Pez Volador':'Flying Fish','Cangrejo Nórdico':'Nordic Crayfish','Pez Piedra':'Stone Loach','Trucha Blanca':'True Whitefish','Bonito Listado':'Skipjack Tuna','Serrano Rayado':'Striped Killifish','Jurel Cola Amarilla':'Yellowtail Amberjack','Espinilla 3 Pinchos':'Three-spined Stickleback',Rudd:'Rudd','Lubina Negra':'Black Seabream','Trucha Marrón':'Brown Trout','Róbalo':'Largemouth Bass','Pez Globo':'Pufferfish','Carpa Europea':'European Carp','Langosta Europea':'European Lobster','Platija Europea':'European Plaice',Lota:'Burbot',Eglefino:'Haddock','Tímalo':'Grayling','Cangrejo Azul':'Blue Crayfish','Pez Dorado':'Goldfish','Pez Sol Calabaza':'Pumpkinseed Sunfish','Sombra Bass':'Shadow Bass','Pulpo Común':'Common Octopus',Rape:'Anglerfish',Tilapia:'Tilapia','Rana Acuática':'European Water Frog','Calamar Volador':'European Flying Squid','Salmonete Rayado':'Striped Red Mullet','Quimera Atlántica':'Atlantic Chimaera',Rodaballo:'Turbot',Morena:'Moray Eel','Pez Sol Azul':'Bluegill Sunfish','Anguila Europea':'European Eel','Perla Gigante':'Giant Pearl Mussel',Gurnardo:'Gurnard',Huchen:'Huchen','Esturión':'Sturgeon','Char Ártico':'Arctic Char','Lucio del Norte':'Northern Pike',Siluro:'Wels Catfish','Tiburón Gato':'Cat Shark','Pez Remo':'Oarfish','Cangrejo Real':'King Crab','Raya Manta':'Manta Ray','Pez Espada':'Swordfish','Atún Rojo':'Bluefin Tuna','Tiburón Martillo':'Hammerhead Shark',Marrajo:'Shortfin Mako','Pez Luna':'Ocean Sunfish',Opah:'Opah (Moonfish)','Cangrejo Real Dorado':'Golden King Crab','Calamar Gigante':'Giant Squid',
+'Camarón Azul':'Freshwater Shrimp',Sardina:'Sardine','Gobio Espinoso':'Sea Stickleback','Camarón Mar':'Common Shrimp','Pez Caballo':'Bellfish','Albur Común':'European Smelt','Brema Blanca':'Sneider','Perca dorada manchada':'Gudgeon','Locha moteada':'Spined Loach','Perca de río':'European Perch',Lubina:'Sea Bass',Barbo:'Barbel','Brema Común':'Common Bream','Carpa Cruciana':'Crucian Carp',Tenca:'Tench',Carpa:'Carp','Pez Pepino':'Cucumber Fish','Cangrejo Río':'Freshwater Crab','Mejillón':'Mussel','Pez Erizo':'Porcupinefish',Renacuajo:'Tadpole',Perca:'Perch','Caballito Mar':'Seahorse',Gobio:'Goby','Caballa Atlántica':'Atlantic Mackerel','Pez Cola':'Beltfish',Cabezudo:'Bullhead','Salmón keta':'Chum Salmon','Salmón Atlántico':'Atlantic Salmon','Pulpo Enano':'Atlantic Pygmy Octopus','Blénido de río':'Blenny','Pez Volador':'Flying Fish','Cangrejo Nórdico':'European Crayfish','Pez Piedra':'Stone Loach','Trucha Blanca':'Common Whitefish','Bonito Listado':'Skipjack Tuna','Serrano Rayado':'Streber','Jurel Cola Amarilla':'Yellowtail Amberjack','Pez espinoso de tres espinas':'Three-spined Stickleback',Rudd:'Rudd','Lubina Negra':'Black Seabream','Trucha Marrón':'Brown Trout','Róbalo':'Largemouth Bass','Pez Globo':'Pufferfish','Carpa Europea':'European Carp','Langosta Europea':'European Lobster','Platija Europea':'European Plaice',Lota:'Burbot',Eglefino:'Haddock','Tímalo':'Grayling','Cangrejo Azul':'Blue Ero Crayfish','Pez Dorado':'Goldfish','Pez Sol Calabaza':'Pumpkinseed Sunfish','Sombra Bass':'Shadow Bass','Pulpo Común':'Common Octopus',Rape:'Anglerfish',Tilapia:'Tilapia','Rana Acuática':'Edible Frog','Calamar Volador':'European Flying Squid','Salmonete Rayado':'Striped Red Mullet','Quimera Atlántica':'Atlantic Chimaera',Rodaballo:'Turbot',Morena:'Moray Eel','Pez Sol Azul':'Bluegill Sunfish','Anguila Europea':'European Eel','Perla Gigante':'Giant Pearl Mussel',Gurnardo:'Tub Gurnard','Salmón del Danubio':'Huchen','Esturión':'Sturgeon','Pez minnow':'Minnow',Lucioperca:'Zander','Piraña de vientre rojo':'Red-Bellied Piranha','Char Ártico':'Arctic Char','Lucio del Norte':'Northern Pike',Siluro:'Wels Catfish','Tiburón Gato':'Cat Shark','Pez Remo':'Oarfish','Cangrejo Real':'King Crab','Raya Manta':'Manta Ray','Pez Espada':'Swordfish','Atún Rojo':'Bluefin Tuna','Tiburón Martillo':'Hammerhead Shark',Marrajo:'Shortfin Mako','Pez Luna':'Ocean Sunfish',Opah:'Opah (Moonfish)','Cangrejo Real Dorado':'Golden King Crab','Calamar Gigante':'Giant Squid',
 // Cooking — verified fandom wiki
 'Mermelada Arándano':'Blueberry Jam','Mermelada Manzana':'Apple Jam','Mermelada Naranja':'Mandarin Jam','Mermelada Frambuesa':'Raspberry Jam','Mermelada Mixta':'Mixed Jam','Mermelada Piña':'Pineapple Jam','Mermelada Fresa':'Strawberry Jam','Mermelada Uva':'Grape Jam','Salsa de Tomate':'Tomato Sauce','Ensalada de Casa':'House Salad','Setas a la Plancha':'Grilled Mushrooms','Café':'Coffee','Café Moca':'Mocha Coffee','Fish N Chips':'Fish N Chips','Sopa de Setas':'Mushroom Stew','Pastel de Setas':'Mushroom Pie','Pasta con Carne':'Meat Sauce Pasta','Smoked Fish Bagel':'Smoked Fish Bagel','Pizza Mariscos':'Seafood Pizza','Risotto Mariscos':'Seafood Risotto','Tarta de Manzana':'Apple Pie','Estofado Rural':'Country Stew',Tiramisu:'Tiramisu','Tarta Zanahoria':'Carrot Cake','Sopa de Maíz':'Corn Soup','Tarta de Queso':'Cheesecake','Plato Cangrejo Imperial':'Steamed King Crab','Pasta Trufa Negra':'Black Truffle Pasta','Berenjena Gratinada':'Eggplant Gratin','Hamburguesa':'Meat Burger','Gambas con Aguacate':'Shrimp Avocado','Mariscada de Lujo':'Luxury Seafood Platter','Cangrejo al Vapor':'Steamed Golden Crab','Batido (Milkshake)':'Milkshake','Té Rojo Aromático':'Aromatic Red Tea','Té con Leche':'Milk Tea','Batido Matcha':'Matcha Milkshake','Salsa de Chocolate':'Chocolate Sauce','Té de Cacao':'Cacao Tea','Batido de Cacao':'Cacao Milkshake','Exposición Camping':'Camping Platter','Afternoon Tea':'Afternoon Tea','Mermelada Coco':'Coconut Jam','Mermelada Zanahoria':'Mixed Jam (Carrot)','Latte':'Latte',
 'Nube Rosa':'Red Roll Cake','Nube Azul':'Blue Roll Cake','Nube Amarilla':'Yellow Roll Cake','Nube Verde':'Green Roll Cake','Nube Morada':'Violet Roll Cake',
@@ -246,7 +252,7 @@ Petirrojo:'Sparrow',Paloma:'Pied Imperial Pigeon',Camachuelo:'Bearded Reedling',
 'Margarita Roja':'Red Daisy','Margarita Blanca':'White Daisy','Margarita Amarilla':'Yellow Daisy','Margarita Rosa':'Pink Daisy','Margarita Naranja':'Orange Daisy','Margarita Melocotón':'Peach Daisy','Margarita Verde':'Green Daisy','Margarita Azul Selene':'Selene Blue Daisy','Hibisco Rojo':'Red Hibiscus','Hibisco Blanco':'White Hibiscus','Hibisco Amarillo':'Yellow Hibiscus','Hibisco Rosa':'Pink Hibiscus','Hibisco Naranja':'Orange Hibiscus','Hibisco Morado':'Purple Hibiscus','Hibisco Negro':'Black Hibiscus','Hibisco Dorado Sunglow':'Sunglow Gold Hibiscus','Clavel Rojo':'Red Carnation','Clavel Blanco':'White Carnation','Clavel Amarillo':'Yellow Carnation','Clavel Rosa':'Pink Carnation','Clavel Naranja':'Orange Carnation','Clavel Morado':'Purple Carnation','Clavel Negro':'Black Carnation','Clavel Azul Selene':'Selene Blue Carnation','Rosa Roja':'Red Rose','Rosa Blanca':'White Rose','Rosa Amarilla':'Yellow Rose','Rosa Rosa':'Pink Rose','Rosa Naranja':'Orange Rose','Rosa Morada':'Purple Rose','Rosa Negra':'Black Rose','Rosa Dorada Sunglow':'Sunglow Gold Rose','Tulipán Rojo':'Red Tulip','Tulipán Blanco':'White Tulip','Tulipán Amarillo':'Yellow Tulip','Tulipán Rosa':'Pink Tulip','Tulipán Naranja':'Orange Tulip','Tulipán Morado':'Purple Tulip','Tulipán Negro':'Black Tulip','Tulipán Arcoíris Selene':'Selene Rainbow Tulip'};
 const nameFR={Tomate:'Tomate',Patata:'Pomme de terre',Trigo:'Blé',Lechuga:'Laitue','Piña':'Ananas',Zanahoria:'Carotte',Fresa:'Fraise','Maíz':'Maïs',Uva:'Raisin',Berenjena:'Aubergine','Rábano Blanco':'Radis blanc','Árbol de Té':'Théier','Árbol de Cacao':'Cacaoyer',Aguacate:'Avocat',
 // Fish FR
-'Camarón Dulce':'Crevette d\'eau douce',Sardina:'Sardine','Gobio Espinoso':'Épinoche','Camarón Mar':'Crevette de mer','Pez Caballo':'Chinchard','Albur Común':'Ablette','Brema Blanca':'Brème blanche','Perca Dorada':'Perche dorée','Locha Espinosa':'Loche épineuse','Perca Europea':'Perche',Lubina:'Bar',Barbo:'Barbeau','Brema Común':'Brème','Carpa Cruciana':'Carassin',Tenca:'Tanche',Carpa:'Carpe','Pez Pepino':'Poisson concombre','Cangrejo Río':'Crabe d\'eau douce','Mejillón':'Moule','Pez Erizo':'Poisson porc-épic',Renacuajo:'Têtard',Perca:'Perche','Caballito Mar':'Hippocampe',Gobio:'Gobie','Caballa Atlántica':'Maquereau','Pez Cola':'Sabre',Cabezudo:'Chabot','Salmón Chum':'Saumon kéta','Salmón Atlántico':'Saumon atlantique','Pulpo Enano':'Pieuvre naine',Blenio:'Blennie','Pez Volador':'Poisson volant','Cangrejo Nórdico':'Écrevisse nordique','Pez Piedra':'Loche de rivière','Trucha Blanca':'Lavaret','Bonito Listado':'Bonite à ventre rayé','Serrano Rayado':'Killie rayé','Jurel Cola Amarilla':'Sériole','Espinilla 3 Pinchos':'Épinoche à 3 épines',Rudd:'Rotengle','Lubina Negra':'Dorade grise','Trucha Marrón':'Truite brune','Róbalo':'Black-bass','Pez Globo':'Poisson globe','Carpa Europea':'Carpe européenne','Langosta Europea':'Homard européen','Platija Europea':'Plie',Lota:'Lote',Eglefino:'Églefin','Tímalo':'Ombre','Cangrejo Azul':'Écrevisse bleue','Pez Dorado':'Poisson rouge','Pez Sol Calabaza':'Crapet soleil','Sombra Bass':'Perche ombragée','Pulpo Común':'Poulpe',Rape:'Baudroie',Tilapia:'Tilapia','Rana Acuática':'Grenouille','Calamar Volador':'Encornet volant','Salmonete Rayado':'Rouget barbet','Quimera Atlántica':'Chimère',Rodaballo:'Turbot',Morena:'Murène','Pez Sol Azul':'Crapet arlequin','Anguila Europea':'Anguille','Perla Gigante':'Moule perlière géante',Gurnardo:'Grondin',Huchen:'Huchon','Esturión':'Esturgeon','Char Ártico':'Omble chevalier','Lucio del Norte':'Brochet',Siluro:'Silure','Tiburón Gato':'Requin chat','Pez Remo':'Régalec','Cangrejo Real':'Crabe royal','Raya Manta':'Raie manta','Pez Espada':'Espadon','Atún Rojo':'Thon rouge','Tiburón Martillo':'Requin marteau',Marrajo:'Requin mako','Pez Luna':'Poisson lune',Opah:'Opah','Cangrejo Real Dorado':'Crabe royal doré','Calamar Gigante':'Calmar géant',
+'Camarón Azul':'Crevette d\'eau douce',Sardina:'Sardine','Gobio Espinoso':'Épinoche','Camarón Mar':'Crevette de mer','Pez Caballo':'Chinchard','Albur Común':'Ablette','Brema Blanca':'Brème blanche','Perca dorada manchada':'Perche dorée','Locha moteada':'Loche épineuse','Perca de río':'Perche',Lubina:'Bar',Barbo:'Barbeau','Brema Común':'Brème','Carpa Cruciana':'Carassin',Tenca:'Tanche',Carpa:'Carpe','Pez Pepino':'Poisson concombre','Cangrejo Río':'Crabe d\'eau douce','Mejillón':'Moule','Pez Erizo':'Poisson porc-épic',Renacuajo:'Têtard',Perca:'Perche','Caballito Mar':'Hippocampe',Gobio:'Gobie','Caballa Atlántica':'Maquereau','Pez Cola':'Ceinture',Cabezudo:'Chabot','Salmón keta':'Saumon kéta','Salmón Atlántico':'Saumon atlantique','Pulpo Enano':'Pieuvre naine','Blénido de río':'Blennie','Pez Volador':'Poisson volant','Cangrejo Nórdico':'Écrevisse européenne','Pez Piedra':'Loche de rivière','Trucha Blanca':'Lavaret','Bonito Listado':'Bonite à ventre rayé','Serrano Rayado':'Killie rayé','Jurel Cola Amarilla':'Sériole','Pez espinoso de tres espinas':'Épinoche à 3 épines',Rudd:'Rotengle','Lubina Negra':'Dorade grise','Trucha Marrón':'Truite brune','Róbalo':'Black-bass','Pez Globo':'Poisson globe','Carpa Europea':'Carpe européenne','Langosta Europea':'Homard européen','Platija Europea':'Plie',Lota:'Lote',Eglefino:'Églefin','Tímalo':'Ombre','Cangrejo Azul':'Écrevisse bleue Ero','Pez Dorado':'Poisson rouge','Pez Sol Calabaza':'Crapet soleil','Sombra Bass':'Perche ombragée','Pulpo Común':'Poulpe',Rape:'Baudroie',Tilapia:'Tilapia','Rana Acuática':'Grenouille comestible','Calamar Volador':'Encornet volant','Salmonete Rayado':'Rouget barbet','Quimera Atlántica':'Chimère',Rodaballo:'Turbot',Morena:'Murène','Pez Sol Azul':'Crapet arlequin','Anguila Europea':'Anguille','Perla Gigante':'Moule perlière géante',Gurnardo:'Grondin perlon','Salmón del Danubio':'Huchon','Esturión':'Esturgeon','Pez minnow':'Vairon',Lucioperca:'Sandre','Piraña de vientre rojo':'Piranha à ventre rouge','Char Ártico':'Omble chevalier','Lucio del Norte':'Brochet',Siluro:'Silure','Tiburón Gato':'Requin chat','Pez Remo':'Régalec','Cangrejo Real':'Crabe royal','Raya Manta':'Raie manta','Pez Espada':'Espadon','Atún Rojo':'Thon rouge','Tiburón Martillo':'Requin marteau',Marrajo:'Requin mako','Pez Luna':'Poisson lune',Opah:'Opah','Cangrejo Real Dorado':'Crabe royal doré','Calamar Gigante':'Calmar géant',
 // Cooking FR
 'Mermelada Arándano':'Confiture de myrtille','Mermelada Manzana':'Confiture de pomme','Mermelada Naranja':'Confiture de mandarine','Mermelada Frambuesa':'Confiture de framboise','Mermelada Mixta':'Confiture mixte','Mermelada Piña':'Confiture d\'ananas','Mermelada Fresa':'Confiture de fraise','Mermelada Uva':'Confiture de raisin','Salsa de Tomate':'Sauce tomate','Ensalada de Casa':'Salade maison','Setas a la Plancha':'Champignons grillés','Café':'Café','Café Moca':'Café moka','Fish N Chips':'Fish & Chips','Sopa de Setas':'Ragoût de champignons','Pastel de Setas':'Tourte aux champignons','Pasta con Carne':'Pâtes bolognaise','Smoked Fish Bagel':'Bagel au poisson fumé','Pizza Mariscos':'Pizza fruits de mer','Risotto Mariscos':'Risotto fruits de mer','Tarta de Manzana':'Tarte aux pommes','Estofado Rural':'Ragoût campagnard',Tiramisu:'Tiramisu','Tarta Zanahoria':'Gâteau à la carotte','Sopa de Maíz':'Soupe de maïs','Tarta de Queso':'Cheesecake','Pasta Trufa Negra':'Pâtes à la truffe noire','Hamburguesa':'Hamburger','Mariscada de Lujo':'Plateau de fruits de mer',
 'Nube Rosa':'Roll cake rouge','Nube Azul':'Roll cake bleu','Nube Amarilla':'Roll cake jaune','Nube Verde':'Roll cake vert','Nube Morada':'Roll cake violet',
@@ -276,7 +282,8 @@ function applyLang(){
   });
   const searchEl=document.getElementById('searchBox');if(searchEl)searchEl.placeholder=t.filters.search;
   const filterMap={all:t.filters.all,low:t.filters.low,mid:t.filters.mid,high:t.filters.high};
-  document.querySelectorAll('.f-btn').forEach(b=>{const f=b.dataset.f;if(filterMap[f])b.textContent=filterMap[f];});
+  document.querySelectorAll('#filtersBar .f-btn').forEach(b=>{const f=b.dataset.f;if(filterMap[f])b.textContent=filterMap[f];});
+  if(tab==='fish'||tab==='bug'||tab==='bird') updateZoneBar(tab);
   const footEl=document.querySelector('.footer');if(footEl)footEl.textContent=t.footer;
 }
 (function(){const s=localStorage.getItem('dn_lang');if(s&&i18n[s]){lang=s;document.addEventListener('DOMContentLoaded',()=>{
@@ -285,229 +292,232 @@ const SC=['var(--star1)','var(--star2)','var(--star3)','var(--star4)','var(--sta
 const SL4=['1★','2★','3★','4★'],SL5=['1★','2★','3★','4★','5★'];
 
 const DEF_GARDEN=[
-  {id:1,name:"Tomate",emoji:"🍅",level:1,time:"15 min",cost:10,sell:[30,40,50,60],detail:"Salsa, Ensaladas, Pizza",tip:"El más rápido. Farming activo."},
-  {id:2,name:"Patata",emoji:"🥔",level:1,time:"60 min",cost:30,sell:[90,120,150,180],detail:"Puré, Fish N Chips, Sopa",tip:"Mejor oro/hora principiantes."},
-  {id:3,name:"Trigo",emoji:"🌾",level:2,time:"4 horas",cost:95,sell:[285,381,475,570],detail:"Pan, Pasta, Tartas, Pizza",tip:"Esencial para muchas recetas."},
-  {id:4,name:"Lechuga",emoji:"🥬",level:3,time:"8 horas",cost:145,sell:[435,582,726,870],detail:"Ensaladas, Hamburguesa, Estofado",tip:"Planta antes de dormir."},
-  {id:5,name:"Piña",emoji:"🍍",level:4,time:"30 min",cost:15,sell:[52,69,86,104],detail:"Mermelada, Zumo, Batido",tip:"Rápida, buena para subir nivel."},
-  {id:6,name:"Zanahoria",emoji:"🥕",level:5,time:"2 horas",cost:50,sell:[155,207,258,310],detail:"Tarta Zanahoria, Estofado",tip:"¡A los conejos les encantan!"},
-  {id:7,name:"Fresa",emoji:"🍓",level:6,time:"6 horas",cost:125,sell:[375,503,627,750],detail:"Mermelada, Batido, Tiramisu",tip:"Mermelada 5★ = 12.640g!"},
-  {id:8,name:"Maíz",emoji:"🌽",level:6,time:"12 horas",cost:170,sell:[515,690,860,1030],detail:"Sopa de Maíz, Palomitas",tip:"Mejor cultivo AFK nocturno."},
-  {id:9,name:"Uva",emoji:"🍇",level:7,time:"10 horas",cost:160,sell:[480,643,801,960],detail:"Mermelada Uva, Batido, Vino",tip:"Mermelada = 2.020g 1★!"},
-  {id:10,name:"Berenjena",emoji:"🍆",level:8,time:"4 horas",cost:135,sell:[405,541,675,810],detail:"Berenjena Gratinada",tip:"Estimado con fórmula +33%."},
-  {id:11,name:"Rábano Blanco",emoji:"🥬",level:9,time:"6 horas",cost:150,sell:[450,601,750,900],detail:"Platos invernales",tip:"Estimado. Evento Invierno."},
-  {id:12,name:"Árbol de Té",emoji:"🍵",level:11,time:"45 min",cost:25,sell:[75,100,125,150],detail:"Té Rojo, Té con Leche",tip:"Se planta en suelo, no maceta."},
-  {id:13,name:"Árbol de Cacao",emoji:"🍫",level:12,time:"45 min",cost:110,sell:[330,441,550,660],detail:"Chocolate, Batido Cacao",tip:"Se planta en suelo."},
-  {id:14,name:"Aguacate",emoji:"🥑",level:13,time:"Por confirmar",cost:180,sell:[540,721,900,1080],detail:"Guacamole, Gambas Aguacate",tip:"Último cultivo. Estimado."},
+  {id:1,zone:"river",name:"Tomate",emoji:"🍅",level:1,time:"15 min",cost:10,sell:[30,40,50,60],detail:"Salsa, Ensaladas, Pizza",tip:"El más rápido. Farming activo."},
+  {id:2,zone:"sea",name:"Patata",emoji:"🥔",level:1,time:"60 min",cost:30,sell:[90,120,150,180],detail:"Puré, Fish N Chips, Sopa",tip:"Mejor oro/hora principiantes."},
+  {id:3,zone:"sea",name:"Trigo",emoji:"🌾",level:2,time:"4 horas",cost:95,sell:[285,381,475,570],detail:"Pan, Pasta, Tartas, Pizza",tip:"Esencial para muchas recetas."},
+  {id:4,zone:"sea",name:"Lechuga",emoji:"🥬",level:3,time:"8 horas",cost:145,sell:[435,582,726,870],detail:"Ensaladas, Hamburguesa, Estofado",tip:"Planta antes de dormir."},
+  {id:5,zone:"sea",name:"Piña",emoji:"🍍",level:4,time:"30 min",cost:15,sell:[52,69,86,104],detail:"Mermelada, Zumo, Batido",tip:"Rápida, buena para subir nivel."},
+  {id:6,zone:"lake",name:"Zanahoria",emoji:"🥕",level:5,time:"2 horas",cost:50,sell:[155,207,258,310],detail:"Tarta Zanahoria, Estofado",tip:"¡A los conejos les encantan!"},
+  {id:7,zone:"lake",name:"Fresa",emoji:"🍓",level:6,time:"6 horas",cost:125,sell:[375,503,627,750],detail:"Mermelada, Batido, Tiramisu",tip:"Mermelada 5★ = 12.640g!"},
+  {id:8,zone:"river",name:"Maíz",emoji:"🌽",level:6,time:"12 horas",cost:170,sell:[515,690,860,1030],detail:"Sopa de Maíz, Palomitas",tip:"Mejor cultivo AFK nocturno."},
+  {id:9,zone:"river",name:"Uva",emoji:"🍇",level:7,time:"10 horas",cost:160,sell:[480,643,801,960],detail:"Mermelada Uva, Batido, Vino",tip:"Mermelada = 2.020g 1★!"},
+  {id:10,zone:"river",name:"Berenjena",emoji:"🍆",level:8,time:"4 horas",cost:135,sell:[405,541,675,810],detail:"Berenjena Gratinada",tip:"Estimado con fórmula +33%."},
+  {id:11,zone:"sea",name:"Rábano Blanco",emoji:"🥬",level:9,time:"6 horas",cost:150,sell:[450,601,750,900],detail:"Platos invernales",tip:"Estimado. Evento Invierno."},
+  {id:12,zone:"river",name:"Árbol de Té",emoji:"🍵",level:11,time:"45 min",cost:25,sell:[75,100,125,150],detail:"Té Rojo, Té con Leche",tip:"Se planta en suelo, no maceta."},
+  {id:13,zone:"lake",name:"Árbol de Cacao",emoji:"🍫",level:12,time:"45 min",cost:110,sell:[330,441,550,660],detail:"Chocolate, Batido Cacao",tip:"Se planta en suelo."},
+  {id:14,zone:"lake",name:"Aguacate",emoji:"🥑",level:13,time:"Por confirmar",cost:180,sell:[540,721,900,1080],detail:"Guacamole, Gambas Aguacate",tip:"Último cultivo. Estimado."},
 ];
 const DEF_FISH=[
   // Nv.1 — S=Small M=Medium L=Large G=Gold/Special
-  {id:1,name:"Camarón Dulce",emoji:"🦐",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Todos los ríos",tip:"El más básico."},
-  {id:2,name:"Sardina",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Todos los océanos",tip:"Para Fish N Chips."},
-  {id:3,name:"Gobio Espinoso",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Mar Viejo",tip:"Pez básico mar."},
-  {id:4,name:"Camarón Mar",emoji:"🦐",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Mar Este",tip:"Básico de mar."},
-  {id:5,name:"Pez Caballo",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Mar Ballenas",tip:"Común."},
-  {id:6,name:"Albur Común",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Todos los lagos",tip:"Lagos básico."},
-  {id:7,name:"Brema Blanca",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Lago Suburbano",tip:"Lagos."},
-  {id:8,name:"Perca Dorada",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"M",detail:"📍 Río Xiaguang",tip:"Río."},
-  {id:9,name:"Locha Espinosa",emoji:"🐟",level:1,time:"18-24",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Río Árbol Gigante",tip:"Nocturno."},
-  {id:10,name:"Perca Europea",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Todos los ríos",tip:"Común ríos."},
-  {id:11,name:"Lubina",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Todos los océanos",tip:"Para cocinar."},
-  {id:12,name:"Barbo",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Río Poco Profundo",tip:"Fácil."},
-  {id:13,name:"Brema Común",emoji:"🐟",level:1,time:"6-24",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Todos los lagos",tip:"Diurno lagos."},
-  {id:14,name:"Carpa Cruciana",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Lago Suburbano",tip:"Lago."},
-  {id:15,name:"Tenca",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Lago Bosque",tip:"Lagos."},
+  {id:1,zone:"river",name:"Camarón Azul",emoji:"🦐",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Todos los ríos",tip:"El más básico."},
+  {id:2,zone:"sea",name:"Sardina",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Todos los océanos",tip:"Para Fish N Chips."},
+  {id:3,zone:"sea",name:"Gobio Espinoso",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Mar Viejo",tip:"Pez básico mar."},
+  {id:4,zone:"sea",name:"Camarón Mar",emoji:"🦐",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Mar Este",tip:"Básico de mar."},
+  {id:5,zone:"sea",name:"Pez Caballo",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Mar Ballenas",tip:"Común."},
+  {id:6,zone:"lake",name:"Albur Común",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Todos los lagos",tip:"Lagos básico."},
+  {id:7,zone:"lake",name:"Brema Blanca",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Lago Suburbano",tip:"Lagos."},
+  {id:8,zone:"river",name:"Perca dorada manchada",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"M",detail:"📍 Río Xiaguang",tip:"Río."},
+  {id:9,zone:"river",name:"Locha moteada",emoji:"🐟",level:1,time:"18-24",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Río Árbol Gigante",tip:"Nocturno."},
+  {id:85,zone:"river",name:"Pez minnow",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Río Tranquilo",tip:"Pequeño, básico de río."},
+  {id:10,zone:"river",name:"Perca de río",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Todos los ríos",tip:"Común ríos."},
+  {id:11,zone:"sea",name:"Lubina",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Todos los océanos",tip:"Para cocinar."},
+  {id:12,zone:"river",name:"Barbo",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Río Poco Profundo",tip:"Fácil."},
+  {id:13,zone:"lake",name:"Brema Común",emoji:"🐟",level:1,time:"6-24",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Todos los lagos",tip:"Diurno lagos."},
+  {id:14,zone:"lake",name:"Carpa Cruciana",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[75,113,150,300,600],shadow:"M",detail:"📍 Lago Suburbano",tip:"Lago."},
+  {id:15,zone:"lake",name:"Tenca",emoji:"🐟",level:1,time:"Todo",cost:0,sell:[50,75,100,200,400],shadow:"S",detail:"📍 Lago Bosque",tip:"Lagos."},
   // Nv.2
-  {id:16,name:"Carpa",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[120,180,240,480,960],shadow:"M",detail:"📍 Ríos y lagos",tip:"Abundante."},
-  {id:17,name:"Pez Pepino",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Pradera",tip:"Lago."},
-  {id:18,name:"Cangrejo Río",emoji:"🦀",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Suburbano",tip:"Fácil."},
-  {id:19,name:"Mejillón",emoji:"🦪",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Suburbano",tip:"Fácil."},
-  {id:20,name:"Pez Erizo",emoji:"🐡",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Bosque",tip:"Lagos."},
-  {id:21,name:"Renacuajo",emoji:"🐸",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Aguas Termales",tip:"Común."},
-  {id:22,name:"Perca",emoji:"🐟",level:2,time:"12-24",cost:0,sell:[100,150,200,400,800],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Tarde."},
-  {id:23,name:"Caballito Mar",emoji:"🐟",level:2,time:"0-18",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Mar Ballenas",tip:"Mañana/tarde."},
-  {id:24,name:"Gobio",emoji:"🐟",level:2,time:"6-18",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Mar Este",tip:"Diurno."},
-  {id:25,name:"Caballa Atlántica",emoji:"🐟",level:2,time:"12-24",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Mar Ballenas",tip:"Tarde/noche."},
-  {id:26,name:"Pez Cola",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[105,158,210,420,840],shadow:"M",detail:"📍 Mar Brisa",tip:"Mar."},
-  {id:27,name:"Cabezudo",emoji:"🐟",level:2,time:"6-24",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Lago Aguas Termales",tip:"Día."},
-  {id:28,name:"Salmón Chum",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Río Tranquilo",tip:"Río."},
-  {id:29,name:"Salmón Atlántico",emoji:"🐟",level:2,time:"0-6,12-24",cost:0,sell:[155,233,310,620,1240],shadow:"M",detail:"📍 Mar Ballenas",tip:"Buen precio."},
-  {id:30,name:"Pulpo Enano",emoji:"🐙",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Mar Brisa",tip:"Mar."},
-  {id:31,name:"Blenio",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Río Xiaguang",tip:"Río."},
-  {id:32,name:"Pez Volador",emoji:"🐟",level:2,time:"6-18",cost:0,sell:[180,270,360,720,1440],shadow:"M",detail:"📍 Mar Brisa, Mar Este",tip:"Solo día."},
-  {id:33,name:"Cangrejo Nórdico",emoji:"🦀",level:2,time:"0-12,18-24",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Bosque",tip:"Noche."},
-  {id:34,name:"Pez Piedra",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Suburbano",tip:"Lagos."},
-  {id:35,name:"Trucha Blanca",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[105,158,210,420,840],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Lagos."},
-  {id:36,name:"Bonito Listado",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[210,315,420,840,1680],shadow:"L",detail:"📍 Todos los océanos",tip:"Buen precio."},
-  {id:37,name:"Serrano Rayado",emoji:"🐟",level:2,time:"0-6,12-24",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Lago Suburbano",tip:"Lago."},
-  {id:38,name:"Jurel Cola Amarilla",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[155,233,310,620,1240],shadow:"M",detail:"📍 Mar Brisa",tip:"Mar."},
-  {id:39,name:"Espinilla 3 Pinchos",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Río Poco Profundo",tip:"Río."},
-  {id:40,name:"Rudd",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Lagos."},
+  {id:16,zone:"mixed",name:"Carpa",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[120,180,240,480,960],shadow:"M",detail:"📍 Ríos y lagos",tip:"Abundante."},
+  {id:17,zone:"lake",name:"Pez Pepino",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Pradera",tip:"Lago."},
+  {id:18,zone:"lake",name:"Cangrejo Río",emoji:"🦀",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Suburbano",tip:"Fácil."},
+  {id:19,zone:"lake",name:"Mejillón",emoji:"🦪",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Suburbano",tip:"Fácil."},
+  {id:20,zone:"lake",name:"Pez Erizo",emoji:"🐡",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Bosque",tip:"Lagos."},
+  {id:21,zone:"lake",name:"Renacuajo",emoji:"🐸",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Aguas Termales",tip:"Común."},
+  {id:22,zone:"lake",name:"Perca",emoji:"🐟",level:2,time:"12-24",cost:0,sell:[100,150,200,400,800],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Tarde."},
+  {id:23,zone:"sea",name:"Caballito Mar",emoji:"🐟",level:2,time:"0-18",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Mar Ballenas",tip:"Mañana/tarde."},
+  {id:24,zone:"sea",name:"Gobio",emoji:"🐟",level:2,time:"6-18",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Mar Este",tip:"Diurno."},
+  {id:25,zone:"sea",name:"Caballa Atlántica",emoji:"🐟",level:2,time:"12-24",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Mar Ballenas",tip:"Tarde/noche."},
+  {id:26,zone:"sea",name:"Pez Cola",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[105,158,210,420,840],shadow:"M",detail:"📍 Mar Brisa",tip:"Mar."},
+  {id:27,zone:"lake",name:"Cabezudo",emoji:"🐟",level:2,time:"6-24",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Lago Aguas Termales",tip:"Día."},
+  {id:28,zone:"river",name:"Salmón keta",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Río Tranquilo",tip:"Río."},
+  {id:29,zone:"sea",name:"Salmón Atlántico",emoji:"🐟",level:2,time:"0-6,12-24",cost:0,sell:[155,233,310,620,1240],shadow:"M",detail:"📍 Mar Ballenas",tip:"Buen precio."},
+  {id:30,zone:"sea",name:"Pulpo Enano",emoji:"🐙",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Mar Brisa",tip:"Mar."},
+  {id:31,zone:"river",name:"Blénido de río",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Río Xiaguang",tip:"Río."},
+  {id:32,zone:"sea",name:"Pez Volador",emoji:"🐟",level:2,time:"6-18",cost:0,sell:[180,270,360,720,1440],shadow:"M",detail:"📍 Mar Brisa, Mar Este",tip:"Solo día."},
+  {id:33,zone:"lake",name:"Cangrejo Nórdico",emoji:"🦀",level:2,time:"0-12,18-24",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Bosque",tip:"Noche."},
+  {id:34,zone:"lake",name:"Pez Piedra",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[100,150,200,400,800],shadow:"S",detail:"📍 Lago Suburbano",tip:"Lagos."},
+  {id:35,zone:"lake",name:"Trucha Blanca",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[105,158,210,420,840],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Lagos."},
+  {id:36,zone:"sea",name:"Bonito Listado",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[210,315,420,840,1680],shadow:"L",detail:"📍 Todos los océanos",tip:"Buen precio."},
+  {id:37,zone:"lake",name:"Serrano Rayado",emoji:"🐟",level:2,time:"0-6,12-24",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Lago Suburbano",tip:"Lago."},
+  {id:38,zone:"sea",name:"Jurel Cola Amarilla",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[155,233,310,620,1240],shadow:"M",detail:"📍 Mar Brisa",tip:"Mar."},
+  {id:39,zone:"river",name:"Pez espinoso de tres espinas",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"S",detail:"📍 Río Poco Profundo",tip:"Río."},
+  {id:40,zone:"lake",name:"Rudd",emoji:"🐟",level:2,time:"Todo",cost:0,sell:[150,225,300,600,1200],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Lagos."},
   // Nv.3
-  {id:41,name:"Lubina Negra",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Brisa",tip:"Nocturno."},
-  {id:42,name:"Trucha Marrón",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Lago Pradera",tip:"Noche."},
-  {id:43,name:"Róbalo",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Lago Bosque",tip:"Versátil."},
-  {id:44,name:"Pez Globo",emoji:"🐡",level:3,time:"12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Viejo",tip:"Tarde."},
-  {id:45,name:"Carpa Europea",emoji:"🐟",level:3,time:"12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Río Xiaguang",tip:"Tarde."},
-  {id:46,name:"Langosta Europea",emoji:"🦞",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Brisa",tip:"Noche."},
-  {id:47,name:"Platija Europea",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Viejo",tip:"Noche."},
-  {id:48,name:"Lota",emoji:"🐟",level:3,time:"12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Río Tranquilo",tip:"Tarde."},
-  {id:49,name:"Eglefino",emoji:"🐟",level:3,time:"0-6,12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Este",tip:"Mañana/tarde."},
-  {id:50,name:"Tímalo",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Lago Flores",tip:"Lagos."},
-  {id:51,name:"Cangrejo Azul",emoji:"🦀",level:3,time:"0-6,18-24",cost:0,sell:[250,375,500,1000,2000],shadow:"S",detail:"📍 Lago Bosque",tip:"Nocturno, valioso."},
-  {id:52,name:"Pez Dorado",emoji:"🐟",level:3,time:"6-24",cost:0,sell:[250,375,500,1000,2000],shadow:"S",detail:"📍 Lago Pradera",tip:"Día."},
-  {id:53,name:"Pez Sol Calabaza",emoji:"🐟",level:3,time:"6-24",cost:0,sell:[250,375,500,1000,2000],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Día."},
-  {id:54,name:"Sombra Bass",emoji:"🐟",level:3,time:"0-12",cost:0,sell:[250,375,500,1000,2000],shadow:"M",detail:"📍 Lago Suburbano",tip:"Mañana."},
-  {id:55,name:"Pulpo Común",emoji:"🐙",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Océanos, Fiesta Pesca",tip:"Buen precio."},
-  {id:56,name:"Rape",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"G",detail:"📍 Fiesta Pesca · Pez dorado",tip:"Peces dorados."},
-  {id:57,name:"Tilapia",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Todos los ríos",tip:"Muy rentable."},
-  {id:58,name:"Rana Acuática",emoji:"🐸",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"🔵",detail:"📍 Todos los lagos · Atractor Sirena",tip:"Requiere Atractor."},
-  {id:59,name:"Calamar Volador",emoji:"🦑",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Fiesta Pesca",tip:"Mar."},
-  {id:60,name:"Salmonete Rayado",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Fiesta Pesca",tip:"Buen nivel 3."},
-  {id:61,name:"Quimera Atlántica",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Todos los océanos",tip:"Mar."},
-  {id:62,name:"Rodaballo",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Fiesta Pesca",tip:"Mar."},
-  {id:63,name:"Morena",emoji:"🐍",level:3,time:"18-6",cost:0,sell:[350,525,700,1400,2800],shadow:"L",detail:"📍 Mar Ballenas, Mar Viejo",tip:"Nocturno."},
-  {id:64,name:"Pez Sol Azul",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[395,593,790,1580,3160],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Noche, valioso."},
+  {id:41,zone:"sea",name:"Lubina Negra",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Brisa",tip:"Nocturno."},
+  {id:42,zone:"lake",name:"Trucha Marrón",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Lago Pradera",tip:"Noche."},
+  {id:43,zone:"lake",name:"Róbalo",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Lago Bosque",tip:"Versátil."},
+  {id:44,zone:"sea",name:"Pez Globo",emoji:"🐡",level:3,time:"12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Viejo",tip:"Tarde."},
+  {id:45,zone:"river",name:"Carpa Europea",emoji:"🐟",level:3,time:"12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Río Xiaguang",tip:"Tarde."},
+  {id:86,zone:"river",name:"Lucioperca",emoji:"🐟",level:3,time:"18-6",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Río Árbol Gigante",tip:"Nocturno. Zander en inglés."},
+  {id:87,zone:"river",name:"Piraña de vientre rojo",emoji:"🐟",level:4,time:"Todo",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Río Árbol Gigante",tip:"Piraña agresiva."},
+  {id:46,zone:"sea",name:"Langosta Europea",emoji:"🦞",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Brisa",tip:"Noche."},
+  {id:47,zone:"sea",name:"Platija Europea",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Viejo",tip:"Noche."},
+  {id:48,zone:"river",name:"Lota",emoji:"🐟",level:3,time:"12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Río Tranquilo",tip:"Tarde."},
+  {id:49,zone:"sea",name:"Eglefino",emoji:"🐟",level:3,time:"0-6,12-24",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Mar Este",tip:"Mañana/tarde."},
+  {id:50,zone:"lake",name:"Tímalo",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[230,345,460,920,1840],shadow:"M",detail:"📍 Lago Flores",tip:"Lagos."},
+  {id:51,zone:"lake",name:"Cangrejo Azul",emoji:"🦀",level:3,time:"0-6,18-24",cost:0,sell:[250,375,500,1000,2000],shadow:"S",detail:"📍 Lago Bosque",tip:"Nocturno, valioso."},
+  {id:52,zone:"lake",name:"Pez Dorado",emoji:"🐟",level:3,time:"6-24",cost:0,sell:[250,375,500,1000,2000],shadow:"S",detail:"📍 Lago Pradera",tip:"Día."},
+  {id:53,zone:"lake",name:"Pez Sol Calabaza",emoji:"🐟",level:3,time:"6-24",cost:0,sell:[250,375,500,1000,2000],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Día."},
+  {id:54,zone:"lake",name:"Sombra Bass",emoji:"🐟",level:3,time:"0-12",cost:0,sell:[250,375,500,1000,2000],shadow:"M",detail:"📍 Lago Suburbano",tip:"Mañana."},
+  {id:55,zone:"sea",name:"Pulpo Común",emoji:"🐙",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Océanos, Fiesta Pesca",tip:"Buen precio."},
+  {id:56,zone:"sea",name:"Rape",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"G",detail:"📍 Fiesta Pesca · Pez dorado",tip:"Peces dorados."},
+  {id:57,zone:"river",name:"Tilapia",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Todos los ríos",tip:"Muy rentable."},
+  {id:58,zone:"lake",name:"Rana Acuática",emoji:"🐸",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"🔵",detail:"📍 Todos los lagos · Atractor Sirena",tip:"Requiere Atractor."},
+  {id:59,zone:"sea",name:"Calamar Volador",emoji:"🦑",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Fiesta Pesca",tip:"Mar."},
+  {id:60,zone:"sea",name:"Salmonete Rayado",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Fiesta Pesca",tip:"Buen nivel 3."},
+  {id:61,zone:"sea",name:"Quimera Atlántica",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Todos los océanos",tip:"Mar."},
+  {id:62,zone:"sea",name:"Rodaballo",emoji:"🐟",level:3,time:"Todo",cost:0,sell:[320,480,640,1280,2560],shadow:"M",detail:"📍 Fiesta Pesca",tip:"Mar."},
+  {id:63,zone:"sea",name:"Morena",emoji:"🐍",level:3,time:"18-6",cost:0,sell:[350,525,700,1400,2800],shadow:"L",detail:"📍 Mar Ballenas, Mar Viejo",tip:"Nocturno."},
+  {id:64,zone:"lake",name:"Pez Sol Azul",emoji:"🐟",level:3,time:"0-6,18-24",cost:0,sell:[395,593,790,1580,3160],shadow:"M",detail:"📍 Lago Aguas Termales",tip:"Noche, valioso."},
   // Nv.4
-  {id:65,name:"Anguila Europea",emoji:"🐟",level:4,time:"6-24",cost:0,sell:[380,570,760,1520,3040],shadow:"M",detail:"📍 Mar Viejo",tip:"Buen valor."},
-  {id:66,name:"Perla Gigante",emoji:"🦪",level:4,time:"12-24",cost:0,sell:[380,570,760,1520,3040],shadow:"M",detail:"📍 Lago Bosque",tip:"Tarde."},
-  {id:67,name:"Gurnardo",emoji:"🐟",level:4,time:"Todo",cost:0,sell:[380,570,760,1520,3040],shadow:"M",detail:"📍 Mar Este",tip:"Mar."},
-  {id:68,name:"Huchen",emoji:"🐟",level:4,time:"0-6,12-24",cost:0,sell:[380,570,760,1520,3040],shadow:"L",detail:"📍 Río Árbol Gigante 🌈",tip:"Solo arcoíris."},
-  {id:69,name:"Esturión",emoji:"🐟",level:4,time:"6-18",cost:0,sell:[450,675,900,1800,3600],shadow:"L",detail:"📍 Río Árbol Gigante, Río Tranquilo",tip:"Diurno, valioso."},
-  {id:70,name:"Char Ártico",emoji:"🐟",level:4,time:"12-24",cost:0,sell:[610,915,1220,2440,4880],shadow:"M",detail:"📍 Lago Bosque",tip:"Tarde, caro."},
-  {id:71,name:"Lucio del Norte",emoji:"🐟",level:4,time:"0-6,18-24",cost:0,sell:[610,915,1220,2440,4880],shadow:"L",detail:"📍 Lago Suburbano",tip:"Nocturno caro."},
-  {id:72,name:"Siluro",emoji:"🐟",level:4,time:"0-6,18-24",cost:0,sell:[610,915,1220,2440,4880],shadow:"M",detail:"📍 Lago Pradera",tip:"Nocturno caro."},
+  {id:65,zone:"sea",name:"Anguila Europea",emoji:"🐟",level:4,time:"6-24",cost:0,sell:[380,570,760,1520,3040],shadow:"M",detail:"📍 Mar Viejo",tip:"Buen valor."},
+  {id:66,zone:"lake",name:"Perla Gigante",emoji:"🦪",level:4,time:"12-24",cost:0,sell:[380,570,760,1520,3040],shadow:"M",detail:"📍 Lago Bosque",tip:"Tarde."},
+  {id:67,zone:"sea",name:"Gurnardo",emoji:"🐟",level:4,time:"Todo",cost:0,sell:[380,570,760,1520,3040],shadow:"M",detail:"📍 Mar Este",tip:"Mar."},
+  {id:68,zone:"river",name:"Salmón del Danubio",emoji:"🐟",level:4,time:"0-6,12-24",cost:0,sell:[380,570,760,1520,3040],shadow:"L",detail:"📍 Río Árbol Gigante 🌈",tip:"Solo arcoíris."},
+  {id:69,zone:"river",name:"Esturión",emoji:"🐟",level:4,time:"6-18",cost:0,sell:[450,675,900,1800,3600],shadow:"L",detail:"📍 Río Árbol Gigante, Río Tranquilo",tip:"Diurno, valioso."},
+  {id:70,zone:"lake",name:"Char Ártico",emoji:"🐟",level:4,time:"12-24",cost:0,sell:[610,915,1220,2440,4880],shadow:"M",detail:"📍 Lago Bosque",tip:"Tarde, caro."},
+  {id:71,zone:"lake",name:"Lucio del Norte",emoji:"🐟",level:4,time:"0-6,18-24",cost:0,sell:[610,915,1220,2440,4880],shadow:"L",detail:"📍 Lago Suburbano",tip:"Nocturno caro."},
+  {id:72,zone:"lake",name:"Siluro",emoji:"🐟",level:4,time:"0-6,18-24",cost:0,sell:[610,915,1220,2440,4880],shadow:"M",detail:"📍 Lago Pradera",tip:"Nocturno caro."},
   // Nv.5
-  {id:73,name:"Tiburón Gato",emoji:"🦈",level:5,time:"Todo",cost:0,sell:[535,803,1070,2140,4280],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Alto nivel."},
-  {id:74,name:"Pez Remo",emoji:"🐟",level:5,time:"12-24",cost:0,sell:[535,803,1070,2140,4280],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Raro."},
-  {id:75,name:"Cangrejo Real",emoji:"🦀",level:5,time:"6-24",cost:0,sell:[535,803,1070,2140,4280],shadow:"M",detail:"📍 Mar Ballenas",tip:"Buen cangrejo."},
-  {id:76,name:"Raya Manta",emoji:"🐟",level:5,time:"6-18",cost:0,sell:[780,1170,1560,3120,6240],shadow:"L",detail:"📍 Mar Ballenas",tip:"Diurno, muy caro."},
+  {id:73,zone:"sea",name:"Tiburón Gato",emoji:"🦈",level:5,time:"Todo",cost:0,sell:[535,803,1070,2140,4280],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Alto nivel."},
+  {id:74,zone:"sea",name:"Pez Remo",emoji:"🐟",level:5,time:"12-24",cost:0,sell:[535,803,1070,2140,4280],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Raro."},
+  {id:75,zone:"sea",name:"Cangrejo Real",emoji:"🦀",level:5,time:"6-24",cost:0,sell:[535,803,1070,2140,4280],shadow:"M",detail:"📍 Mar Ballenas",tip:"Buen cangrejo."},
+  {id:76,zone:"sea",name:"Raya Manta",emoji:"🐟",level:5,time:"6-18",cost:0,sell:[780,1170,1560,3120,6240],shadow:"L",detail:"📍 Mar Ballenas",tip:"Diurno, muy caro."},
   // Nv.9 Legendarios 🌈
-  {id:77,name:"Pez Espada",emoji:"⚔️",level:9,time:"6-18 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Mar Ballenas · Arcoíris",tip:"Solo arcoíris."},
-  {id:78,name:"Atún Rojo",emoji:"🐟",level:9,time:"6-18 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Mar Brisa · Arcoíris",tip:"Legendario."},
-  {id:79,name:"Tiburón Martillo",emoji:"🦈",level:9,time:"0-6,18-24 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Mar Viejo · Arcoíris",tip:"Nocturno arcoíris."},
-  {id:80,name:"Marrajo",emoji:"🦈",level:9,time:"6-18",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Tiburón diurno."},
+  {id:77,zone:"sea",name:"Pez Espada",emoji:"⚔️",level:9,time:"6-18 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Mar Ballenas · Arcoíris",tip:"Solo arcoíris."},
+  {id:78,zone:"sea",name:"Atún Rojo",emoji:"🐟",level:9,time:"6-18 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Mar Brisa · Arcoíris",tip:"Legendario."},
+  {id:79,zone:"sea",name:"Tiburón Martillo",emoji:"🦈",level:9,time:"0-6,18-24 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Mar Viejo · Arcoíris",tip:"Nocturno arcoíris."},
+  {id:80,zone:"sea",name:"Marrajo",emoji:"🦈",level:9,time:"6-18",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Tiburón diurno."},
   // Nv.10 Legendarios
-  {id:81,name:"Pez Luna",emoji:"🌙",level:10,time:"0-12",cost:0,sell:[850,1275,1700,3400,6800],shadow:"M",detail:"📍 Mar Este",tip:"Solo mañana."},
-  {id:82,name:"Opah",emoji:"🐟",level:10,time:"0-6,18-24",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Nocturno raro."},
-  {id:83,name:"Cangrejo Real Dorado",emoji:"🦀",level:10,time:"Todo 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"G",detail:"📍 Fiesta Pesca · Arcoíris",tip:"Legendario."},
-  {id:84,name:"Calamar Gigante",emoji:"🦑",level:10,time:"0-6,18-24",cost:0,sell:[900,1350,1800,3600,7200],shadow:"L",detail:"📍 Fiesta Pesca",tip:"¡El pez más caro!"},
+  {id:81,zone:"sea",name:"Pez Luna",emoji:"🌙",level:10,time:"0-12",cost:0,sell:[850,1275,1700,3400,6800],shadow:"M",detail:"📍 Mar Este",tip:"Solo mañana."},
+  {id:82,zone:"sea",name:"Opah",emoji:"🐟",level:10,time:"0-6,18-24",cost:0,sell:[850,1275,1700,3400,6800],shadow:"L",detail:"📍 Fiesta Pesca",tip:"Nocturno raro."},
+  {id:83,zone:"sea",name:"Cangrejo Real Dorado",emoji:"🦀",level:10,time:"Todo 🌈",cost:0,sell:[850,1275,1700,3400,6800],shadow:"G",detail:"📍 Fiesta Pesca · Arcoíris",tip:"Legendario."},
+  {id:84,zone:"sea",name:"Calamar Gigante",emoji:"🦑",level:10,time:"0-6,18-24",cost:0,sell:[900,1350,1800,3600,7200],shadow:"L",detail:"📍 Fiesta Pesca",tip:"¡El pez más caro!"},
 ];
 const DEF_COOK=[
   // === MERMELADAS (Nv.1, automáticas) ===
-  {id:1,name:"Mermelada Arándano",emoji:"🫐",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Arándano × 4 (recolectado)",tip:"2.5x más que fruta cruda."},
-  {id:2,name:"Mermelada Manzana",emoji:"🍎",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Manzana × 4 (recolectada)",tip:"Muy rentable, fruta gratis."},
-  {id:3,name:"Mermelada Naranja",emoji:"🍊",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Naranja × 4 (recolectada)",tip:"Igual que manzana."},
-  {id:4,name:"Mermelada Frambuesa",emoji:"🍇",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Frambuesa × 4 (recolectada)",tip:"Fácil de conseguir."},
-  {id:5,name:"Mermelada Mixta",emoji:"🫙",level:1,time:"",cost:0,sell:[160,240,320,640,1280],detail:"4 frutas variadas",tip:"Usa frutas sobrantes."},
-  {id:6,name:"Mermelada Piña",emoji:"🍍",level:4,time:"",cost:60,sell:[220,330,440,880,1760],detail:"Piña × 4",tip:"Buena relación tiempo/beneficio."},
-  {id:7,name:"Mermelada Fresa",emoji:"🍓",level:6,time:"",cost:500,sell:[1580,2370,3160,6320,12640],detail:"Fresa × 4",tip:"¡LA COMIDA MÁS CARA a 5★!"},
-  {id:8,name:"Mermelada Uva",emoji:"🍇",level:7,time:"",cost:640,sell:[2020,3030,4040,8080,16160],detail:"Uva × 4",tip:"Altísimo beneficio. Dato Asia."},
+  {id:1,zone:"river",name:"Mermelada Arándano",emoji:"🫐",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Arándano × 4 (recolectado)",tip:"2.5x más que fruta cruda."},
+  {id:2,zone:"sea",name:"Mermelada Manzana",emoji:"🍎",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Manzana × 4 (recolectada)",tip:"Muy rentable, fruta gratis."},
+  {id:3,zone:"sea",name:"Mermelada Naranja",emoji:"🍊",level:1,time:"",cost:0,sell:[200,300,400,800,1600],detail:"Naranja × 4 (recolectada)",tip:"Igual que manzana."},
+  {id:4,zone:"sea",name:"Mermelada Frambuesa",emoji:"🍇",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Frambuesa × 4 (recolectada)",tip:"Fácil de conseguir."},
+  {id:5,zone:"sea",name:"Mermelada Mixta",emoji:"🫙",level:1,time:"",cost:0,sell:[160,240,320,640,1280],detail:"4 frutas variadas",tip:"Usa frutas sobrantes."},
+  {id:6,zone:"lake",name:"Mermelada Piña",emoji:"🍍",level:4,time:"",cost:60,sell:[220,330,440,880,1760],detail:"Piña × 4",tip:"Buena relación tiempo/beneficio."},
+  {id:7,zone:"lake",name:"Mermelada Fresa",emoji:"🍓",level:6,time:"",cost:500,sell:[1580,2370,3160,6320,12640],detail:"Fresa × 4",tip:"¡LA COMIDA MÁS CARA a 5★!"},
+  {id:8,zone:"river",name:"Mermelada Uva",emoji:"🍇",level:7,time:"",cost:640,sell:[2020,3030,4040,8080,16160],detail:"Uva × 4",tip:"Altísimo beneficio. Dato Asia."},
   // === NIVEL 1 ===
-  {id:9,name:"Salsa de Tomate",emoji:"🍅",level:1,time:"",cost:40,sell:[150,225,300,600,1200],detail:"Tomate × 4",tip:"Fácil en masa. Sube XP rápido."},
-  {id:10,name:"Ensalada de Casa",emoji:"🥗",level:1,time:"",cost:30,sell:[120,180,240,480,960],detail:"Tomate × 2",tip:"Rápida, sube XP."},
-  {id:11,name:"Setas a la Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Seta × 2 (gratis)",tip:"¡Sin coste! Mejor principiante."},
+  {id:9,zone:"river",name:"Salsa de Tomate",emoji:"🍅",level:1,time:"",cost:40,sell:[150,225,300,600,1200],detail:"Tomate × 4",tip:"Fácil en masa. Sube XP rápido."},
+  {id:10,zone:"river",name:"Ensalada de Casa",emoji:"🥗",level:1,time:"",cost:30,sell:[120,180,240,480,960],detail:"Tomate × 2",tip:"Rápida, sube XP."},
+  {id:11,zone:"sea",name:"Setas a la Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Seta × 2 (gratis)",tip:"¡Sin coste! Mejor principiante."},
   // === NIVEL 2 ===
-  {id:12,name:"Café",emoji:"☕",level:2,time:"",cost:200,sell:[280,420,560,1120,2240],detail:"Café × 2 + Leche × 2",tip:"Desbloquea Café Moca."},
-  {id:13,name:"Café Moca",emoji:"☕",level:2,time:"",cost:250,sell:[350,525,700,1400,2800],detail:"Café × 2 + Leche × 2 (variante)",tip:"Derivado del café. Más rentable."},
+  {id:12,zone:"river",name:"Café",emoji:"☕",level:2,time:"",cost:200,sell:[280,420,560,1120,2240],detail:"Café × 2 + Leche × 2",tip:"Desbloquea Café Moca."},
+  {id:13,zone:"lake",name:"Café Moca",emoji:"☕",level:2,time:"",cost:250,sell:[350,525,700,1400,2800],detail:"Café × 2 + Leche × 2 (variante)",tip:"Derivado del café. Más rentable."},
   // === NIVEL 3 ===
-  {id:14,name:"Fish N Chips",emoji:"🍟",level:3,time:"",cost:80,sell:[310,465,620,1240,2480],detail:"Pez × 2 + Patata × 2",tip:"Gran beneficio con pez barato."},
-  {id:15,name:"Sopa de Setas",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Seta × 2 + Patata × 2 (gratis)",tip:"¡Mejor sopa! Sin coste."},
-  {id:16,name:"Pastel de Setas",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Seta × 2 + Trigo × 2",tip:"Gran beneficio."},
+  {id:14,zone:"lake",name:"Fish N Chips",emoji:"🍟",level:3,time:"",cost:80,sell:[310,465,620,1240,2480],detail:"Pez × 2 + Patata × 2",tip:"Gran beneficio con pez barato."},
+  {id:15,zone:"lake",name:"Sopa de Setas",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Seta × 2 + Patata × 2 (gratis)",tip:"¡Mejor sopa! Sin coste."},
+  {id:16,zone:"mixed",name:"Pastel de Setas",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Seta × 2 + Trigo × 2",tip:"Gran beneficio."},
   // === NIVEL 4 ===
-  {id:17,name:"Pasta con Carne",emoji:"🍝",level:4,time:"",cost:200,sell:[520,780,1040,2080,4160],detail:"Trigo + Tomate + Carne × 2",tip:"Buena relación. 5 flips."},
-  {id:18,name:"Smoked Fish Bagel",emoji:"🥯",level:4,time:"",cost:230,sell:[450,675,900,1800,3600],detail:"Pez + Queso + Patata + Trigo",tip:"5 flips, buen beneficio."},
-  {id:19,name:"Pizza Mariscos",emoji:"🍕",level:4,time:"",cost:220,sell:[380,570,760,1520,3040],detail:"Pez + Trigo + Tomate + Huevo",tip:"6 flips. Buff Velocidad."},
-  {id:20,name:"Risotto Mariscos",emoji:"🍚",level:4,time:"",cost:150,sell:[350,525,700,1400,2800],detail:"Pez × 2 + Tomate + Trigo",tip:"4 flips. Buff Fuerza."},
+  {id:17,zone:"lake",name:"Pasta con Carne",emoji:"🍝",level:4,time:"",cost:200,sell:[520,780,1040,2080,4160],detail:"Trigo + Tomate + Carne × 2",tip:"Buena relación. 5 flips."},
+  {id:18,zone:"lake",name:"Smoked Fish Bagel",emoji:"🥯",level:4,time:"",cost:230,sell:[450,675,900,1800,3600],detail:"Pez + Queso + Patata + Trigo",tip:"5 flips, buen beneficio."},
+  {id:19,zone:"lake",name:"Pizza Mariscos",emoji:"🍕",level:4,time:"",cost:220,sell:[380,570,760,1520,3040],detail:"Pez + Trigo + Tomate + Huevo",tip:"6 flips. Buff Velocidad."},
+  {id:20,zone:"lake",name:"Risotto Mariscos",emoji:"🍚",level:4,time:"",cost:150,sell:[350,525,700,1400,2800],detail:"Pez × 2 + Tomate + Trigo",tip:"4 flips. Buff Fuerza."},
   // === NIVEL 5 ===
-  {id:21,name:"Tarta de Manzana",emoji:"🥧",level:5,time:"",cost:195,sell:[420,630,840,1680,3360],detail:"Manzana + Huevo + Mantequilla + Trigo",tip:"7 flips. Fruta recolectada."},
-  {id:22,name:"Estofado Rural",emoji:"🍲",level:5,time:"",cost:175,sell:[350,525,700,1400,2800],detail:"Tomate + Patata + Lechuga + Zanahoria",tip:"Ingredientes caseros."},
-  {id:23,name:"Tiramisu",emoji:"🍰",level:5,time:"",cost:350,sell:[720,1080,1440,2880,5760],detail:"Café + Leche + Huevo + Queso",tip:"Buff Energía. Muy rentable."},
+  {id:21,zone:"lake",name:"Tarta de Manzana",emoji:"🥧",level:5,time:"",cost:195,sell:[420,630,840,1680,3360],detail:"Manzana + Huevo + Mantequilla + Trigo",tip:"7 flips. Fruta recolectada."},
+  {id:22,zone:"lake",name:"Estofado Rural",emoji:"🍲",level:5,time:"",cost:175,sell:[350,525,700,1400,2800],detail:"Tomate + Patata + Lechuga + Zanahoria",tip:"Ingredientes caseros."},
+  {id:23,zone:"sea",name:"Tiramisu",emoji:"🍰",level:5,time:"",cost:350,sell:[720,1080,1440,2880,5760],detail:"Café + Leche + Huevo + Queso",tip:"Buff Energía. Muy rentable."},
   // === NIVEL 6 ===
-  {id:24,name:"Tarta Zanahoria",emoji:"🥕",level:6,time:"",cost:180,sell:[450,675,900,1800,3600],detail:"Zanahoria × 2 + Trigo + Huevo",tip:"Buen postre medio."},
-  {id:25,name:"Sopa de Maíz",emoji:"🌽",level:6,time:"",cost:270,sell:[400,600,800,1600,3200],detail:"Maíz × 2 + Leche × 2",tip:"AFK farming."},
-  {id:26,name:"Tarta de Queso",emoji:"🍰",level:6,time:"",cost:320,sell:[520,780,1040,2080,4160],detail:"Trigo + Leche + Huevo + Queso",tip:"Popular entre NPCs."},
+  {id:24,zone:"sea",name:"Tarta Zanahoria",emoji:"🥕",level:6,time:"",cost:180,sell:[450,675,900,1800,3600],detail:"Zanahoria × 2 + Trigo + Huevo",tip:"Buen postre medio."},
+  {id:25,zone:"sea",name:"Sopa de Maíz",emoji:"🌽",level:6,time:"",cost:270,sell:[400,600,800,1600,3200],detail:"Maíz × 2 + Leche × 2",tip:"AFK farming."},
+  {id:26,zone:"sea",name:"Tarta de Queso",emoji:"🍰",level:6,time:"",cost:320,sell:[520,780,1040,2080,4160],detail:"Trigo + Leche + Huevo + Queso",tip:"Popular entre NPCs."},
   // === NIVEL 7 ===
-  {id:27,name:"Plato Cangrejo Imperial",emoji:"🦀",level:7,time:"",cost:0,sell:[850,1275,1700,3400,6800],detail:"Cangrejo Imperial (pez raro)",tip:"Necesita cangrejo imperial."},
+  {id:27,zone:"lake",name:"Plato Cangrejo Imperial",emoji:"🦀",level:7,time:"",cost:0,sell:[850,1275,1700,3400,6800],detail:"Cangrejo Imperial (pez raro)",tip:"Necesita cangrejo imperial."},
   // === NIVEL 8 ===
-  {id:28,name:"Pasta Trufa Negra",emoji:"🍝",level:8,time:"",cost:400,sell:[900,1350,1800,3600,7200],detail:"Trufa + Trigo + Crema",tip:"Mejor pasta del juego."},
-  {id:29,name:"Berenjena Gratinada",emoji:"🍆",level:8,time:"",cost:270,sell:[520,780,1040,2080,4160],detail:"Berenjena + Queso + Carne + Tomate",tip:"Necesita berenjena (Nv.8)."},
+  {id:28,zone:"river",name:"Pasta Trufa Negra",emoji:"🍝",level:8,time:"",cost:400,sell:[900,1350,1800,3600,7200],detail:"Trufa + Trigo + Crema",tip:"Mejor pasta del juego."},
+  {id:29,zone:"sea",name:"Berenjena Gratinada",emoji:"🍆",level:8,time:"",cost:270,sell:[520,780,1040,2080,4160],detail:"Berenjena + Queso + Carne + Tomate",tip:"Necesita berenjena (Nv.8)."},
   // === NIVEL 9 ===
-  {id:30,name:"Hamburguesa",emoji:"🍔",level:9,time:"",cost:300,sell:[980,1470,1960,3920,7840],detail:"Carne × 2 + Trigo + Lechuga",tip:"Alto nivel. Buff potente."},
-  {id:31,name:"Gambas con Aguacate",emoji:"🥑",level:9,time:"",cost:350,sell:[680,1020,1360,2720,5440],detail:"Gamba + Aguacate + Limón",tip:"Necesita aguacate (Nv.13)."},
+  {id:30,zone:"sea",name:"Hamburguesa",emoji:"🍔",level:9,time:"",cost:300,sell:[980,1470,1960,3920,7840],detail:"Carne × 2 + Trigo + Lechuga",tip:"Alto nivel. Buff potente."},
+  {id:31,zone:"river",name:"Gambas con Aguacate",emoji:"🥑",level:9,time:"",cost:350,sell:[680,1020,1360,2720,5440],detail:"Gamba + Aguacate + Limón",tip:"Necesita aguacate (Nv.13)."},
   // === NIVEL 10 ===
-  {id:32,name:"Mariscada de Lujo",emoji:"🦞",level:10,time:"",cost:500,sell:[1200,1800,2400,4800,9600],detail:"Langosta Nórdica + Mariscos",tip:"Solo langosta nórdica."},
-  {id:33,name:"Cangrejo al Vapor",emoji:"🦀",level:10,time:"",cost:0,sell:[1100,1650,2200,4400,8800],detail:"Cangrejo Dorado (pez legendario)",tip:"Necesita Cangrejo Real Dorado."},
+  {id:32,zone:"sea",name:"Mariscada de Lujo",emoji:"🦞",level:10,time:"",cost:500,sell:[1200,1800,2400,4800,9600],detail:"Langosta Nórdica + Mariscos",tip:"Solo langosta nórdica."},
+  {id:33,zone:"lake",name:"Cangrejo al Vapor",emoji:"🦀",level:10,time:"",cost:0,sell:[1100,1650,2200,4400,8800],detail:"Cangrejo Dorado (pez legendario)",tip:"Necesita Cangrejo Real Dorado."},
   // === NIVEL 11 (Bebidas) ===
-  {id:34,name:"Batido (Milkshake)",emoji:"🥤",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Fruta × 2",tip:"Variantes con cada fruta."},
-  {id:35,name:"Té Rojo Aromático",emoji:"🍵",level:11,time:"",cost:250,sell:[380,570,760,1520,3040],detail:"Té Rojo × 2 + Leche × 2",tip:"Solo comprar ingredientes."},
-  {id:36,name:"Té con Leche",emoji:"🍵",level:11,time:"",cost:350,sell:[450,675,900,1800,3600],detail:"Té Rojo + Leche × 3",tip:"Derivado del Té Rojo."},
-  {id:37,name:"Batido Matcha",emoji:"🍵",level:11,time:"",cost:300,sell:[380,570,760,1520,3040],detail:"Matcha × 2 + Leche × 2",tip:"Solo comprar ingredientes."},
+  {id:34,zone:"lake",name:"Batido (Milkshake)",emoji:"🥤",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Fruta × 2",tip:"Variantes con cada fruta."},
+  {id:35,zone:"lake",name:"Té Rojo Aromático",emoji:"🍵",level:11,time:"",cost:250,sell:[380,570,760,1520,3040],detail:"Té Rojo × 2 + Leche × 2",tip:"Solo comprar ingredientes."},
+  {id:36,zone:"sea",name:"Té con Leche",emoji:"🍵",level:11,time:"",cost:350,sell:[450,675,900,1800,3600],detail:"Té Rojo + Leche × 3",tip:"Derivado del Té Rojo."},
+  {id:37,zone:"lake",name:"Batido Matcha",emoji:"🍵",level:11,time:"",cost:300,sell:[380,570,760,1520,3040],detail:"Matcha × 2 + Leche × 2",tip:"Solo comprar ingredientes."},
   // === NIVEL 12 (Chocolate) ===
-  {id:38,name:"Salsa de Chocolate",emoji:"🍫",level:12,time:"",cost:220,sell:[400,600,800,1600,3200],detail:"Cacao × 4",tip:"Necesita Árbol Cacao (Nv.12)."},
-  {id:39,name:"Té de Cacao",emoji:"🍫",level:12,time:"",cost:310,sell:[450,675,900,1800,3600],detail:"Cacao × 2 + Leche × 2",tip:"Bebida de chocolate."},
-  {id:40,name:"Batido de Cacao",emoji:"🍫",level:12,time:"",cost:320,sell:[480,720,960,1920,3840],detail:"Cacao × 2 + Leche × 2 (variante)",tip:"Derivado del batido."},
+  {id:38,zone:"sea",name:"Salsa de Chocolate",emoji:"🍫",level:12,time:"",cost:220,sell:[400,600,800,1600,3200],detail:"Cacao × 4",tip:"Necesita Árbol Cacao (Nv.12)."},
+  {id:39,zone:"river",name:"Té de Cacao",emoji:"🍫",level:12,time:"",cost:310,sell:[450,675,900,1800,3600],detail:"Cacao × 2 + Leche × 2",tip:"Bebida de chocolate."},
+  {id:40,zone:"lake",name:"Batido de Cacao",emoji:"🍫",level:12,time:"",cost:320,sell:[480,720,960,1920,3840],detail:"Cacao × 2 + Leche × 2 (variante)",tip:"Derivado del batido."},
   // === ESPECIALES / EVENTOS ===
-  {id:41,name:"Exposición Camping",emoji:"🏕️",level:7,time:"",cost:400,sell:[1200,1800,2400,4800,9600],detail:"Café/Latte + Comida × 3 (combo)",tip:"Plato combo, se come 4 veces."},
-  {id:42,name:"Afternoon Tea",emoji:"🫖",level:7,time:"",cost:350,sell:[980,1470,1960,3920,7840],detail:"Fruta + Trigo + Huevo + Mantequilla",tip:"Se come 4 veces. ¡No uses manzana!"},
+  {id:41,zone:"sea",name:"Exposición Camping",emoji:"🏕️",level:7,time:"",cost:400,sell:[1200,1800,2400,4800,9600],detail:"Café/Latte + Comida × 3 (combo)",tip:"Plato combo, se come 4 veces."},
+  {id:42,zone:"lake",name:"Afternoon Tea",emoji:"🫖",level:7,time:"",cost:350,sell:[980,1470,1960,3920,7840],detail:"Fruta + Trigo + Huevo + Mantequilla",tip:"Se come 4 veces. ¡No uses manzana!"},
   // === VARIANTES DE MERMELADA (derivadas de Mixta) ===
-  {id:43,name:"Mermelada Frambuesa",emoji:"🫐",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Frambuesa × 4 · Derivada: Mixta → todo frambuesa",tip:"Derivada. Recolecta gratis."},
-  {id:44,name:"Mermelada Coco",emoji:"🥥",level:1,time:"",cost:0,sell:[250,375,500,1000,2000],detail:"Coco × 4 · Derivada: Mixta → todo coco",tip:"Derivada. Coco = recolectable."},
+  {id:43,zone:"lake",name:"Mermelada Frambuesa",emoji:"🫐",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Frambuesa × 4 · Derivada: Mixta → todo frambuesa",tip:"Derivada. Recolecta gratis."},
+  {id:44,zone:"sea",name:"Mermelada Coco",emoji:"🥥",level:1,time:"",cost:0,sell:[250,375,500,1000,2000],detail:"Coco × 4 · Derivada: Mixta → todo coco",tip:"Derivada. Coco = recolectable."},
   // === VARIANTES DE SETAS (misma receta, distinta seta) ===
-  {id:45,name:"Setas Shiitake Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Shiitake × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
-  {id:46,name:"Setas Ostra Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Ostra × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
-  {id:47,name:"Setas Boletus Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Boletus × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
-  {id:48,name:"Trufa Negra Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Trufa Negra × 2 · Variante: Setas Plancha",tip:"Rara. Trufa difícil de encontrar."},
+  {id:45,zone:"river",name:"Setas Shiitake Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Shiitake × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
+  {id:46,zone:"sea",name:"Setas Ostra Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Ostra × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
+  {id:47,zone:"sea",name:"Setas Boletus Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Boletus × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
+  {id:48,zone:"river",name:"Trufa Negra Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Trufa Negra × 2 · Variante: Setas Plancha",tip:"Rara. Trufa difícil de encontrar."},
   // === VARIANTES DE SOPA SETAS ===
-  {id:49,name:"Sopa Shiitake",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Shiitake × 2 + Patata × 2 · Variante",tip:"Misma sopa, distinta seta."},
-  {id:50,name:"Sopa Trufa Negra",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Trufa × 2 + Patata × 2 · Variante",tip:"Trufa rara pero sopa top."},
+  {id:49,zone:"sea",name:"Sopa Shiitake",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Shiitake × 2 + Patata × 2 · Variante",tip:"Misma sopa, distinta seta."},
+  {id:50,zone:"lake",name:"Sopa Trufa Negra",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Trufa × 2 + Patata × 2 · Variante",tip:"Trufa rara pero sopa top."},
   // === VARIANTES DE PASTEL SETAS ===
-  {id:51,name:"Pastel Shiitake",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Shiitake × 2 + Trigo × 2 · Variante",tip:"Misma receta, distinta seta."},
-  {id:52,name:"Pastel Trufa",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Trufa × 2 + Trigo × 2 · Variante",tip:"Trufa rara."},
+  {id:51,zone:"lake",name:"Pastel Shiitake",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Shiitake × 2 + Trigo × 2 · Variante",tip:"Misma receta, distinta seta."},
+  {id:52,zone:"lake",name:"Pastel Trufa",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Trufa × 2 + Trigo × 2 · Variante",tip:"Trufa rara."},
   // === VARIANTE CAFÉ ===
-  {id:53,name:"Latte",emoji:"☕",level:2,time:"",cost:250,sell:[320,480,640,1280,2560],detail:"Café × 2 + Leche × 2 · Variante de Café",tip:"Derivada del café base."},
+  {id:53,zone:"lake",name:"Latte",emoji:"☕",level:2,time:"",cost:250,sell:[320,480,640,1280,2560],detail:"Café × 2 + Leche × 2 · Variante de Café",tip:"Derivada del café base."},
   // === VARIANTES DE ZUMO (Nv.9 evento verano) ===
-  {id:54,name:"Zumo de Fresa",emoji:"🍓",level:9,time:"",cost:125,sell:[420,630,840,1680,3360],detail:"Fresa × 2 + Fruta × 2 · Variante Zumo",tip:"Ingrediente para helado fresa."},
-  {id:55,name:"Zumo de Manzana",emoji:"🍎",level:9,time:"",cost:0,sell:[350,525,700,1400,2800],detail:"Manzana × 4 · Variante Zumo",tip:"Fruta gratis = puro beneficio."},
-  {id:56,name:"Zumo de Coco",emoji:"🥥",level:9,time:"",cost:0,sell:[400,600,800,1600,3200],detail:"Coco × 4 · Variante Zumo",tip:"Coco recolectable."},
+  {id:54,zone:"lake",name:"Zumo de Fresa",emoji:"🍓",level:9,time:"",cost:125,sell:[420,630,840,1680,3360],detail:"Fresa × 2 + Fruta × 2 · Variante Zumo",tip:"Ingrediente para helado fresa."},
+  {id:55,zone:"sea",name:"Zumo de Manzana",emoji:"🍎",level:9,time:"",cost:0,sell:[350,525,700,1400,2800],detail:"Manzana × 4 · Variante Zumo",tip:"Fruta gratis = puro beneficio."},
+  {id:56,zone:"sea",name:"Zumo de Coco",emoji:"🥥",level:9,time:"",cost:0,sell:[400,600,800,1600,3200],detail:"Coco × 4 · Variante Zumo",tip:"Coco recolectable."},
   // === VARIANTES BATIDO (Nv.11, cambiando fruta) ===
-  {id:57,name:"Batido Arándano",emoji:"🫐",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Arándano × 2",tip:"Variante del batido base."},
-  {id:58,name:"Batido Frambuesa",emoji:"🫐",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Frambuesa × 2",tip:"Variante del batido base."},
-  {id:59,name:"Batido Piña",emoji:"🍍",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Piña × 2",tip:"Variante del batido base."},
-  {id:60,name:"Batido Fresa",emoji:"🍓",level:11,time:"",cost:325,sell:[380,570,760,1520,3040],detail:"Leche × 2 + Fresa × 2",tip:"Variante. Fresa más cara."},
-  {id:61,name:"Batido Manzana",emoji:"🍎",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Manzana × 2",tip:"Variante del batido."},
-  {id:62,name:"Batido Naranja",emoji:"🍊",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Naranja × 2",tip:"Variante del batido."},
-  {id:63,name:"Batido Uva",emoji:"🍇",level:11,time:"",cost:360,sell:[380,570,760,1520,3040],detail:"Leche × 2 + Uva × 2",tip:"Variante. Uva más cara."},
+  {id:57,zone:"river",name:"Batido Arándano",emoji:"🫐",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Arándano × 2",tip:"Variante del batido base."},
+  {id:58,zone:"lake",name:"Batido Frambuesa",emoji:"🫐",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Frambuesa × 2",tip:"Variante del batido base."},
+  {id:59,zone:"sea",name:"Batido Piña",emoji:"🍍",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Piña × 2",tip:"Variante del batido base."},
+  {id:60,zone:"sea",name:"Batido Fresa",emoji:"🍓",level:11,time:"",cost:325,sell:[380,570,760,1520,3040],detail:"Leche × 2 + Fresa × 2",tip:"Variante. Fresa más cara."},
+  {id:61,zone:"sea",name:"Batido Manzana",emoji:"🍎",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Manzana × 2",tip:"Variante del batido."},
+  {id:62,zone:"sea",name:"Batido Naranja",emoji:"🍊",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Naranja × 2",tip:"Variante del batido."},
+  {id:63,zone:"sea",name:"Batido Uva",emoji:"🍇",level:11,time:"",cost:360,sell:[380,570,760,1520,3040],detail:"Leche × 2 + Uva × 2",tip:"Variante. Uva más cara."},
   // === FLOATY ROLL / NUBES (Evento Lluvia/Arcoíris) ===
-  {id:64,name:"Nube Rosa",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Rosa × 4 · Receta: Doris (lluvia)",tip:"Compra receta a Doris en lluvia."},
-  {id:65,name:"Nube Azul",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Azul × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
-  {id:66,name:"Nube Amarilla",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Amarillo × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
-  {id:67,name:"Nube Verde",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Verde × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
-  {id:68,name:"Nube Morada",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Morado × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  {id:64,zone:"lake",name:"Nube Rosa",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Rosa × 4 · Receta: Doris (lluvia)",tip:"Compra receta a Doris en lluvia."},
+  {id:65,zone:"sea",name:"Nube Azul",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Azul × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  {id:66,zone:"lake",name:"Nube Amarilla",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Amarillo × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  {id:67,zone:"sea",name:"Nube Verde",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Verde × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  {id:68,zone:"river",name:"Nube Morada",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Morado × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
   // === HELADOS (Evento Verano) ===
-  {id:69,name:"Helado Fresa",emoji:"🍦",level:9,time:"",cost:400,sell:[580,870,1160,2320,4640],detail:"Zumo Fresa + Leche + Mantequilla + Queso",tip:"Evento verano. Único rentable."},
-  {id:70,name:"Helado Coco",emoji:"🍦",level:9,time:"",cost:350,sell:[520,780,1040,2080,4160],detail:"Zumo Coco + Leche + Mantequilla + Queso",tip:"Evento verano."},
+  {id:69,zone:"river",name:"Helado Fresa",emoji:"🍦",level:9,time:"",cost:400,sell:[580,870,1160,2320,4640],detail:"Zumo Fresa + Leche + Mantequilla + Queso",tip:"Evento verano. Único rentable."},
+  {id:70,zone:"lake",name:"Helado Coco",emoji:"🍦",level:9,time:"",cost:350,sell:[520,780,1040,2080,4160],detail:"Zumo Coco + Leche + Mantequilla + Queso",tip:"Evento verano."},
   // === PLATOS CON BERENJENA (Nv.8) ===
-  {id:71,name:"Berenjena Salteada",emoji:"🍆",level:8,time:"",cost:200,sell:[420,630,840,1680,3360],detail:"Berenjena × 2 + Tomate + Carne",tip:"Variante más simple."},
+  {id:71,zone:"lake",name:"Berenjena Salteada",emoji:"🍆",level:8,time:"",cost:200,sell:[420,630,840,1680,3360],detail:"Berenjena × 2 + Tomate + Carne",tip:"Variante más simple."},
   // === PLATOS INVIERNO (Evento Frost) ===
-  {id:72,name:"Estofado Invierno",emoji:"🍲",level:9,time:"",cost:250,sell:[550,825,1100,2200,4400],detail:"Rábano + Patata + Carne + Zanahoria",tip:"Evento Frost Season."},
-  {id:73,name:"Pastel de Hierba",emoji:"🌿",level:10,time:"",cost:200,sell:[480,720,960,1920,3840],detail:"Trigo + Huevo + Mantequilla + Hierba",tip:"Evento especial. Hierba recolectable."},
+  {id:72,zone:"lake",name:"Estofado Invierno",emoji:"🍲",level:9,time:"",cost:250,sell:[550,825,1100,2200,4400],detail:"Rábano + Patata + Carne + Zanahoria",tip:"Evento Frost Season."},
+  {id:73,zone:"sea",name:"Pastel de Hierba",emoji:"🌿",level:10,time:"",cost:200,sell:[480,720,960,1920,3840],detail:"Trigo + Huevo + Mantequilla + Hierba",tip:"Evento especial. Hierba recolectable."},
   // === SETAS: variantes Plancha completas (4 setas × 4) ===
-  {id:74,name:"Setas Champiñón Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Champiñón × 4 · 🔓 Derivada: usa Setas Plancha con champiñones",tip:"Seta base. Mismo precio todas."},
+  {id:74,zone:"sea",name:"Setas Champiñón Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Champiñón × 4 · 🔓 Derivada: usa Setas Plancha con champiñones",tip:"Seta base. Mismo precio todas."},
   // === SETAS: Sopa variantes faltantes ===
-  {id:75,name:"Sopa Ostra",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Ostra × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Mismo precio que base."},
-  {id:76,name:"Sopa Boletus",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Boletus × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Mismo precio."},
-  {id:77,name:"Sopa Champiñón",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Champiñón × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Seta base."},
+  {id:75,zone:"sea",name:"Sopa Ostra",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Ostra × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Mismo precio que base."},
+  {id:76,zone:"sea",name:"Sopa Boletus",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Boletus × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Mismo precio."},
+  {id:77,zone:"sea",name:"Sopa Champiñón",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Champiñón × 2 + Patata × 2 · 🔓 Variante Sopa Setas",tip:"Seta base."},
   // === SETAS: Pastel variantes faltantes ===
-  {id:78,name:"Pastel Ostra",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Ostra × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Mismo precio."},
-  {id:79,name:"Pastel Boletus",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Boletus × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Mismo precio."},
-  {id:80,name:"Pastel Champiñón",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Champiñón × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Seta base."},
+  {id:78,zone:"sea",name:"Pastel Ostra",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Ostra × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Mismo precio."},
+  {id:79,zone:"sea",name:"Pastel Boletus",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Boletus × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Mismo precio."},
+  {id:80,zone:"sea",name:"Pastel Champiñón",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Champiñón × 2 + Trigo × 2 · 🔓 Variante Pastel Setas",tip:"Seta base."},
   // === ENSALADA variante ===
-  {id:81,name:"Ensalada Zanahoria",emoji:"🥗",level:1,time:"",cost:50,sell:[120,180,240,480,960],detail:"Zanahoria × 2 · 🔓 Derivada: Ensalada Casa → zanahoria",tip:"Misma receta, distinta verdura."},
-  {id:82,name:"Ensalada Lechuga",emoji:"🥗",level:1,time:"",cost:145,sell:[120,180,240,480,960],detail:"Lechuga × 2 · 🔓 Derivada: Ensalada Casa → lechuga",tip:"Misma receta, distinta verdura."},
+  {id:81,zone:"sea",name:"Ensalada Zanahoria",emoji:"🥗",level:1,time:"",cost:50,sell:[120,180,240,480,960],detail:"Zanahoria × 2 · 🔓 Derivada: Ensalada Casa → zanahoria",tip:"Misma receta, distinta verdura."},
+  {id:82,zone:"sea",name:"Ensalada Lechuga",emoji:"🥗",level:1,time:"",cost:145,sell:[120,180,240,480,960],detail:"Lechuga × 2 · 🔓 Derivada: Ensalada Casa → lechuga",tip:"Misma receta, distinta verdura."},
   // === HALLOWEEN (Evento Octubre) ===
-  {id:83,name:"Bebida Vendaje Blanco",emoji:"👻",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Blanco × 4 · 🔓 Evento Halloween → canjear receta",tip:"Evento Halloween. Receta en tienda."},
-  {id:84,name:"Bebida Vendaje Negro",emoji:"🖤",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Negro × 4 · 🔓 Derivada: Vendaje Blanco → negro",tip:"Oculta. Cambiar color caramelo."},
+  {id:83,zone:"sea",name:"Bebida Vendaje Blanco",emoji:"👻",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Blanco × 4 · 🔓 Evento Halloween → canjear receta",tip:"Evento Halloween. Receta en tienda."},
+  {id:84,zone:"sea",name:"Bebida Vendaje Negro",emoji:"🖤",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Negro × 4 · 🔓 Derivada: Vendaje Blanco → negro",tip:"Oculta. Cambiar color caramelo."},
   {id:85,name:"Bebida Gato Momia",emoji:"🐱",level:3,time:"",cost:100,sell:[200,300,400,800,1600],detail:"Caramelo Naranja × 4 · 🔓 Derivada: Vendaje Blanco → naranja",tip:"Oculta. Cambiar color caramelo."},
   // === NUEVA PRIMAVERA / AÑO NUEVO (Evento Enero) ===
   {id:86,name:"Pastel Año Nuevo",emoji:"🧧",level:5,time:"",cost:200,sell:[450,675,900,1800,3600],detail:"Trigo + Huevo + Azúcar Rojo + Mantequilla · 🔓 Evento Año Nuevo",tip:"Receta de Massimo durante evento."},
@@ -529,97 +539,97 @@ const DEF_COOK=[
 ];
 const DEF_BUG=[
   // Nv.1
-  {id:1,name:"Mariposa Aurora",emoji:"🦋",level:1,time:"6-18 ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Campo Flores",tip:"Primera mariposa."},
-  {id:2,name:"Mariquita",emoji:"🐞",level:1,time:"Todo ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Bosque",tip:"En arbustos y flores."},
-  {id:3,name:"Grillo",emoji:"🦗",level:1,time:"18-6 🌙",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Pradera",tip:"Solo nocturno."},
-  {id:4,name:"Saltamontes",emoji:"🦗",level:1,time:"6-18 ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Pradera, Campo Flores",tip:"Salta del césped."},
-  {id:5,name:"Mariposa Limón",emoji:"🦋",level:1,time:"6-18 ☀️",cost:0,sell:[45,68,90,180,360],detail:"📍 Campo Flores, Pradera",tip:"Amarilla brillante."},
-  {id:6,name:"Abeja",emoji:"🐝",level:1,time:"6-18 ☀️",cost:0,sell:[45,68,90,180,360],detail:"📍 Campo Flores, Jardín",tip:"Cerca de flores."},
-  {id:7,name:"Mariposa Col",emoji:"🦋",level:1,time:"6-18 ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Pradera",tip:"Blanca, muy común."},
-  {id:8,name:"Hormiga",emoji:"🐜",level:1,time:"Todo",cost:0,sell:[20,30,40,80,160],detail:"📍 Zona Central, Bosque",tip:"En el suelo, diminuta."},
+  {id:1,zone:"field",name:"Mariposa Aurora",emoji:"🦋",level:1,time:"6-18 ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Campo Flores",tip:"Primera mariposa."},
+  {id:2,zone:"forest",name:"Mariquita",emoji:"🐞",level:1,time:"Todo ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Bosque",tip:"En arbustos y flores."},
+  {id:3,zone:"field",name:"Grillo",emoji:"🦗",level:1,time:"18-6 🌙",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Pradera",tip:"Solo nocturno."},
+  {id:4,zone:"field",name:"Saltamontes",emoji:"🦗",level:1,time:"6-18 ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Pradera, Campo Flores",tip:"Salta del césped."},
+  {id:5,zone:"field",name:"Mariposa Limón",emoji:"🦋",level:1,time:"6-18 ☀️",cost:0,sell:[45,68,90,180,360],detail:"📍 Campo Flores, Pradera",tip:"Amarilla brillante."},
+  {id:6,zone:"field",name:"Abeja",emoji:"🐝",level:1,time:"6-18 ☀️",cost:0,sell:[45,68,90,180,360],detail:"📍 Campo Flores, Jardín",tip:"Cerca de flores."},
+  {id:7,zone:"field",name:"Mariposa Col",emoji:"🦋",level:1,time:"6-18 ☀️",cost:0,sell:[30,45,60,120,240],detail:"📍 Zona Central, Pradera",tip:"Blanca, muy común."},
+  {id:8,zone:"forest",name:"Hormiga",emoji:"🐜",level:1,time:"Todo",cost:0,sell:[20,30,40,80,160],detail:"📍 Zona Central, Bosque",tip:"En el suelo, diminuta."},
   // Nv.2
-  {id:9,name:"Escarabajo Rinoceronte",emoji:"🪲",level:2,time:"18-6 🌙",cost:0,sell:[60,90,120,240,480],detail:"📍 Bosque, Montaña Onsen",tip:"En troncos, nocturno."},
-  {id:10,name:"Luciérnaga",emoji:"✨",level:2,time:"18-6 🌙",cost:0,sell:[60,90,120,240,480],detail:"📍 Lago Bosque, Pradera",tip:"Brilla de noche."},
-  {id:11,name:"Libélula Roja",emoji:"🪰",level:2,time:"6-18 ☀️",cost:0,sell:[60,90,120,240,480],detail:"📍 Lago Pradera, Ríos",tip:"Cerca del agua."},
-  {id:12,name:"Morpho Azul",emoji:"🦋",level:2,time:"6-18 ☀️",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque Profundo",tip:"Azul brillante."},
-  {id:13,name:"Polilla Luna",emoji:"🦋",level:2,time:"18-6 🌙",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque, Montaña",tip:"Verde pálido nocturna."},
-  {id:14,name:"Mariposa Madera",emoji:"🦋",level:2,time:"6-18 ☀️",cost:0,sell:[50,75,100,200,400],detail:"📍 Bosque, Pradera",tip:"Marrón, se camufla."},
-  {id:15,name:"Escarabajo Pelotero",emoji:"🪲",level:2,time:"Todo",cost:0,sell:[50,75,100,200,400],detail:"📍 Pradera, Campo",tip:"En el suelo."},
-  {id:16,name:"Libélula Azul",emoji:"🪰",level:2,time:"6-18 ☀️",cost:0,sell:[60,90,120,240,480],detail:"📍 Lagos, Ríos",tip:"Cerca del agua."},
+  {id:9,zone:"forest",name:"Escarabajo Rinoceronte",emoji:"🪲",level:2,time:"18-6 🌙",cost:0,sell:[60,90,120,240,480],detail:"📍 Bosque, Montaña Onsen",tip:"En troncos, nocturno."},
+  {id:10,zone:"forest",name:"Luciérnaga",emoji:"✨",level:2,time:"18-6 🌙",cost:0,sell:[60,90,120,240,480],detail:"📍 Lago Bosque, Pradera",tip:"Brilla de noche."},
+  {id:11,zone:"water",name:"Libélula Roja",emoji:"🪰",level:2,time:"6-18 ☀️",cost:0,sell:[60,90,120,240,480],detail:"📍 Lago Pradera, Ríos",tip:"Cerca del agua."},
+  {id:12,zone:"forest",name:"Morpho Azul",emoji:"🦋",level:2,time:"6-18 ☀️",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque Profundo",tip:"Azul brillante."},
+  {id:13,zone:"forest",name:"Polilla Luna",emoji:"🦋",level:2,time:"18-6 🌙",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque, Montaña",tip:"Verde pálido nocturna."},
+  {id:14,zone:"forest",name:"Mariposa Madera",emoji:"🦋",level:2,time:"6-18 ☀️",cost:0,sell:[50,75,100,200,400],detail:"📍 Bosque, Pradera",tip:"Marrón, se camufla."},
+  {id:15,zone:"field",name:"Escarabajo Pelotero",emoji:"🪲",level:2,time:"Todo",cost:0,sell:[50,75,100,200,400],detail:"📍 Pradera, Campo",tip:"En el suelo."},
+  {id:16,zone:"water",name:"Libélula Azul",emoji:"🪰",level:2,time:"6-18 ☀️",cost:0,sell:[60,90,120,240,480],detail:"📍 Lagos, Ríos",tip:"Cerca del agua."},
   // Nv.3
-  {id:17,name:"Escarabajo Ciervo",emoji:"🪲",level:3,time:"18-6 🌙",cost:0,sell:[90,135,180,360,720],detail:"📍 Bosque Profundo",tip:"En troncos, buen precio."},
-  {id:18,name:"Rajah Brooke",emoji:"🦋",level:3,time:"6-18 ☀️",cost:0,sell:[90,135,180,360,720],detail:"📍 Montaña Onsen, Bosque",tip:"Verde/negra, valiosa."},
-  {id:19,name:"Mantis Religiosa",emoji:"🦗",level:3,time:"6-18",cost:0,sell:[90,135,180,360,720],detail:"📍 Bosque, Campo Flores",tip:"Se camufla."},
-  {id:20,name:"Cola de Golondrina",emoji:"🦋",level:3,time:"6-18 ☀️",cost:0,sell:[90,135,180,360,720],detail:"📍 Campo Flores, Montaña",tip:"Grande y elegante."},
-  {id:21,name:"Cigarra",emoji:"🦟",level:3,time:"6-18 ☀️",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque, Zona Central",tip:"En troncos, ruidosa."},
-  {id:22,name:"Mariposa Tigre",emoji:"🦋",level:3,time:"6-18 ☀️",cost:0,sell:[75,113,150,300,600],detail:"📍 Campo Flores",tip:"Naranja rayada."},
-  {id:23,name:"Escarabajo Longhorn",emoji:"🪲",level:3,time:"18-6 🌙",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque Profundo",tip:"Antenas largas."},
-  {id:24,name:"Araña de Jardín",emoji:"🕷️",level:3,time:"Todo",cost:0,sell:[60,90,120,240,480],detail:"📍 Bosque, Campo Flores",tip:"En arbustos."},
+  {id:17,zone:"forest",name:"Escarabajo Ciervo",emoji:"🪲",level:3,time:"18-6 🌙",cost:0,sell:[90,135,180,360,720],detail:"📍 Bosque Profundo",tip:"En troncos, buen precio."},
+  {id:18,zone:"mountain",name:"Rajah Brooke",emoji:"🦋",level:3,time:"6-18 ☀️",cost:0,sell:[90,135,180,360,720],detail:"📍 Montaña Onsen, Bosque",tip:"Verde/negra, valiosa."},
+  {id:19,zone:"forest",name:"Mantis Religiosa",emoji:"🦗",level:3,time:"6-18",cost:0,sell:[90,135,180,360,720],detail:"📍 Bosque, Campo Flores",tip:"Se camufla."},
+  {id:20,zone:"field",name:"Cola de Golondrina",emoji:"🦋",level:3,time:"6-18 ☀️",cost:0,sell:[90,135,180,360,720],detail:"📍 Campo Flores, Montaña",tip:"Grande y elegante."},
+  {id:21,zone:"forest",name:"Cigarra",emoji:"🦟",level:3,time:"6-18 ☀️",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque, Zona Central",tip:"En troncos, ruidosa."},
+  {id:22,zone:"field",name:"Mariposa Tigre",emoji:"🦋",level:3,time:"6-18 ☀️",cost:0,sell:[75,113,150,300,600],detail:"📍 Campo Flores",tip:"Naranja rayada."},
+  {id:23,zone:"forest",name:"Escarabajo Longhorn",emoji:"🪲",level:3,time:"18-6 🌙",cost:0,sell:[75,113,150,300,600],detail:"📍 Bosque Profundo",tip:"Antenas largas."},
+  {id:24,zone:"forest",name:"Araña de Jardín",emoji:"🕷️",level:3,time:"Todo",cost:0,sell:[60,90,120,240,480],detail:"📍 Bosque, Campo Flores",tip:"En arbustos."},
   // Nv.4
-  {id:25,name:"Escarabajo Atlas",emoji:"🪲",level:4,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Bosque Profundo",tip:"Grande, en troncos."},
-  {id:26,name:"Mariposa Monarca",emoji:"🦋",level:4,time:"6-18 ☀️",cost:0,sell:[120,180,240,480,960],detail:"📍 Campo Flores, Pradera",tip:"Naranja icónica."},
-  {id:27,name:"Sulkowsky Morpho",emoji:"🦋",level:4,time:"Todo ⚠️",cost:0,sell:[90,135,180,360,720],detail:"📍 Montaña Onsen · Necesita Atractor",tip:"Solo con Atractor."},
-  {id:28,name:"Libélula Emperador",emoji:"🪰",level:4,time:"6-18",cost:0,sell:[120,180,240,480,960],detail:"📍 Lagos, Ríos",tip:"La libélula más grande."},
-  {id:29,name:"Mariposa Búho",emoji:"🦋",level:4,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Bosque Profundo",tip:"Nocturna con ojos en alas."},
-  {id:30,name:"Escarabajo Miyama",emoji:"🪲",level:4,time:"18-6 🌙",cost:0,sell:[100,150,200,400,800],detail:"📍 Bosque, Montaña Onsen",tip:"En troncos noche."},
-  {id:31,name:"Polilla Halcón",emoji:"🦋",level:4,time:"18-6 🌙",cost:0,sell:[90,135,180,360,720],detail:"📍 Campo Flores",tip:"Nocturna, rápida."},
+  {id:25,zone:"forest",name:"Escarabajo Atlas",emoji:"🪲",level:4,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Bosque Profundo",tip:"Grande, en troncos."},
+  {id:26,zone:"field",name:"Mariposa Monarca",emoji:"🦋",level:4,time:"6-18 ☀️",cost:0,sell:[120,180,240,480,960],detail:"📍 Campo Flores, Pradera",tip:"Naranja icónica."},
+  {id:27,zone:"mountain",name:"Sulkowsky Morpho",emoji:"🦋",level:4,time:"Todo ⚠️",cost:0,sell:[90,135,180,360,720],detail:"📍 Montaña Onsen · Necesita Atractor",tip:"Solo con Atractor."},
+  {id:28,zone:"water",name:"Libélula Emperador",emoji:"🪰",level:4,time:"6-18",cost:0,sell:[120,180,240,480,960],detail:"📍 Lagos, Ríos",tip:"La libélula más grande."},
+  {id:29,zone:"forest",name:"Mariposa Búho",emoji:"🦋",level:4,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Bosque Profundo",tip:"Nocturna con ojos en alas."},
+  {id:30,zone:"mountain",name:"Escarabajo Miyama",emoji:"🪲",level:4,time:"18-6 🌙",cost:0,sell:[100,150,200,400,800],detail:"📍 Bosque, Montaña Onsen",tip:"En troncos noche."},
+  {id:31,zone:"field",name:"Polilla Halcón",emoji:"🦋",level:4,time:"18-6 🌙",cost:0,sell:[90,135,180,360,720],detail:"📍 Campo Flores",tip:"Nocturna, rápida."},
   // Nv.5
-  {id:32,name:"Escarabajo Hércules",emoji:"🪲",level:5,time:"18-6 🌙",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque Profundo",tip:"Raro y muy valioso."},
-  {id:33,name:"Mariposa Alas Pájaro",emoji:"🦋",level:5,time:"6-12 ☀️",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque, Montaña",tip:"Solo mañana, rara."},
-  {id:34,name:"Escorpión",emoji:"🦂",level:5,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Montaña Onsen",tip:"Se asusta fácil."},
-  {id:35,name:"Escarabajo Joya",emoji:"🪲",level:5,time:"6-18 ☀️",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque, Montaña Onsen",tip:"Brillante, iridiscente."},
-  {id:36,name:"Polilla Esfinge",emoji:"🦋",level:5,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Campo Flores",tip:"Parece colibrí."},
-  {id:37,name:"Mariposa Apolo",emoji:"🦋",level:5,time:"6-18 ☀️",cost:0,sell:[130,195,260,520,1040],detail:"📍 Montaña Onsen",tip:"Blanca con puntos rojos."},
-  {id:38,name:"Escarabajo Goliat",emoji:"🪲",level:5,time:"18-6 🌙",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque Profundo",tip:"Enorme, en troncos."},
+  {id:32,zone:"forest",name:"Escarabajo Hércules",emoji:"🪲",level:5,time:"18-6 🌙",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque Profundo",tip:"Raro y muy valioso."},
+  {id:33,zone:"forest",name:"Mariposa Alas Pájaro",emoji:"🦋",level:5,time:"6-12 ☀️",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque, Montaña",tip:"Solo mañana, rara."},
+  {id:34,zone:"mountain",name:"Escorpión",emoji:"🦂",level:5,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Montaña Onsen",tip:"Se asusta fácil."},
+  {id:35,zone:"mountain",name:"Escarabajo Joya",emoji:"🪲",level:5,time:"6-18 ☀️",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque, Montaña Onsen",tip:"Brillante, iridiscente."},
+  {id:36,zone:"field",name:"Polilla Esfinge",emoji:"🦋",level:5,time:"18-6 🌙",cost:0,sell:[120,180,240,480,960],detail:"📍 Campo Flores",tip:"Parece colibrí."},
+  {id:37,zone:"mountain",name:"Mariposa Apolo",emoji:"🦋",level:5,time:"6-18 ☀️",cost:0,sell:[130,195,260,520,1040],detail:"📍 Montaña Onsen",tip:"Blanca con puntos rojos."},
+  {id:38,zone:"forest",name:"Escarabajo Goliat",emoji:"🪲",level:5,time:"18-6 🌙",cost:0,sell:[150,225,300,600,1200],detail:"📍 Bosque Profundo",tip:"Enorme, en troncos."},
   // Nv.6
-  {id:39,name:"Escarabajo Dorado",emoji:"🪲",level:6,time:"6-18 ☀️",cost:0,sell:[180,270,360,720,1440],detail:"📍 Montaña Onsen",tip:"Brilla dorado."},
-  {id:40,name:"Polilla Atlas",emoji:"🦋",level:6,time:"18-6 🌙",cost:0,sell:[180,270,360,720,1440],detail:"📍 Bosque Profundo",tip:"Polilla más grande."},
-  {id:41,name:"Mariposa Arcoíris",emoji:"🦋",level:6,time:"6-18 🌈",cost:0,sell:[200,300,400,800,1600],detail:"📍 Campo Flores · Solo Arcoíris",tip:"Solo arcoíris, rara."},
-  {id:42,name:"Escarabajo Ciervo Gigante",emoji:"🪲",level:6,time:"18-6 🌙",cost:0,sell:[180,270,360,720,1440],detail:"📍 Bosque Profundo",tip:"Versión grande del ciervo."},
-  {id:43,name:"Mariposa Luna Azul",emoji:"🦋",level:6,time:"18-6 🌙",cost:0,sell:[180,270,360,720,1440],detail:"📍 Bosque, Lago Bosque",tip:"Nocturna azul eléctrico."},
+  {id:39,zone:"mountain",name:"Escarabajo Dorado",emoji:"🪲",level:6,time:"6-18 ☀️",cost:0,sell:[180,270,360,720,1440],detail:"📍 Montaña Onsen",tip:"Brilla dorado."},
+  {id:40,zone:"forest",name:"Polilla Atlas",emoji:"🦋",level:6,time:"18-6 🌙",cost:0,sell:[180,270,360,720,1440],detail:"📍 Bosque Profundo",tip:"Polilla más grande."},
+  {id:41,zone:"field",name:"Mariposa Arcoíris",emoji:"🦋",level:6,time:"6-18 🌈",cost:0,sell:[200,300,400,800,1600],detail:"📍 Campo Flores · Solo Arcoíris",tip:"Solo arcoíris, rara."},
+  {id:42,zone:"forest",name:"Escarabajo Ciervo Gigante",emoji:"🪲",level:6,time:"18-6 🌙",cost:0,sell:[180,270,360,720,1440],detail:"📍 Bosque Profundo",tip:"Versión grande del ciervo."},
+  {id:43,zone:"forest",name:"Mariposa Luna Azul",emoji:"🦋",level:6,time:"18-6 🌙",cost:0,sell:[180,270,360,720,1440],detail:"📍 Bosque, Lago Bosque",tip:"Nocturna azul eléctrico."},
   // Nv.7
-  {id:44,name:"Mariposa Cristal",emoji:"🦋",level:7,time:"6-12 🌧️",cost:0,sell:[200,300,400,800,1600],detail:"📍 Bosque · Solo Lluvia + Mañana",tip:"Alas transparentes."},
-  {id:45,name:"Ciervo Arcoíris",emoji:"🪲",level:7,time:"0-6 🌈",cost:0,sell:[250,375,500,1000,2000],detail:"📍 Bosque Profundo · Arcoíris + Madrugada",tip:"¡El bicho MÁS RARO y caro!"},
-  {id:46,name:"Mariposa Alexandra",emoji:"🦋",level:7,time:"6-12 ☀️",cost:0,sell:[220,330,440,880,1760],detail:"📍 Bosque Profundo",tip:"La mariposa más grande."},
-  {id:47,name:"Escarabajo Diamante",emoji:"🪲",level:7,time:"6-18 🌈",cost:0,sell:[220,330,440,880,1760],detail:"📍 Montaña · Arcoíris",tip:"Solo arcoíris, brilla."},
+  {id:44,zone:"forest",name:"Mariposa Cristal",emoji:"🦋",level:7,time:"6-12 🌧️",cost:0,sell:[200,300,400,800,1600],detail:"📍 Bosque · Solo Lluvia + Mañana",tip:"Alas transparentes."},
+  {id:45,zone:"forest",name:"Ciervo Arcoíris",emoji:"🪲",level:7,time:"0-6 🌈",cost:0,sell:[250,375,500,1000,2000],detail:"📍 Bosque Profundo · Arcoíris + Madrugada",tip:"¡El bicho MÁS RARO y caro!"},
+  {id:46,zone:"forest",name:"Mariposa Alexandra",emoji:"🦋",level:7,time:"6-12 ☀️",cost:0,sell:[220,330,440,880,1760],detail:"📍 Bosque Profundo",tip:"La mariposa más grande."},
+  {id:47,zone:"mountain",name:"Escarabajo Diamante",emoji:"🪲",level:7,time:"6-18 🌈",cost:0,sell:[220,330,440,880,1760],detail:"📍 Montaña · Arcoíris",tip:"Solo arcoíris, brilla."},
 ];
 
 // Aves: precios de Info Card (foto). Formato: 1★ idle / 2★ chirp / 3★ forage / 4★ preen / 5★ fly
 const DEF_BIRD=[
   // Nv.1
-  {id:1,name:"Petirrojo",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Central, Ciudad",tip:"El primero que aprendes a fotografiar."},
-  {id:2,name:"Paloma",emoji:"🕊️",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Central, Ciudad",tip:"Muy común en la plaza."},
-  {id:3,name:"Camachuelo",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Suburbana",tip:"Rojo, fácil de ver."},
-  {id:4,name:"Carbonero",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Montaña Onsen",tip:"Amarillo/negro."},
-  {id:5,name:"Pinzón",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Campo Flores",tip:"Común en flores."},
-  {id:6,name:"Tórtola",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Aldea Pesquera",tip:"En el suelo, camina."},
+  {id:1,zone:"town",name:"Petirrojo",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Central, Ciudad",tip:"El primero que aprendes a fotografiar."},
+  {id:2,zone:"town",name:"Paloma",emoji:"🕊️",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Central, Ciudad",tip:"Muy común en la plaza."},
+  {id:3,zone:"town",name:"Camachuelo",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Zona Suburbana",tip:"Rojo, fácil de ver."},
+  {id:4,zone:"mountain",name:"Carbonero",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Montaña Onsen",tip:"Amarillo/negro."},
+  {id:5,zone:"field",name:"Pinzón",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Campo Flores",tip:"Común en flores."},
+  {id:6,zone:"coast",name:"Tórtola",emoji:"🐦",level:1,time:"Todo · Todo clima",cost:0,sell:[10,40,80,160,320],detail:"📍 Aldea Pesquera",tip:"En el suelo, camina."},
   // Nv.2
-  {id:7,name:"Ánade Real",emoji:"🦆",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Lagos, Ríos",tip:"Pato verde en el agua."},
-  {id:8,name:"Chochín",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Isla Bosque",tip:"Muy pequeño, en arbustos."},
-  {id:9,name:"Herrerillo",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Árboles",tip:"Azul/amarillo, en ramas."},
-  {id:10,name:"Trepador Azul",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Montaña",tip:"Sube troncos cabeza abajo."},
-  {id:11,name:"Picogordo",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Plataforma Salto",tip:"Pico grande y fuerte."},
+  {id:7,zone:"water",name:"Ánade Real",emoji:"🦆",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Lagos, Ríos",tip:"Pato verde en el agua."},
+  {id:8,zone:"forest",name:"Chochín",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Isla Bosque",tip:"Muy pequeño, en arbustos."},
+  {id:9,zone:"forest",name:"Herrerillo",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Árboles",tip:"Azul/amarillo, en ramas."},
+  {id:10,zone:"forest",name:"Trepador Azul",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Montaña",tip:"Sube troncos cabeza abajo."},
+  {id:11,zone:"forest",name:"Picogordo",emoji:"🐦",level:2,time:"Todo · Todo clima",cost:0,sell:[15,60,120,240,480],detail:"📍 Bosque, Plataforma Salto",tip:"Pico grande y fuerte."},
   // Nv.3
-  {id:12,name:"Pinzón Real",emoji:"🐦",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Pradera, Campo",tip:"Colorido, suelo."},
-  {id:13,name:"Paloma Fruta Rosa",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Camino Lago-Río",tip:"Rosa, camina por caminos."},
-  {id:14,name:"Paloma Ojos Amarillos",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Ciudad, Zona Central",tip:"Ojos dorados."},
-  {id:15,name:"Paloma Grande",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Torre Ciervo",tip:"Grande, en el suelo."},
+  {id:12,zone:"field",name:"Pinzón Real",emoji:"🐦",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Pradera, Campo",tip:"Colorido, suelo."},
+  {id:13,zone:"water",name:"Paloma Fruta Rosa",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Camino Lago-Río",tip:"Rosa, camina por caminos."},
+  {id:14,zone:"town",name:"Paloma Ojos Amarillos",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Ciudad, Zona Central",tip:"Ojos dorados."},
+  {id:15,zone:"town",name:"Paloma Grande",emoji:"🕊️",level:3,time:"Todo · Todo clima",cost:0,sell:[20,80,160,320,640],detail:"📍 Torre Ciervo",tip:"Grande, en el suelo."},
   // Nv.4
-  {id:16,name:"Cernícalo",emoji:"🦅",level:4,time:"Todo · ☀️ No lluvia",cost:0,sell:[30,120,240,480,960],detail:"📍 Bosque Pinos, copas árboles",tip:"Rapaz, en lo alto. Difícil."},
-  {id:17,name:"Búho Chico",emoji:"🦉",level:4,time:"Todo · ☀️ No lluvia",cost:0,sell:[30,120,240,480,960],detail:"📍 Acantilado piedra alta",tip:"En rocas altas, difícil de ver."},
-  {id:18,name:"Abejaruco Ojos Amarillos",emoji:"🐦",level:4,time:"Todo · Todo clima",cost:0,sell:[30,120,240,480,960],detail:"📍 Aldea Pesquera, cables",tip:"Colorido, en cables eléctricos."},
+  {id:16,zone:"forest",name:"Cernícalo",emoji:"🦅",level:4,time:"Todo · ☀️ No lluvia",cost:0,sell:[30,120,240,480,960],detail:"📍 Bosque Pinos, copas árboles",tip:"Rapaz, en lo alto. Difícil."},
+  {id:17,zone:"mountain",name:"Búho Chico",emoji:"🦉",level:4,time:"Todo · ☀️ No lluvia",cost:0,sell:[30,120,240,480,960],detail:"📍 Acantilado piedra alta",tip:"En rocas altas, difícil de ver."},
+  {id:18,zone:"coast",name:"Abejaruco Ojos Amarillos",emoji:"🐦",level:4,time:"Todo · Todo clima",cost:0,sell:[30,120,240,480,960],detail:"📍 Aldea Pesquera, cables",tip:"Colorido, en cables eléctricos."},
   // Nv.5
-  {id:19,name:"Pato Blanco",emoji:"🦆",level:5,time:"Todo · Todo clima",cost:0,sell:[40,160,320,640,1280],detail:"📍 Lagos (con Atractor Pájaro)",tip:"Necesita Atractor de Pájaros."},
-  {id:20,name:"Flamenco Menor",emoji:"🦩",level:5,time:"Todo · 🌧️🌈 Lluvia/Arcoíris",cost:0,sell:[40,160,320,640,1280],detail:"📍 Lago Bosque",tip:"Rosa, solo lluvia/arcoíris."},
+  {id:19,zone:"water",name:"Pato Blanco",emoji:"🦆",level:5,time:"Todo · Todo clima",cost:0,sell:[40,160,320,640,1280],detail:"📍 Lagos (con Atractor Pájaro)",tip:"Necesita Atractor de Pájaros."},
+  {id:20,zone:"water",name:"Flamenco Menor",emoji:"🦩",level:5,time:"Todo · 🌧️🌈 Lluvia/Arcoíris",cost:0,sell:[40,160,320,640,1280],detail:"📍 Lago Bosque",tip:"Rosa, solo lluvia/arcoíris."},
   // Nv.6+
-  {id:21,name:"Alcaudón Dorsirrojo",emoji:"🐦",level:6,time:"Todo · 🌈☀️ Arcoíris/Brisa",cost:0,sell:[50,200,400,800,1600],detail:"📍 Bosque Roble, observadores",tip:"Arcoíris/brisa. Alto valor."},
-  {id:22,name:"Charrán",emoji:"🐦",level:6,time:"Todo · 🌈 Arcoíris",cost:0,sell:[60,240,360,720,1440],detail:"📍 Puente Isla Bosque, playa",tip:"Solo arcoíris. En la costa."},
-  {id:23,name:"Flamenco Americano",emoji:"🦩",level:6,time:"Todo · 🌈 Arcoíris/Brisa",cost:0,sell:[100,400,400,800,1600],detail:"📍 Playa Pato Amarillo",tip:"Grande, rosa. Arcoíris."},
-  {id:24,name:"Cardenalito",emoji:"🐦",level:7,time:"Todo · ☀️",cost:0,sell:[60,240,480,960,1920],detail:"📍 Campo Flores, Pradera",tip:"Rojo brillante."},
-  {id:25,name:"Martín Pescador",emoji:"🐦",level:7,time:"6-18 · ☀️",cost:0,sell:[60,240,480,960,1920],detail:"📍 Ríos, Lagos",tip:"Azul eléctrico, cerca del agua."},
-  {id:26,name:"Faisán Dorado",emoji:"🐦",level:8,time:"Todo · ☀️",cost:0,sell:[80,320,640,1280,2560],detail:"📍 Bosque Profundo",tip:"Dorado/rojo, muy bonito."},
-  {id:27,name:"Búho Real",emoji:"🦉",level:9,time:"18-6 · 🌙",cost:0,sell:[100,400,800,1600,3200],detail:"📍 Montaña, Acantilado",tip:"Nocturno, el búho más grande."},
-  {id:28,name:"Águila Real",emoji:"🦅",level:10,time:"6-18 · ☀️🌈",cost:0,sell:[120,480,960,1920,3840],detail:"📍 Cimas montañas",tip:"La foto más valiosa del juego."},
+  {id:21,zone:"forest",name:"Alcaudón Dorsirrojo",emoji:"🐦",level:6,time:"Todo · 🌈☀️ Arcoíris/Brisa",cost:0,sell:[50,200,400,800,1600],detail:"📍 Bosque Roble, observadores",tip:"Arcoíris/brisa. Alto valor."},
+  {id:22,zone:"coast",name:"Charrán",emoji:"🐦",level:6,time:"Todo · 🌈 Arcoíris",cost:0,sell:[60,240,360,720,1440],detail:"📍 Puente Isla Bosque, playa",tip:"Solo arcoíris. En la costa."},
+  {id:23,zone:"coast",name:"Flamenco Americano",emoji:"🦩",level:6,time:"Todo · 🌈 Arcoíris/Brisa",cost:0,sell:[100,400,400,800,1600],detail:"📍 Playa Pato Amarillo",tip:"Grande, rosa. Arcoíris."},
+  {id:24,zone:"field",name:"Cardenalito",emoji:"🐦",level:7,time:"Todo · ☀️",cost:0,sell:[60,240,480,960,1920],detail:"📍 Campo Flores, Pradera",tip:"Rojo brillante."},
+  {id:25,zone:"water",name:"Martín Pescador",emoji:"🐦",level:7,time:"6-18 · ☀️",cost:0,sell:[60,240,480,960,1920],detail:"📍 Ríos, Lagos",tip:"Azul eléctrico, cerca del agua."},
+  {id:26,zone:"forest",name:"Faisán Dorado",emoji:"🐦",level:8,time:"Todo · ☀️",cost:0,sell:[80,320,640,1280,2560],detail:"📍 Bosque Profundo",tip:"Dorado/rojo, muy bonito."},
+  {id:27,zone:"mountain",name:"Búho Real",emoji:"🦉",level:9,time:"18-6 · 🌙",cost:0,sell:[100,400,800,1600,3200],detail:"📍 Montaña, Acantilado",tip:"Nocturno, el búho más grande."},
+  {id:28,zone:"mountain",name:"Águila Real",emoji:"🦅",level:10,time:"6-18 · ☀️🌈",cost:0,sell:[120,480,960,1920,3840],detail:"📍 Cimas montañas",tip:"La foto más valiosa del juego."},
 ];
 
 // Flores: se plantan en suelo (no maceta). Precio = venta de flor madura. Colores por杂交 (hibridación)
@@ -696,14 +706,30 @@ function setTab(t,el){
   const cls=t==='garden'?'active-garden':t==='fish'?'active-fish':t==='bug'?'active-bug':t==='bird'?'active-bird':t==='flower'?'active-flower':t==='calc'?'active-calc':t==='map'?'active-map':'active-cook';
   el.classList.add('tab-btn',cls);
   document.getElementById('filtersBar').style.display=(t==='calc'||t==='map')?'none':'flex';
+  document.getElementById('zoneBar').style.display=(t==='fish'||t==='bug'||t==='bird')?'flex':'none';
+  if(t==='fish'||t==='bug'||t==='bird'){zoneFilter='all';updateZoneBar(t);}
   document.getElementById('grid').style.display=(t==='calc'||t==='map')?'none':'grid';
   document.getElementById('calcView').style.display=t==='calc'?'block':'none';
   document.getElementById('mapView').style.display=t==='map'?'block':'none';
   if(t==='calc') renderCalc(); else if(t==='map') renderMap(); else render();
 }
 function setFilter(el){
-  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#filtersBar .f-btn').forEach(b=>b.classList.remove('on'));
   el.classList.add('on');filter=el.dataset.f;render();
+}
+let zoneFilter='all';
+function setZone(el){
+  document.querySelectorAll('#zoneBar .f-btn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');zoneFilter=el.dataset.z;render();
+}
+function updateZoneBar(t){
+  const bar=document.getElementById('zoneBar');
+  const zones=t==='fish'?
+    [{z:'all',es:'🌊 Todos',en:'🌊 All',fr:'🌊 Tous'},{z:'river',es:'🏞️ Río',en:'🏞️ River',fr:'🏞️ Rivière'},{z:'lake',es:'🏕️ Lago',en:'🏕️ Lake',fr:'🏕️ Lac'},{z:'sea',es:'⛵ Mar',en:'⛵ Sea',fr:'⛵ Mer'}]:
+    t==='bug'?
+    [{z:'all',es:'🌍 Todos',en:'🌍 All',fr:'🌍 Tous'},{z:'forest',es:'🌲 Bosque',en:'🌲 Forest',fr:'🌲 Forêt'},{z:'field',es:'🌻 Campo',en:'🌻 Field',fr:'🌻 Champ'},{z:'mountain',es:'⛰️ Montaña',en:'⛰️ Mountain',fr:'⛰️ Montagne'},{z:'water',es:'💧 Agua',en:'💧 Water',fr:'💧 Eau'}]:
+    [{z:'all',es:'🌍 Todos',en:'🌍 All',fr:'🌍 Tous'},{z:'town',es:'🏘️ Ciudad',en:'🏘️ Town',fr:'🏘️ Ville'},{z:'forest',es:'🌲 Bosque',en:'🌲 Forest',fr:'🌲 Forêt'},{z:'water',es:'💧 Agua',en:'💧 Water',fr:'💧 Eau'},{z:'mountain',es:'⛰️ Montaña',en:'⛰️ Mountain',fr:'⛰️ Montagne'},{z:'field',es:'🌻 Campo',en:'🌻 Field',fr:'🌻 Champ'},{z:'coast',es:'🏖️ Costa',en:'🏖️ Coast',fr:'🏖️ Côte'}];
+  bar.innerHTML=zones.map((z,i)=>`<button class="f-btn${i===0?' on':''}" data-z="${z.z}" onclick="setZone(this)">${z[lang]}</button>`).join('');
 }
 function getStarCount(){return tab==='garden'?4:5;}
 
@@ -711,6 +737,9 @@ function render(){
   const data=getData(),search=document.getElementById('searchBox').value.toLowerCase();
   const list=data.filter(c=>c.name.toLowerCase().includes(search)).filter(c=>{
     if(filter==='low')return c.level<=3;if(filter==='mid')return c.level>=4&&c.level<=7;if(filter==='high')return c.level>=8;return true;
+  }).filter(c=>{
+    if(zoneFilter==='all'||!(tab==='fish'||tab==='bug'||tab==='bird'))return true;
+    return c.zone===zoneFilter||c.zone==='mixed';
   }).sort((a,b)=>a.level-b.level);
   const grid=document.getElementById('grid');grid.innerHTML='';
   const stars=getStarCount(),labels=stars===4?SL4:SL5;
