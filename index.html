@@ -328,6 +328,48 @@ const DEF_COOK=[
   // === ESPECIALES / EVENTOS ===
   {id:41,name:"Exposición Camping",emoji:"🏕️",level:7,time:"",cost:400,sell:[1200,1800,2400,4800,9600],detail:"Café/Latte + Comida × 3 (combo)",tip:"Plato combo, se come 4 veces."},
   {id:42,name:"Afternoon Tea",emoji:"🫖",level:7,time:"",cost:350,sell:[980,1470,1960,3920,7840],detail:"Fruta + Trigo + Huevo + Mantequilla",tip:"Se come 4 veces. ¡No uses manzana!"},
+  // === VARIANTES DE MERMELADA (derivadas de Mixta) ===
+  {id:43,name:"Mermelada Frambuesa",emoji:"🫐",level:1,time:"",cost:0,sell:[170,255,340,680,1360],detail:"Frambuesa × 4 · Derivada: Mixta → todo frambuesa",tip:"Derivada. Recolecta gratis."},
+  {id:44,name:"Mermelada Coco",emoji:"🥥",level:1,time:"",cost:0,sell:[250,375,500,1000,2000],detail:"Coco × 4 · Derivada: Mixta → todo coco",tip:"Derivada. Coco = recolectable."},
+  // === VARIANTES DE SETAS (misma receta, distinta seta) ===
+  {id:45,name:"Setas Shiitake Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Shiitake × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
+  {id:46,name:"Setas Ostra Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Ostra × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
+  {id:47,name:"Setas Boletus Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Boletus × 2 · Variante: Setas Plancha",tip:"Mismo precio, distinta seta."},
+  {id:48,name:"Trufa Negra Plancha",emoji:"🍄",level:1,time:"",cost:0,sell:[180,270,360,720,1440],detail:"Trufa Negra × 2 · Variante: Setas Plancha",tip:"Rara. Trufa difícil de encontrar."},
+  // === VARIANTES DE SOPA SETAS ===
+  {id:49,name:"Sopa Shiitake",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Shiitake × 2 + Patata × 2 · Variante",tip:"Misma sopa, distinta seta."},
+  {id:50,name:"Sopa Trufa Negra",emoji:"🍲",level:3,time:"",cost:0,sell:[500,750,1000,2000,4000],detail:"Trufa × 2 + Patata × 2 · Variante",tip:"Trufa rara pero sopa top."},
+  // === VARIANTES DE PASTEL SETAS ===
+  {id:51,name:"Pastel Shiitake",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Shiitake × 2 + Trigo × 2 · Variante",tip:"Misma receta, distinta seta."},
+  {id:52,name:"Pastel Trufa",emoji:"🥧",level:3,time:"",cost:95,sell:[650,975,1300,2600,5200],detail:"Trufa × 2 + Trigo × 2 · Variante",tip:"Trufa rara."},
+  // === VARIANTE CAFÉ ===
+  {id:53,name:"Latte",emoji:"☕",level:2,time:"",cost:250,sell:[320,480,640,1280,2560],detail:"Café × 2 + Leche × 2 · Variante de Café",tip:"Derivada del café base."},
+  // === VARIANTES DE ZUMO (Nv.9 evento verano) ===
+  {id:54,name:"Zumo de Fresa",emoji:"🍓",level:9,time:"",cost:125,sell:[420,630,840,1680,3360],detail:"Fresa × 2 + Fruta × 2 · Variante Zumo",tip:"Ingrediente para helado fresa."},
+  {id:55,name:"Zumo de Manzana",emoji:"🍎",level:9,time:"",cost:0,sell:[350,525,700,1400,2800],detail:"Manzana × 4 · Variante Zumo",tip:"Fruta gratis = puro beneficio."},
+  {id:56,name:"Zumo de Coco",emoji:"🥥",level:9,time:"",cost:0,sell:[400,600,800,1600,3200],detail:"Coco × 4 · Variante Zumo",tip:"Coco recolectable."},
+  // === VARIANTES BATIDO (Nv.11, cambiando fruta) ===
+  {id:57,name:"Batido Arándano",emoji:"🫐",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Arándano × 2",tip:"Variante del batido base."},
+  {id:58,name:"Batido Frambuesa",emoji:"🫐",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Frambuesa × 2",tip:"Variante del batido base."},
+  {id:59,name:"Batido Piña",emoji:"🍍",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Piña × 2",tip:"Variante del batido base."},
+  {id:60,name:"Batido Fresa",emoji:"🍓",level:11,time:"",cost:325,sell:[380,570,760,1520,3040],detail:"Leche × 2 + Fresa × 2",tip:"Variante. Fresa más cara."},
+  {id:61,name:"Batido Manzana",emoji:"🍎",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Manzana × 2",tip:"Variante del batido."},
+  {id:62,name:"Batido Naranja",emoji:"🍊",level:11,time:"",cost:200,sell:[320,480,640,1280,2560],detail:"Leche × 2 + Naranja × 2",tip:"Variante del batido."},
+  {id:63,name:"Batido Uva",emoji:"🍇",level:11,time:"",cost:360,sell:[380,570,760,1520,3040],detail:"Leche × 2 + Uva × 2",tip:"Variante. Uva más cara."},
+  // === FLOATY ROLL / NUBES (Evento Lluvia/Arcoíris) ===
+  {id:64,name:"Nube Rosa",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Rosa × 4 · Receta: Doris (lluvia)",tip:"Compra receta a Doris en lluvia."},
+  {id:65,name:"Nube Azul",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Azul × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  {id:66,name:"Nube Amarilla",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Amarillo × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  {id:67,name:"Nube Verde",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Verde × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  {id:68,name:"Nube Morada",emoji:"☁️",level:3,time:"",cost:100,sell:[180,270,360,720,1440],detail:"Caramelo Morado × 4 · Variante Nube",tip:"Derivada cambiando caramelo."},
+  // === HELADOS (Evento Verano) ===
+  {id:69,name:"Helado Fresa",emoji:"🍦",level:9,time:"",cost:400,sell:[580,870,1160,2320,4640],detail:"Zumo Fresa + Leche + Mantequilla + Queso",tip:"Evento verano. Único rentable."},
+  {id:70,name:"Helado Coco",emoji:"🍦",level:9,time:"",cost:350,sell:[520,780,1040,2080,4160],detail:"Zumo Coco + Leche + Mantequilla + Queso",tip:"Evento verano."},
+  // === PLATOS CON BERENJENA (Nv.8) ===
+  {id:71,name:"Berenjena Salteada",emoji:"🍆",level:8,time:"",cost:200,sell:[420,630,840,1680,3360],detail:"Berenjena × 2 + Tomate + Carne",tip:"Variante más simple."},
+  // === PLATOS INVIERNO (Evento Frost) ===
+  {id:72,name:"Estofado Invierno",emoji:"🍲",level:9,time:"",cost:250,sell:[550,825,1100,2200,4400],detail:"Rábano + Patata + Carne + Zanahoria",tip:"Evento Frost Season."},
+  {id:73,name:"Pastel de Hierba",emoji:"🌿",level:10,time:"",cost:200,sell:[480,720,960,1920,3840],detail:"Trigo + Huevo + Mantequilla + Hierba",tip:"Evento especial. Hierba recolectable."},
 ];
 const DEF_BUG=[
   // Nv.1
