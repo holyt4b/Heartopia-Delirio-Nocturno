@@ -553,6 +553,7 @@ const DEF_FLOWER=[
   {id:39,name:"Tulipán Negro",emoji:"🖤",level:9,time:"1 día",cost:0,sell:[90,135,180,360,720],detail:"★4 · 🔓 Cruce: Morado × Naranja",tip:"Morado + naranja = negro."},
   {id:40,name:"Tulipán Arcoíris Selene",emoji:"🌈",level:9,time:"1 día",cost:0,sell:[150,225,300,600,1200],detail:"★5 · 🔓 Cruce: Negro × Negro · Brilla noche",tip:"2 negros = arcoíris! La flor MÁS valiosa."},
 ];
+let tab='garden',filter='all';
 function getAllItems(){
   const all=[];
   DEF_GARDEN.forEach(i=>all.push({...i,cat:'garden',catName:'🌾 Cultivo'}));
